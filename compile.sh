@@ -11,7 +11,7 @@ closure-library/closure/bin/build/depswriter.py \
 #closure-library/closure/bin/build/closurebuilder.py \
 #  --root=closure-library/ \
 #  --root=src/ \
-#  --namespace="com.ttProject.myLib.test.Test" \
+#  --namespace="com.ttProject.util.HexUtil" \
 #  --output_mode=compiled \
 #  --compiler_jar=compiler.jar \
 #  > myLib.js

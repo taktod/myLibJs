@@ -40,8 +40,4 @@ goog.provide("com.ttProject.bit.super.Bit");
 	path.Bit.prototype.setBitCount = function(val) {
 		this.bitCount = val;
 	};
-	path.Bit.prototype.dump = function() {
-		console.log("value:" + this.value);
-		console.log("bitCount:" + this.bitCount);
-	};
 })(com.ttProject.bit.super);

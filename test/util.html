@@ -8,6 +8,9 @@
     <script type="text/javascript">
       goog.require("goog.testing.jsunit");
       goog.require("com.ttProject.util.HexUtil");
+      goog.require("com.ttProject.bit.Bit1");
+      goog.require("com.ttProject.bit.Bit2");
+      goog.require("com.ttProject.bit.Bit9");
     </script>
     <script type="text/javascript">
     function setUp() {
@@ -17,6 +20,9 @@
     function test() {
       assertEquals("test", "123", "123");
       console.log(com.ttProject.util.HexUtil.toHex(new Uint16Array([0, 1, 2, 3]), true));
+      var test = new com.ttProject.bit.Bit9();
+      test.set(257);
+      console.log(test.get());
     }
     </script>
   </body>

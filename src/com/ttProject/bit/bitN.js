@@ -66,12 +66,12 @@ goog.require("com.ttProject.bit.Bit7");
 goog.require("com.ttProject.bit.Bit8");
 
 (function(path) {
-	set = function(_this, val) {
+	var set = function(_this, val) {
 		if(val != undefined) {
-			goog.base(_this, "set", val);
+			_this.set(val);
 		}
 	};
-	path.Bit9 = function(val)  {goog.base(this, new path.Bit1(), new path.Bit8());set(this, val);};
+	path.Bit9  = function(val) {goog.base(this, new path.Bit1(), new path.Bit8());set(this, val);};
 	path.Bit10 = function(val) {goog.base(this, new path.Bit2(), new path.Bit8());set(this, val);};
 	path.Bit11 = function(val) {goog.base(this, new path.Bit3(), new path.Bit8());set(this, val);};
 	path.Bit12 = function(val) {goog.base(this, new path.Bit4(), new path.Bit8());set(this, val);};

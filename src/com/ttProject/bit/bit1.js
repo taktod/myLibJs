@@ -6,6 +6,9 @@ goog.require("com.ttProject.bit.super.Bit");
  * bit1定義
  */
 (function(path) {
+	/**
+	 * @constructor
+	 */
 	path.Bit1 = function(value) {
 		goog.base(this, 1);
 		if(value != undefined) {

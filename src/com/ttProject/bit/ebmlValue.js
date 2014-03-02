@@ -29,12 +29,13 @@ goog.require("com.ttProject.bit.Bit56");
 		goog.base(this, 0);
 		this.numBit = new path.Bit1(1);
 		this.dataBit = new path.Bit7();
+		this.zeroCount = 0;
 	};
 	// 継承
 	goog.inherits(path.EbmlValue, path.super.Bit);
-	path.EbmlValue.prototype.zeroCount = 0;
-	path.EbmlValue.prototype.numBit = null;
-	path.EbmlValue.prototype.dataBit = null;
+	path.EbmlValue.prototype.zeroCount;
+	path.EbmlValue.prototype.numBit;
+	path.EbmlValue.prototype.dataBit;
 	path.EbmlValue.prototype.getCount = function() {
 		return this.numBit.getBitCount() + this.dataBit.getBitCount();
 	};

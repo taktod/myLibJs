@@ -15,9 +15,11 @@ goog.require("com.ttProject.bit.super.ExpGolomb");
 	// 継承しておく
 	goog.inherits(path.Ueg, path.super.ExpGolomb);
 	path.Ueg.prototype.get = function() {
-		return goog.base(this, "getData") - 1;
+//		return goog.base(this, "getData") - 1;
+		return this.getData() - 1;
 	};
 	path.Ueg.prototype.set = function(val) {
-		goog.base(this, "setData", val + 1);
+//		goog.base(this, "setData", val + 1);
+		this.setData(val + 1);
 	};
 })(com.ttProject.bit);

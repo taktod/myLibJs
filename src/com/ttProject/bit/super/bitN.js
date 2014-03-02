@@ -7,13 +7,14 @@ goog.require("com.ttProject.bit.super.Bit");
  */
 (function(path){
 	/**
-	 * @constractor
+	 * @constructor
 	 */
 	path.BitN = function() {
+		this.bits = [];
 		var count = 0;
 		for(var i = 0;i < arguments.length;i ++) {
 			var bit = arguments[i];
-			if(bit == null) {
+			if(bit == null || !(bit instanceof path.Bit)) {
 				continue;
 			}
 			count += bit.getBitCount();
@@ -22,7 +23,7 @@ goog.require("com.ttProject.bit.super.Bit");
 		goog.base(this, count);
 	};
 	goog.inherits(path.BitN, path.Bit);
-	path.BitN.prototype.bits = [];
+	path.BitN.prototype.bits;
 	path.BitN.prototype.get = function() {
 		var value = 0;
 		for(var i = 0;i < this.bits.length;i ++) {

@@ -9,9 +9,10 @@ goog.provide("com.ttProject.bit.super.Bit");
 	 */
 	path.Bit = function(count) {
 		this.bitCount = count;
+		this.value = 0;
 	};
-	path.Bit.prototype.value = 0;
-	path.Bit.prototype.bitCount = 0;
+	path.Bit.prototype.value;
+	path.Bit.prototype.bitCount;
 	/**
 	 * データ設定
 	 * @param value

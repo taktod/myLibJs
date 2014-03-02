@@ -8,9 +8,7 @@
     <script type="text/javascript">
       goog.require("goog.testing.jsunit");
       goog.require("com.ttProject.util.HexUtil");
-      goog.require("com.ttProject.bit.Bit1");
-      goog.require("com.ttProject.bit.Bit2");
-      goog.require("com.ttProject.bit.Bit9");
+      goog.require("com.ttProject.bit.BitConnector");
     </script>
     <script type="text/javascript">
     function setUp() {
@@ -18,11 +16,23 @@
     function tearDown() {
     }
     function test() {
+      var path = com.ttProject.bit;
       assertEquals("test", "123", "123");
       console.log(com.ttProject.util.HexUtil.toHex(new Uint16Array([0, 1, 2, 3]), true));
-      var test = new com.ttProject.bit.Bit9();
-      test.set(257);
+      var test = new path.Bit9(257);
       console.log(test.get());
+      var b1 = new path.Bit1(1);
+      var b2 = new path.Bit1(0);
+      var b3 = new path.Bit1(0);
+      var b4 = new path.Bit1(0);
+      var b5 = new path.Bit1(1);
+      var b6 = new path.Bit1(0);
+      var b7 = new path.Bit2(3);
+      var b8 = new path.Bit8(0xFF);
+      var b9 = new path.Bit16(0x0102);
+      console.log(b9.get());
+      var bitConnector = new path.BitConnector();
+      console.log(com.ttProject.util.HexUtil.toHex(bitConnector.connect(b1,b2,b3,b4,b5,b6,b7,b8,b9)));
     }
     </script>
   </body>

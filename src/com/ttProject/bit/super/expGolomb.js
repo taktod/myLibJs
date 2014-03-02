@@ -1,5 +1,6 @@
 goog.provide("com.ttProject.bit.super.ExpGolomb");
 
+goog.require("com.ttProject.bit.super.Bit");
 goog.require("com.ttProject.bit.Bit1");
 goog.require("com.ttProject.bit.Bit2");
 goog.require("com.ttProject.bit.Bit3");
@@ -20,14 +21,18 @@ goog.require("com.ttProject.bit.Bit8");
 		// 初期化として0を表現しておきます。
 		goog.base(this, 1);
 		this.bits.push(new com.ttProject.bit.Bit1(1));
+		this.value = 0;
+		this.zeroCount = 0;
+		this.find1Flg = false;
+		this.bits = [];
 	};
 	// 継承しとく
-	goog.inherits(path.ExpGolomb(), path.Bit);
+	goog.inherits(path.ExpGolomb, path.Bit);
 	// 内部変数定義
-	path.ExpGolomb.prototype.value = 0;
-	path.ExpGolomb.prototype.zeroCount = 0;
-	path.ExpGolomb.prototype.find1Flg = false;
-	path.ExpGolomb.prototype.bits = [];
+	path.ExpGolomb.prototype.value;
+	path.ExpGolomb.prototype.zeroCount;
+	path.ExpGolomb.prototype.find1Flg;
+	path.ExpGolomb.prototype.bits;
 	// 内部関数定義
 	/**
 	 * @proteced
@@ -87,7 +92,7 @@ goog.require("com.ttProject.bit.Bit8");
 	 * @param bit bit1データ
 	 * @reutrn false:登録がおわった場合 true:まだ登録が必要な場合
 	 */
-	path.ExpGolomb.prototype.addBit1(bit) {
+	path.ExpGolomb.prototype.addBit1 = function(bit) {
 		if(!this.find1Flg) {
 			if(bit.get() == 0) {
 				this.zeroCount ++;

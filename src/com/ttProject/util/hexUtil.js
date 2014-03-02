@@ -36,7 +36,7 @@ goog.require("com.ttProject.util.ArrayUtil");
 		return result;
 	};
 	path.HexUtil.toHex = function(data, offset, length, withSeparator) {
-		if(data == undefined || data.length == undefined) {
+		if(isNaN(data) && (data == undefined || data.length == undefined)) {
 			throw new Error("不正なデータが送られました");
 		}
 		if(offset == undefined) {

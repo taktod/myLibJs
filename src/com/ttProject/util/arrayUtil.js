@@ -33,6 +33,15 @@ goog.provide("com.ttProject.util.ArrayUtil");
 			}
 			return new Uint8Array(result);
 		}
+		else if(!isNaN(array)){
+			// 数値だったら
+			var ary = [];
+			do {
+				ary.unshift(array & 0xFF);
+				array >>>= 8;
+			}while(array > 0);
+			return new Uint8Array(ary);
+		}
 		else {
 			return new Uint8Array(array);
 		}

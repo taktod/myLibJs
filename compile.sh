@@ -7,7 +7,6 @@ closure-library/closure/bin/build/depswriter.py \
 
 # compile for libraries
 
-#
 #closure-library/closure/bin/build/closurebuilder.py \
 #  --root=closure-library/ \
 #  --root=src/ \
@@ -15,3 +14,12 @@ closure-library/closure/bin/build/depswriter.py \
 #  --output_mode=compiled \
 #  --compiler_jar=compiler.jar \
 #  > myLib.js
+
+#closure-library/closure/bin/build/closurebuilder.py \
+#  --root=closure-library/ \
+#  --root=src/ \
+#  --namespace="com.ttProject.util.HexUtil" \
+#  --output_mode=compiled \
+#  --compiler_jar=compiler.jar \
+#  --compiler_flags="--compilation_level=ADVANCED_OPTIMIZATIONS" \
+#  > myLib_min.js

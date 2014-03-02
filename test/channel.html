@@ -25,6 +25,8 @@
       var dat2 = new Uint8Array(3);
       console.log(channel.read(dat2));
       console.log(com.ttProject.util.HexUtil.toHex(dat2));
+      
+      new com.ttProject.channel.XhrIoReadChannel();
     }
     </script>
   </body>

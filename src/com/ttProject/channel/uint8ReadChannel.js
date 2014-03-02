@@ -25,17 +25,17 @@ goog.require("com.ttProject.channel.IReadChannel");
 	path.Uint8ReadChannel.prototype.size = function() {
 		return this.buffer.length;
 	};
-	path.Uint8ReadChannel.prototype.position = function(val) {
-		if(val == undefined) {
+	path.Uint8ReadChannel.prototype.position = function(position) {
+		if(position == undefined) {
 			// 位置参照
 			return this.position;
 		}
 		else {
 			// 位置設定
-			if(val > this.buffer.length) {
+			if(position > this.buffer.length) {
 				throw new Error("設定位置が配列外です。");
 			}
-			this.position = val;
+			this.position = position;
 		}
 		return this;
 	};

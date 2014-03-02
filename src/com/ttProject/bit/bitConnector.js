@@ -19,14 +19,13 @@ goog.require("com.ttProject.bit.EbmlValue");
 		this.size = null;
 		this.buffer = null;
 	};
-	path.BitConnector.prototype.bits;
-	path.BitConnector.prototype.littleEndianFlg;
+	path.BitConnector.prototype.bits = null;
+	path.BitConnector.prototype.littleEndianFlg = null;
 	// 内部変数
-	path.BitConnector.prototype.data;
-	path.BitConnector.prototype.left;
-	path.BitConnector.prototype.size;
-	// 必要か？
-	path.BitConnector.prototype.buffer;
+	path.BitConnector.prototype.data = null;
+	path.BitConnector.prototype.left = null;
+	path.BitConnector.prototype.size = null;
+	path.BitConnector.prototype.buffer = null;
 	path.BitConnector.prototype.setLittleEndianFlg = function(flg) {
 		this.littleEndianFlg = flg;
 	};

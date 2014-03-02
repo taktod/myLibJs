@@ -29,10 +29,10 @@ goog.require("com.ttProject.bit.Bit8");
 	// 継承しとく
 	goog.inherits(path.ExpGolomb, path.Bit);
 	// 内部変数定義
-	path.ExpGolomb.prototype.value;
-	path.ExpGolomb.prototype.zeroCount;
-	path.ExpGolomb.prototype.find1Flg;
-	path.ExpGolomb.prototype.bits;
+	path.ExpGolomb.prototype.value = null;
+	path.ExpGolomb.prototype.zeroCount = null;
+	path.ExpGolomb.prototype.find1Flg = null;
+	path.ExpGolomb.prototype.bits = null;
 	// 内部関数定義
 	/**
 	 * @proteced

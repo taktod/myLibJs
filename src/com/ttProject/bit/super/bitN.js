@@ -23,7 +23,7 @@ goog.require("com.ttProject.bit.super.Bit");
 		goog.base(this, count);
 	};
 	goog.inherits(path.BitN, path.Bit);
-	path.BitN.prototype.bits;
+	path.BitN.prototype.bits = null;
 	path.BitN.prototype.get = function() {
 		var value = 0;
 		for(var i = 0;i < this.bits.length;i ++) {

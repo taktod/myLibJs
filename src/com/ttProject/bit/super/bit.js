@@ -13,8 +13,8 @@ goog.require("com.ttProject.util.BitUtil");
 		this.bitCount = count;
 		this.value = 0;
 	};
-	path.Bit.prototype.value;
-	path.Bit.prototype.bitCount;
+	path.Bit.prototype.value = null;
+	path.Bit.prototype.bitCount = null;
 	/**
 	 * データ設定
 	 * @param value

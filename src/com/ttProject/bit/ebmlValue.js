@@ -33,9 +33,9 @@ goog.require("com.ttProject.bit.Bit56");
 	};
 	// 継承
 	goog.inherits(path.EbmlValue, path.super.Bit);
-	path.EbmlValue.prototype.zeroCount;
-	path.EbmlValue.prototype.numBit;
-	path.EbmlValue.prototype.dataBit;
+	path.EbmlValue.prototype.zeroCount = null;
+	path.EbmlValue.prototype.numBit = null;
+	path.EbmlValue.prototype.dataBit = null;
 	path.EbmlValue.prototype.getCount = function() {
 		return this.numBit.getBitCount() + this.dataBit.getBitCount();
 	};

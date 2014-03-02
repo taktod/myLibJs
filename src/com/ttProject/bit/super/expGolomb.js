@@ -20,11 +20,11 @@ goog.require("com.ttProject.bit.Bit8");
 	path.ExpGolomb = function() {
 		// 初期化として0を表現しておきます。
 		goog.base(this, 1);
-		this.bits.push(new com.ttProject.bit.Bit1(1));
 		this.value = 0;
 		this.zeroCount = 0;
 		this.find1Flg = false;
 		this.bits = [];
+		this.bits.push(new com.ttProject.bit.Bit1(1));
 	};
 	// 継承しとく
 	goog.inherits(path.ExpGolomb, path.Bit);
@@ -112,5 +112,13 @@ goog.require("com.ttProject.bit.Bit8");
 			setData(this.value);
 		}
 		return !end;
+	};
+	path.ExpGolomb.prototype.toString = function() {
+		var data = "";
+		for(var i = 0;i < this.bits.length;i ++) {
+			var bit = this.bits[i];
+			data += bit.toString();
+		}
+		return data;
 	};
 })(com.ttProject.bit.super);

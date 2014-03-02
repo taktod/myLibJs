@@ -42,4 +42,12 @@ goog.require("com.ttProject.bit.super.Bit");
 		}
 	};
 	// getLong、setLongはjavascriptに型の概念がなさそうなので、そのままおいときます。
+	path.BitN.prototype.toString = function() {
+		var data = "";
+		for(var i = 0;i < this.bits.length;i ++) {
+			var bit = this.bits[i];
+			data += bit.toString();
+		}
+		return data;
+	};
 })(com.ttProject.bit.super);

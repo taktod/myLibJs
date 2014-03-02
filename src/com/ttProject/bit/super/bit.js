@@ -1,5 +1,7 @@
 goog.provide("com.ttProject.bit.super.Bit");
 
+goog.require("com.ttProject.util.BitUtil");
+
 /**
  * bitデータの基本クラス
  */
@@ -40,5 +42,11 @@ goog.provide("com.ttProject.bit.super.Bit");
 	 */
 	path.Bit.prototype.setBitCount = function(val) {
 		this.bitCount = val;
+	};
+	/**
+	 * データDump
+	 */
+	path.Bit.prototype.toString = function() {
+		return com.ttProject.util.BitUtil.toBit(this.value, this.bitCount);
 	};
 })(com.ttProject.bit.super);

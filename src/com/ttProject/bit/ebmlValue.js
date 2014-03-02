@@ -161,4 +161,7 @@ goog.require("com.ttProject.bit.Bit56");
 	path.EbmlValue.prototype.getEbmlNumBit = function() {
 		return this.numBit;
 	};
+	path.EbmlValue.prototype.toString = function() {
+		return this.numBit.toString() + this.dataBit.toString();
+	};
 })(com.ttProject.bit);

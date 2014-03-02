@@ -7,7 +7,7 @@ goog.provide("com.ttProject.util.ArrayUtil");
  */
 (function(path) {
 	/**
-	 * @constractor
+	 * @constructor
 	 */
 	path.ArrayUtil = function() {
 	};

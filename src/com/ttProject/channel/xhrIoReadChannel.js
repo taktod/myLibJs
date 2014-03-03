@@ -20,13 +20,16 @@ goog.require("com.ttProject.util.HexUtil");
 		// とりあえず動作テストしてみる。
 		xhr = new goog.net.XhrIo();
 		xhr.setResponseType(goog.net.XhrIo.ResponseType.ARRAY_BUFFER);
+		xhr.headers.set("Range", "bytes=0-10"); // rangeリクエストはいけるっぽい。
 		goog.events.listen(xhr, goog.net.EventType.READY_STATE_CHANGE, function(e) {
 			console.log(e.target.getResponse());
 		});
 		goog.events.listen(xhr, goog.net.EventType.COMPLETE, function(e) {
+			// 応答データはここでしか拾えないみたい。
 			console.log(e.target.getResponse());
+			console.log(com.ttProject.util.HexUtil.toHex(new Uint8Array(e.target.getResponse())));
 		});
-		xhr.send("http://localhost/~todatakahiko/myLibJs/ahiru.flv");
+		xhr.send("../ahiru.flv");
 /*		xhr = new XMLHttpRequest();
 		xhr.open("GET", "http://localhost/~todatakahiko/myLibJs/ahiru.flv", true);
 		xhr.responseType = "arraybuffer";

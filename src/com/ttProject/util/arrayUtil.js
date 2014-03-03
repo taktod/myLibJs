@@ -16,22 +16,10 @@ goog.provide("com.ttProject.util.ArrayUtil");
 			return array;
 		}
 		else if(array instanceof Uint16Array) {
-			var result = [];
-			for(var i = 0;i < array.length;i ++) {
-				result.push((array[i] >>> 8) & 0xFF);
-				result.push((array[i]) & 0xFF);
-			}
-			return new Uint8Array(result);
+			return new Uint8Array(array.buffer);
 		}
 		else if(array instanceof Uint32Array) {
-			var result = [];
-			for(var i = 0;i < array.length;i ++) {
-				result.push((array[i] >>> 24) & 0xFF);
-				result.push((array[i] >>> 16) & 0xFF);
-				result.push((array[i] >>> 8) & 0xFF);
-				result.push((array[i]) & 0xFF);
-			}
-			return new Uint8Array(result);
+			return new Uint8Array(array.buffer);
 		}
 		else if(!isNaN(array)){
 			// 数値だったら
@@ -39,7 +27,7 @@ goog.provide("com.ttProject.util.ArrayUtil");
 			do {
 				ary.unshift(array & 0xFF);
 				array >>>= 8;
-			}while(array > 0);
+			} while(array > 0);
 			return new Uint8Array(ary);
 		}
 		else {
@@ -51,35 +39,5 @@ goog.provide("com.ttProject.util.ArrayUtil");
 	};
 	path.ArrayUtil.toUint32 = function(array) {
 		
-	};
-	path.ArrayUtil.Uint8ToUint16 = function(array) {
-		if(!(array instanceof Uint8Array)) {
-			throw new Error("入力がuint8ではありません");
-		}
-	};
-	path.ArrayUtil.Uint8ToUint32 = function(array) {
-		if(!(array instanceof Uint8Array)) {
-			throw new Error("入力がuint8ではありません");
-		}
-	};
-	path.ArrayUtil.Uint16ToUint8 = function(array) {
-		if(!(array instanceof Uint16Array)) {
-			throw new Error("入力がuint16ではありません");
-		}
-	};
-	path.ArrayUtil.Uint16ToUint32 = function(array) {
-		if(!(array instanceof Uint16Array)) {
-			throw new Error("入力がuint16ではありません");
-		}
-	};
-	path.ArrayUtil.Uint32ToUint8 = function(array) {
-		if(!(array instanceof Uint32Array)) {
-			throw new Error("入力がuint32ではありません");
-		}
-	};
-	path.ArrayUtil.Uint32ToUint16 = function(array) {
-		if(!(array instanceof Uint32Array)) {
-			throw new Error("入力がuint32ではありません");
-		}
 	};
 })(com.ttProject.util);

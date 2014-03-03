@@ -13,6 +13,6 @@ goog.provide("com.ttProject.channel.IReadChannel");
 	path.IReadChannel.prototype.isOpen   = function() {};
 	path.IReadChannel.prototype.size     = function() {};
 	path.IReadChannel.prototype.position = function(position) {};
-	path.IReadChannel.prototype.read     = function(uint8Array) {};
+	path.IReadChannel.prototype.read     = function(uint8Array, callback) {};
 	path.IReadChannel.prototype.close    = function() {};
 })(com.ttProject.channel);

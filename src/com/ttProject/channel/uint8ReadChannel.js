@@ -39,15 +39,18 @@ goog.require("com.ttProject.channel.IReadChannel");
 		}
 		return this;
 	};
-	path.Uint8ReadChannel.prototype.read = function(uint8Array) {
+	path.Uint8ReadChannel.prototype.read = function(uint8Array, callback) {
 		// 入力uint8Arrayにデータをいれていく。
 //		positionから先のデータをuint8Arrayにいれて応答していけばよい
-		var length = (this.buffer.length - this.position > uint8Array.length) ? uint8Array.length : this.buffer.length - this.position; 
+		// データが必要な量たまったら、callbackで応答を返す形にする。
+		if(this.buffer.length - this.position < uint8Array.length) {
+			throw new Error("保持データ量以上読み込もうとしました。");
+		}
+		var length = uint8Array.length;
 		for(var i = 0;i < length;i ++) {
 			uint8Array[i] = this.buffer[this.position ++];
 		}
-		// 読み込めたデータ量を応答しておく。
-		return length;
+		callback(uint8Array);
 	};
 	path.Uint8ReadChannel.prototype.close = function() {
 	};

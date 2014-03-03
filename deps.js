@@ -19,7 +19,7 @@ goog.addDependency('../../../src/com/ttProject/bit/super/expGolomb.js', ['com.tt
 goog.addDependency('../../../src/com/ttProject/bit/ueg.js', ['com.ttProject.bit.Ueg'], ['com.ttProject.bit.super.ExpGolomb']);
 goog.addDependency('../../../src/com/ttProject/channel/iReadChannel.js', ['com.ttProject.channel.IReadChannel'], []);
 goog.addDependency('../../../src/com/ttProject/channel/uint8ReadChannel.js', ['com.ttProject.channel.Uint8ReadChannel'], ['com.ttProject.channel.IReadChannel']);
-goog.addDependency('../../../src/com/ttProject/channel/xhrIoReadChannel.js', ['com.ttProject.channel.XhrIoReadChannel'], ['com.ttProject.channel.IReadChannel', 'goog.net.XhrIo']);
+goog.addDependency('../../../src/com/ttProject/channel/xhrIoReadChannel.js', ['com.ttProject.channel.XhrIoReadChannel'], ['com.ttProject.channel.IReadChannel', 'goog.net.Jsonp', 'goog.net.XhrIo']);
 goog.addDependency('../../../src/com/ttProject/util/arrayUtil.js', ['com.ttProject.util.ArrayUtil'], []);
 goog.addDependency('../../../src/com/ttProject/util/bitUtil.js', ['com.ttProject.util.BitUtil'], []);
 goog.addDependency('../../../src/com/ttProject/util/hexUtil.js', ['com.ttProject.util.HexUtil'], ['com.ttProject.util.ArrayUtil']);

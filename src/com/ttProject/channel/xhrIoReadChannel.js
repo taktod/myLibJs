@@ -17,6 +17,8 @@ goog.require("com.ttProject.util.HexUtil");
  */
 (function(path){
 	path.XhrIoReadChannel = function() {
+		// byte -> stringの変換方法メモ
+		// String.fromCharCode.apply(null, new Uint8Array([0x30,0x31,0x32,0x33]));
 		// とりあえず動作テストしてみる。
 		xhr = new goog.net.XhrIo();
 		xhr.setResponseType(goog.net.XhrIo.ResponseType.ARRAY_BUFFER);
@@ -30,16 +32,6 @@ goog.require("com.ttProject.util.HexUtil");
 			console.log(com.ttProject.util.HexUtil.toHex(new Uint8Array(e.target.getResponse())));
 		});
 		xhr.send("../ahiru.flv");
-/*		xhr = new XMLHttpRequest();
-		xhr.open("GET", "http://localhost/~todatakahiko/myLibJs/ahiru.flv", true);
-		xhr.responseType = "arraybuffer";
-		xhr.onload = function(e) {
-			console.log("loadおわり");
-			console.log(xhr.response);
-			var ary = new Uint8Array(xhr.response);
-			console.log(com.ttProject.util.HexUtil.toHex(ary, 0, 10, true));
-		};
-		xhr.send(null);*/
 	};
 	goog.inherits(path.XhrIoReadChannel, path.IReadChannel);
 	path.XhrIoReadChannel.prototype.isOpen = function() {

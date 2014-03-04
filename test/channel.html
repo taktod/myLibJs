@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>Channelのテスト</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   </head>
   <body>
     <script type="text/javascript" src="../closure-library/closure/goog/base.js" ></script>
@@ -28,7 +29,15 @@
         console.log(com.ttProject.util.HexUtil.toHex(data));
       });
       
-      new com.ttProject.channel.XhrIoReadChannel();
+      var xhrIoChannel = new com.ttProject.channel.XhrIoReadChannel("../ahiru.flv");
+      var dat = new Uint8Array(10);
+      xhrIoChannel.read(dat, function(data) {
+        console.log(com.ttProject.util.HexUtil.toHex(data));
+      });
+      var dat = new Uint8Array(11);
+      xhrIoChannel.read(dat, function(data) {
+        console.log(com.ttProject.util.HexUtil.toHex(data));
+      });
     }
     </script>
   </body>

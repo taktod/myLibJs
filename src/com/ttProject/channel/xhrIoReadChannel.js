@@ -12,36 +12,21 @@ goog.require("com.ttProject.util.HexUtil");
  * とりあえず、onReadyStateChangeをみて、追加データをとればいい感じかな・・・
  * readするときにデータが足りなければちょくちょく、setIntervalかなにかかけて、待たせる感じで・・・
  * javascriptにはsleepがないので、まっといて・・・というのができないっぽいですね。
- * 
+
+	// byte -> stringの変換方法メモ
+	// String.fromCharCode.apply(null, new Uint8Array([0x30,0x31,0x32,0x33]));
+
  * @param com.ttProject.channel
  */
 com.ttProject.channel.XhrIoReadChannel = function(targetUrl) {
-	// byte -> stringの変換方法メモ
-	// String.fromCharCode.apply(null, new Uint8Array([0x30,0x31,0x32,0x33]));
-//	var _this = this;
-	// とりあえず動作テストしてみる。
-//	var xhr = new goog.net.XhrIo();
-	// 応答はbinaryとして受け取る
-//	xhr.setResponseType(goog.net.XhrIo.ResponseType.ARRAY_BUFFER);
-	// とりあえず、先頭の12バイトだけ読み込む
-//	xhr.headers.set("Range", "bytes=0-12"); // rangeリクエストはいけるっぽい。
-	// readyStateChangeはつかえないっぽい。
-/*		goog.events.listen(xhr, goog.net.EventType.READY_STATE_CHANGE, function(e) {
-			console.log(e.target.getResponse());
-		});*/
-/*	goog.events.listen(xhr, goog.net.EventType.COMPLETE, function(e) {
-		// 応答データはここでしか拾えないみたい。
-		_this.size = /\/(\d+)/.exec(e.target.getResponseHeader("Content-Range"))[1]; // 相手のデータのサイズを取得できる。
-		_this.accessFlg = true;
-		console.log(e.target);
-		console.log(e.target.getResponse());
-		console.log(com.ttProject.util.HexUtil.toHex(new Uint8Array(e.target.getResponse())));
-	});*/
+	/** 処理位置 */
 	this._pos = 0;
+	/** アクセス可不可フラグ */
 	this._accessFlg = true;
+	/** 対象url */
 	this._url = targetUrl;
+	/** 対象データのサイズ */
 	this._size = 0;
-//	xhr.send(targetUrl);
 };
 goog.inherits(com.ttProject.channel.XhrIoReadChannel, com.ttProject.channel.IReadChannel);
 com.ttProject.channel.XhrIoReadChannel.prototype.isOpen = function() {

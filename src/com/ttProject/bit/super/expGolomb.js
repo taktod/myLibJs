@@ -19,11 +19,10 @@ goog.require("com.ttProject.bit.Bit8");
 com.ttProject.bit.super.ExpGolomb = function() {
 	// 初期化として0を表現しておきます。
 	goog.base(this, 1);
-	this.value = 0;
-	this.zeroCount = 0;
-	this.find1Flg = false;
-	this.bits = [];
-	this.bits.push(new com.ttProject.bit.Bit1(1));
+	this._value = 0;
+	this._zeroCount = 0;
+	this._find1Flg = false;
+	this._bits = [new com.ttProject.bit.Bit1(1)];
 };
 // 継承しとく
 goog.inherits(com.ttProject.bit.super.ExpGolomb, com.ttProject.bit.super.Bit);
@@ -32,49 +31,49 @@ goog.inherits(com.ttProject.bit.super.ExpGolomb, com.ttProject.bit.super.Bit);
  * @proteced
  */
 com.ttProject.bit.super.ExpGolomb.prototype.getData = function() {
-	return this.value;
+	return this._value;
 };
 /**
  * @protected
  * @param val
  */
 com.ttProject.bit.super.ExpGolomb.prototype.setData = function(val) {
-	this.value = val;
-	this.bits = [];
+	this._value = val;
+	this._bits = [];
 	var data = val;
 	var bitCount = 0;
 //		this.setBitCount(bitCount);
 	for(var i = 0;data != 0;data >>>= 1, i ++) {
-		this.bits.unshift(new com.ttProject.bit.Bit1(data & 0x01));
+		this._bits.unshift(new com.ttProject.bit.Bit1(data & 0x01));
 		bitCount ++;
 	}
-	var zeroCount = i - 1;
-	for(;zeroCount >= 8;zeroCount -= 8) {
-		this.bits.unshift(new com.ttProject.bit.Bit8());
+	var _zeroCount = i - 1;
+	for(;_zeroCount >= 8;_zeroCount -= 8) {
+		this._bits.unshift(new com.ttProject.bit.Bit8());
 		bitCount += 8;
 	}
-	bitCount += zeroCount;
-	switch(zeroCount) {
+	bitCount += _zeroCount;
+	switch(_zeroCount) {
 	case 1:
-		this.bits.unshift(new com.ttProject.bit.Bit1());
+		this._bits.unshift(new com.ttProject.bit.Bit1());
 		break;
 	case 2:
-		this.bits.unshift(new com.ttProject.bit.Bit2());
+		this._bits.unshift(new com.ttProject.bit.Bit2());
 		break;
 	case 3:
-		this.bits.unshift(new com.ttProject.bit.Bit3());
+		this._bits.unshift(new com.ttProject.bit.Bit3());
 		break;
 	case 4:
-		this.bits.unshift(new com.ttProject.bit.Bit4());
+		this._bits.unshift(new com.ttProject.bit.Bit4());
 		break;
 	case 5:
-		this.bits.unshift(new com.ttProject.bit.Bit5());
+		this._bits.unshift(new com.ttProject.bit.Bit5());
 		break;
 	case 6:
-		this.bits.unshift(new com.ttProject.bit.Bit6());
+		this._bits.unshift(new com.ttProject.bit.Bit6());
 		break;
 	case 7:
-		this.bits.unshift(new com.ttProject.bit.Bit7());
+		this._bits.unshift(new com.ttProject.bit.Bit7());
 		break;
 	default:
 		break;
@@ -87,30 +86,30 @@ com.ttProject.bit.super.ExpGolomb.prototype.setData = function(val) {
  * @reutrn false:登録がおわった場合 true:まだ登録が必要な場合
  */
 com.ttProject.bit.super.ExpGolomb.prototype.addBit1 = function(bit) {
-	if(!this.find1Flg) {
+	if(!this._find1Flg) {
 		if(bit.get() == 0) {
-			this.zeroCount ++;
+			this._zeroCount ++;
 		}
 		else {
 			// みつけた
-			this.find1Flg = true;
-			this.value = 1;
+			this._find1Flg = true;
+			this._value = 1;
 		}
 	}
 	else {
-		this.value = (this.value << 1) | bit.get();
-		this.zeroCount --;
+		this._value = (this._value << 1) | bit.get();
+		this._zeroCount --;
 	}
-	var end = zeroCount == 0;
+	var end = this._zeroCount == 0;
 	if(end) {
-		setData(this.value);
+		setData(this._value);
 	}
 	return !end;
 };
 com.ttProject.bit.super.ExpGolomb.prototype.toString = function() {
 	var data = "";
-	for(var i = 0;i < this.bits.length;i ++) {
-		var bit = this.bits[i];
+	for(var i = 0;i < this._bits.length;i ++) {
+		var bit = this._bits[i];
 		data += bit.toString();
 	}
 	return data;

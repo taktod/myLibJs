@@ -92,13 +92,13 @@ com.ttProject.bit.BitConnector.prototype.connect = function() {
 			if(dataBit instanceof com.ttProject.bit.super.BitN) {
 				var bitN = dataBit;
 				if(this.littleEndianFlg) {
-					for(var j = bitN.bits.length - 1;j >= 0;j --) {
-						appendBit(bitN.bits[j]);
+					for(var j = bitN._bits.length - 1;j >= 0;j --) {
+						appendBit(bitN._bits[j]);
 					}
 				}
 				else {
-					for(var j = 0;j < bitN.bits.length;j ++) {
-						appendBit(bitN.bits[j]);
+					for(var j = 0;j < bitN._bits.length;j ++) {
+						appendBit(bitN._bits[j]);
 					}
 				}
 			}
@@ -109,13 +109,13 @@ com.ttProject.bit.BitConnector.prototype.connect = function() {
 		else if(bit instanceof com.ttProject.bit.super.BitN) {
 			var bitN = bit;
 			if(this.littleEndianFlg) {
-				for(var j = bitN.bits.length - 1;j >= 0;j --) {
-					appendBit(bitN.bits[j]);
+				for(var j = bitN._bits.length - 1;j >= 0;j --) {
+					appendBit(bitN._bits[j]);
 				}
 			}
 			else {
-				for(var j = 0;j < bitN.bits.length;j ++) {
-					appendBit(bitN.bits[j]);
+				for(var j = 0;j < bitN._bits.length;j ++) {
+					appendBit(bitN._bits[j]);
 				}
 			}
 		}

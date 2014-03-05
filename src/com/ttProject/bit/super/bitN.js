@@ -9,7 +9,7 @@ goog.require("com.ttProject.bit.super.Bit");
  * @constructor
  */
 com.ttProject.bit.super.BitN = function() {
-	this.bits = [];
+	this._bits = [];
 	var count = 0;
 	for(var i = 0;i < arguments.length;i ++) {
 		var bit = arguments[i];
@@ -17,7 +17,7 @@ com.ttProject.bit.super.BitN = function() {
 			continue;
 		}
 		count += bit.getBitCount();
-		this.bits.push(bit);
+		this._bits.push(bit);
 	}
 	goog.base(this, count);
 };
@@ -29,8 +29,8 @@ goog.inherits(com.ttProject.bit.super.BitN, com.ttProject.bit.super.Bit);
  */
 com.ttProject.bit.super.BitN.prototype.get = function() {
 	var value = 0;
-	for(var i = 0;i < this.bits.length;i ++) {
-		var bit = this.bits[i];
+	for(var i = 0;i < this._bits.length;i ++) {
+		var bit = this._bits[i];
 		value <<= bit.getBitCount();
 		value |= bit.get();
 	}
@@ -41,9 +41,9 @@ com.ttProject.bit.super.BitN.prototype.get = function() {
  * @param value
  */
 com.ttProject.bit.super.BitN.prototype.set = function(value) {
-	var size = this.bits.length;
+	var size = this._bits.length;
 	for(var i = size - 1;i >= 0;i --) {
-		var bit = this.bits[i];
+		var bit = this._bits[i];
 		bit.set(value);
 		value >>>= bit.getBitCount();
 	}
@@ -53,8 +53,8 @@ com.ttProject.bit.super.BitN.prototype.set = function(value) {
  */
 com.ttProject.bit.super.BitN.prototype.toString = function() {
 	var data = "";
-	for(var i = 0;i < this.bits.length;i ++) {
-		var bit = this.bits[i];
+	for(var i = 0;i < this._bits.length;i ++) {
+		var bit = this._bits[i];
 		data += bit.toString();
 	}
 	return data;

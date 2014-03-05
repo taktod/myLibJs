@@ -9,40 +9,40 @@ goog.require("com.ttProject.util.BitUtil");
  * @constructor
  */
 com.ttProject.bit.super.Bit = function(count) {
-	this.bitCount = count;
-	this.value = 0;
+	this._bitCount = count;
+	this._value = 0;
 };
 /**
  * データ設定
  * @param value
  */
 com.ttProject.bit.super.Bit.prototype.set = function(val) {
-	this.value = val;
+	this._value = val;
 };
 /**
  * データ参照
  * @returns {Number}
  */
 com.ttProject.bit.super.Bit.prototype.get = function() {
-	return this.value;
+	return this._value;
 };
 /**
  * データの長さ参照
  * @returns {Number}
  */
 com.ttProject.bit.super.Bit.prototype.getBitCount = function() {
-	return this.bitCount;
+	return this._bitCount;
 };
 /**
  * データの長さ設定
  * @returns {Number}
  */
 com.ttProject.bit.super.Bit.prototype.setBitCount = function(val) {
-	this.bitCount = val;
+	this._bitCount = val;
 };
 /**
  * データDump
  */
 com.ttProject.bit.super.Bit.prototype.toString = function() {
-	return com.ttProject.util.BitUtil.toBit(this.value, this.bitCount);
+	return com.ttProject.util.BitUtil.toBit(this._value, this._bitCount);
 };

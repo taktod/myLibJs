@@ -38,6 +38,15 @@
       xhrIoChannel.read(dat, function(data) {
         console.log(com.ttProject.util.HexUtil.toHex(data));
       });
+      
+      // データが足りなくなったらどうなるかしっておきたい。
+      var xhrIoChannel2 = new com.ttProject.channel.XhrIoReadChannel("../readme.txt");
+      var dat = new Uint8Array(10);
+      xhrIoChannel2.position(390);
+      xhrIoChannel2.read(dat, function(data) {
+        console.log(com.ttProject.util.HexUtil.toHex(data));
+        console.log(xhrIoChannel2.size());
+      });
     }
     </script>
   </body>

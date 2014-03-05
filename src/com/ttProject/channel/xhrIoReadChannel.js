@@ -18,67 +18,61 @@ goog.require("com.ttProject.util.HexUtil");
 com.ttProject.channel.XhrIoReadChannel = function(targetUrl) {
 	// byte -> stringの変換方法メモ
 	// String.fromCharCode.apply(null, new Uint8Array([0x30,0x31,0x32,0x33]));
-	var _this = this;
+//	var _this = this;
 	// とりあえず動作テストしてみる。
-	var xhr = new goog.net.XhrIo();
+//	var xhr = new goog.net.XhrIo();
 	// 応答はbinaryとして受け取る
-	xhr.setResponseType(goog.net.XhrIo.ResponseType.ARRAY_BUFFER);
+//	xhr.setResponseType(goog.net.XhrIo.ResponseType.ARRAY_BUFFER);
 	// とりあえず、先頭の12バイトだけ読み込む
-	xhr.headers.set("Range", "bytes=0-12"); // rangeリクエストはいけるっぽい。
+//	xhr.headers.set("Range", "bytes=0-12"); // rangeリクエストはいけるっぽい。
 	// readyStateChangeはつかえないっぽい。
 /*		goog.events.listen(xhr, goog.net.EventType.READY_STATE_CHANGE, function(e) {
 			console.log(e.target.getResponse());
 		});*/
-	goog.events.listen(xhr, goog.net.EventType.COMPLETE, function(e) {
+/*	goog.events.listen(xhr, goog.net.EventType.COMPLETE, function(e) {
 		// 応答データはここでしか拾えないみたい。
 		_this.size = /\/(\d+)/.exec(e.target.getResponseHeader("Content-Range"))[1]; // 相手のデータのサイズを取得できる。
 		_this.accessFlg = true;
 		console.log(e.target);
 		console.log(e.target.getResponse());
 		console.log(com.ttProject.util.HexUtil.toHex(new Uint8Array(e.target.getResponse())));
-	});
-	this.pos = 0;
-	this.accessFlg = false;
-	this.url = targetUrl;
-	xhr.send(targetUrl);
+	});*/
+	this._pos = 0;
+	this._accessFlg = true;
+	this._url = targetUrl;
+	this._size = 0;
+//	xhr.send(targetUrl);
 };
 goog.inherits(com.ttProject.channel.XhrIoReadChannel, com.ttProject.channel.IReadChannel);
-// 対象url
-com.ttProject.channel.XhrIoReadChannel.prototype.url = null;
-// 対象データのデータ量
-com.ttProject.channel.XhrIoReadChannel.prototype.size = null;
-// 処理位置
-com.ttProject.channel.XhrIoReadChannel.prototype.pos = null;
-com.ttProject.channel.XhrIoReadChannel.prototype.accessFlg = null;
 com.ttProject.channel.XhrIoReadChannel.prototype.isOpen = function() {
 	// とりあえず開いているフラグは意味をなさないと思う
-	return this.accessFlg;
+	return this._accessFlg;
 };
 com.ttProject.channel.XhrIoReadChannel.prototype.size = function() {
-	if(!this.accessFlg) {
+	if(!this._accessFlg) {
 		throw new Error("接続が破棄済みです。");
 	}
 	// はじめにちょっとだけデータをDLして相手のデータサイズを知っておきたい
-	return this.size;
+	return this._size;
 };
 com.ttProject.channel.XhrIoReadChannel.prototype.position = function(position) {
-	if(!this.accessFlg) {
+	if(!this._accessFlg) {
 		throw new Error("接続が破棄済みです。");
 	}
 	// 処理位置を保持しておく必要ありそう。
 	if(position == undefined) {
-		return this.pos;
+		return this._pos;
 	}
 	else {
-		if(position > this.size) {
+		if(this._size != 0 && position > this._size) {
 			throw new Error("コンテンツデータより大きな値が指定されました。");
 		}
-		this.pos = position;
+		this._pos = position;
 	}
 	return this;
 };
 com.ttProject.channel.XhrIoReadChannel.prototype.read = function(uint8Array, callback) {
-	if(!this.accessFlg) {
+	if(!this._accessFlg) {
 		throw new Error("接続が破棄済みです。");
 	}
 	// xhrIoで配列分だけデータを読みこんでcallbackで応答を返します。
@@ -87,19 +81,21 @@ com.ttProject.channel.XhrIoReadChannel.prototype.read = function(uint8Array, cal
 	// 応答はbinaryとして受け取る
 	xhr.setResponseType(goog.net.XhrIo.ResponseType.ARRAY_BUFFER);
 	// とりあえず、先頭の12バイトだけ読み込む
-	console.log("bytes=" + this.pos + "-" + (this.pos + uint8Array.length));
-	xhr.headers.set("Range", "bytes=" + this.pos + "-" + (this.pos + uint8Array.length));
+	console.log("bytes=" + this._pos + "-" + (this._pos + uint8Array.length));
+	xhr.headers.set("Range", "bytes=" + this._pos + "-" + (this._pos + uint8Array.length));
+	// どうやらオーバーしても読み込めた量だけ、応答してくれるみたいです。
 	goog.events.listen(xhr, goog.net.EventType.COMPLETE, function(e) {
-		_this.pos += uint8Array.length;
+		_this._size = /\/(\d+)/.exec(e.target.getResponseHeader("Content-Range"))[1]; // 相手のデータのサイズを取得できる。
 		var responseArray = new Uint8Array(e.target.getResponse());
 		callback(responseArray);
 	});
-	xhr.send(this.url);
+	this._pos += uint8Array.length;
+	xhr.send(this._url);
 };
 com.ttProject.channel.XhrIoReadChannel.prototype.close = function() {
-	if(!this.accessFlg) {
+	if(!this._accessFlg) {
 		throw new Error("接続が破棄済みです。");
 	}
 	// これ以上アクセスしないようにします。
-	this.accessFlg = false;
+	this._accessFlg = false;
 };

@@ -62,3 +62,36 @@ com.ttProject.util.ArrayUtil.toUint32 = function(array) {
 		return new Uint32Array(array);
 	}
 };
+/**
+ * 初列を結合します。Uint8Arrayとか用
+ */
+com.ttProject.util.ArrayUtil.connect = function() {
+	// argumentsをみて、結合していきたいところ。
+	// memoこの方法でやると、frの読み込み待ちしないとデータが取得できない
+	// とりあえず中身は確認せずに結合してしまおう。
+/*	var blob = new Blob([new Uint8Array([1,2,3]), new Uint8Array([4,5,6])]);
+	var fr = new FileReader();
+	fr.readAsArrayBuffer(blob);
+	return new Uint8Array(fr.result);*/
+	var size = 0;
+	for(var key in arguments) {
+		var array = arguments[key];
+		if(array instanceof Uint8Array
+		|| array instanceof Uint16Array
+		|| array instanceof Uint32Array) {
+			size += array.length;
+		}
+	}
+	var result = new Uint8Array(size);
+	var pos = 0;
+	for(var key in arguments) {
+		var array = arguments[key];
+		if(array instanceof Uint8Array
+		|| array instanceof Uint16Array
+		|| array instanceof Uint32Array) {
+			result.set(array, pos);
+			pos += array.length;
+		}
+	}
+	return result;
+};

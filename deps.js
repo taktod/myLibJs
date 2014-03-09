@@ -20,6 +20,15 @@ goog.addDependency('../../../src/com/ttProject/bit/ueg.js', ['com.ttProject.bit.
 goog.addDependency('../../../src/com/ttProject/channel/iReadChannel.js', ['com.ttProject.channel.IReadChannel'], []);
 goog.addDependency('../../../src/com/ttProject/channel/uint8ReadChannel.js', ['com.ttProject.channel.Uint8ReadChannel'], ['com.ttProject.channel.IReadChannel']);
 goog.addDependency('../../../src/com/ttProject/channel/xhrIoReadChannel.js', ['com.ttProject.channel.XhrIoReadChannel'], ['com.ttProject.channel.IReadChannel', 'com.ttProject.util.HexUtil', 'goog.net.Jsonp', 'goog.net.XhrIo']);
+goog.addDependency('../../../src/com/ttProject/container/super/unit.js', ['com.ttProject.container.super.Unit'], []);
+goog.addDependency('../../../src/com/ttProject/frame/mp3/mp3Analyzer.js', ['com.ttProject.frame.mp3.Mp3Analyzer'], []);
+goog.addDependency('../../../src/com/ttProject/frame/mp3/mp3Frame.js', ['com.ttProject.frame.mp3.Mp3Frame'], ['com.ttProject.frame.super.AudioFrame']);
+goog.addDependency('../../../src/com/ttProject/frame/mp3/mp3Selector.js', ['com.ttProject.frame.mp3.Mp3Selector'], []);
+goog.addDependency('../../../src/com/ttProject/frame/mp3/type/frame.js', ['com.ttProject.frame.mp3.type.Frame'], ['com.ttProject.bit.Bit1', 'com.ttProject.bit.Bit11', 'com.ttProject.bit.Bit2', 'com.ttProject.bit.Bit4', 'com.ttProject.frame.mp3.Mp3Frame']);
+goog.addDependency('../../../src/com/ttProject/frame/mp3/type/id3Frame.js', ['com.ttProject.frame.mp3.type.Id3Frame'], ['com.ttProject.bit.Bit1', 'com.ttProject.bit.Bit16', 'com.ttProject.bit.Bit24', 'com.ttProject.bit.Bit7', 'com.ttProject.bit.Bit8', 'com.ttProject.frame.mp3.Mp3Frame']);
+goog.addDependency('../../../src/com/ttProject/frame/mp3/type/tagFrame.js', ['com.ttProject.frame.mp3.type.TagFrame'], ['com.ttProject.frame.mp3.Mp3Frame']);
+goog.addDependency('../../../src/com/ttProject/frame/super/audioFrame.js', ['com.ttProject.frame.super.AudioFrame'], ['com.ttProject.container.super.Unit']);
+goog.addDependency('../../../src/com/ttProject/frame/super/videoFrame.js', ['com.ttProject.frame.super.VideoFrame'], ['com.ttProject.container.super.Unit']);
 goog.addDependency('../../../src/com/ttProject/util/arrayUtil.js', ['com.ttProject.util.ArrayUtil'], []);
 goog.addDependency('../../../src/com/ttProject/util/bitUtil.js', ['com.ttProject.util.BitUtil'], []);
 goog.addDependency('../../../src/com/ttProject/util/hexUtil.js', ['com.ttProject.util.HexUtil'], ['com.ttProject.util.ArrayUtil']);

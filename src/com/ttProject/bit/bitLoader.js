@@ -145,7 +145,20 @@ com.ttProject.bit.BitLoader.prototype.load = function() {
 			}
 			else {
 				if(bit instanceof com.ttProject.bit.super.BitN && bit.getBitCount() > 64) {
-					throw new Error("64bit以上のデータ読み込みはとりあえずあとまわし");
+					var i = 0;
+					var loadBigBit = function() {
+						if(bit._bits.length > i) {
+							load(bit._bits[i ++], loadBigBit);
+						}
+						else {
+							callback();
+						}
+					};
+					loadBigBit();
+//					for(var i = 0;i < bit._bits.length;i ++) {
+//						console.log(bit._bits[i]);
+//					}
+//					throw new Error("64bit以上のデータ読み込みはとりあえずあとまわし");
 				}
 				else {
 					var setData = function(bit, callback) {

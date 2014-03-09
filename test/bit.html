@@ -23,7 +23,7 @@
     function tearDown() {
     }
     function test() {
-      // 通常のbitデータ読み込みテスト
+/*      // 通常のbitデータ読み込みテスト
       b1 = new com.ttProject.bit.Bit1();
       b2 = new com.ttProject.bit.Bit2();
       b3 = new com.ttProject.bit.Bit11();
@@ -48,7 +48,14 @@
       loader.load(ebml1, ebml2, function() {
         console.log(ebml1.get());
         console.log(ebml2.get());
-      });
+      });*/
+/*      var channel = new com.ttProject.channel.Uint8ReadChannel(new Uint8Array([1,2,3,4,5,6,7,8,9,10,11,12]));
+      // 96Bitをつくってみる。
+      b = new com.ttProject.bit.super.BitN(new com.ttProject.bit.Bit32(), new com.ttProject.bit.Bit32(), new com.ttProject.bit.Bit32());
+      var loader = new com.ttProject.bit.BitLoader(channel);
+      loader.load(b, function() {
+        b.get();
+      });*/
     }
     </script>
   </body>

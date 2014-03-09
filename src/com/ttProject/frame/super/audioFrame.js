@@ -1,6 +1,6 @@
-goog.provide(com.ttProject.frame.super.AudioFrame);
+goog.provide("com.ttProject.frame.super.AudioFrame");
 
-goog.require(com.ttProject.container.super.Unit);
+goog.require("com.ttProject.container.super.Unit");
 
 /**
  * 音声の定義ベース

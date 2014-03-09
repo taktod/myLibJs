@@ -1,4 +1,4 @@
-goog.provide(com.ttProject.container.super.Unit);
+goog.provide("com.ttProject.container.super.Unit");
 
 /**
  * メディアデータの基本となるunit

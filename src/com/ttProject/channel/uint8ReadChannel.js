@@ -34,14 +34,14 @@ com.ttProject.channel.Uint8ReadChannel.prototype.position = function(position) {
 	}
 	return this;
 };
-com.ttProject.channel.Uint8ReadChannel.prototype.read = function(uint8Array, callback) {
+com.ttProject.channel.Uint8ReadChannel.prototype.read = function(length, callback) {
 	// 入力uint8Arrayにデータをいれていく。
 //		positionから先のデータをuint8Arrayにいれて応答していけばよい
 	// データが必要な量たまったら、callbackで応答を返す形にする。
-	if(this.buffer.length - this.position < uint8Array.length) {
-		throw new Error("保持データ量以上読み込もうとしました。");
+	if(this.buffer.length - this.position < length) {
+		throw new Error("保持データ量以上読み込もうとしました。" + length);
 	}
-	var length = uint8Array.length;
+	var uint8Array = new Uint8Array(length);
 	for(var i = 0;i < length;i ++) {
 		uint8Array[i] = this.buffer[this.position ++];
 	}

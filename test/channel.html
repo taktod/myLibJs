@@ -20,30 +20,25 @@
     function test() {
       var data = new Uint8Array([1,2,3,4,5]);
       var channel = new com.ttProject.channel.Uint8ReadChannel(data);
-      var dat = new Uint8Array(3);
-      channel.read(dat, function(data) {
+      channel.read(3, function(data) {
         console.log(com.ttProject.util.HexUtil.toHex(data));
       });
-      var dat2 = new Uint8Array(2);
-      channel.read(dat2, function(data) {
+      channel.read(2, function(data) {
         console.log(com.ttProject.util.HexUtil.toHex(data));
       });
       
       var xhrIoChannel = new com.ttProject.channel.XhrIoReadChannel("../ahiru.flv");
-      var dat = new Uint8Array(10);
-      xhrIoChannel.read(dat, function(data) {
+      xhrIoChannel.read(10, function(data) {
         console.log(com.ttProject.util.HexUtil.toHex(data));
       });
-      var dat = new Uint8Array(11);
-      xhrIoChannel.read(dat, function(data) {
+      xhrIoChannel.read(11, function(data) {
         console.log(com.ttProject.util.HexUtil.toHex(data));
       });
       
       // データが足りなくなったらどうなるかしっておきたい。
       var xhrIoChannel2 = new com.ttProject.channel.XhrIoReadChannel("../readme.txt");
-      var dat = new Uint8Array(10);
       xhrIoChannel2.position(390);
-      xhrIoChannel2.read(dat, function(data) {
+      xhrIoChannel2.read(10, function(data) {
         console.log(com.ttProject.util.HexUtil.toHex(data));
         console.log(xhrIoChannel2.size());
       });

@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <title>Bitのテスト</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <script type="text/javascript" src="../closure-library/closure/goog/base.js" ></script>
+    <script type="text/javascript" src="../deps.js" ></script>
+    <script type="text/javascript">
+      goog.require("goog.testing.jsunit");
+      goog.require("com.ttProject.util.HexUtil");
+      goog.require("com.ttProject.channel.Uint8ReadChannel");
+      goog.require("com.ttProject.channel.XhrIoReadChannel");
+      goog.require("com.ttProject.bit.BitLoader");
+      goog.require("com.ttProject.bit.Bit1");
+      goog.require("com.ttProject.bit.Bit2");
+      goog.require("com.ttProject.bit.Bit3");
+      goog.require("com.ttProject.bit.EbmlValue");
+    </script>
+    <script type="text/javascript">
+    function setUp() {
+    }
+    function tearDown() {
+    }
+    function test() {
+      // 通常のbitデータ読み込みテスト
+      b1 = new com.ttProject.bit.Bit1();
+      b2 = new com.ttProject.bit.Bit2();
+      b3 = new com.ttProject.bit.Bit11();
+      b4 = new com.ttProject.bit.Bit2();
+      // 00110101 0010 0100
+      var channel = new com.ttProject.channel.Uint8ReadChannel(new Uint8Array([0x35, 0x24]));
+//      var channel = new com.ttProject.channel.XhrIoReadChannel("../readme.txt");
+      // 0 01 101 01
+      // 0 01  10101001001 00
+      var loader = new com.ttProject.bit.BitLoader(channel);
+      loader.load(b1,b2,b3,b4,function(){
+        console.log(b1.toString());
+        console.log(b2.toString());
+        console.log(b3.toString());
+        console.log(b4.toString());
+      });
+      // ebmlValueの読み込みテスト
+      var channel = new com.ttProject.channel.Uint8ReadChannel(new Uint8Array([0x81, 0x40, 0x05]));
+      ebml1 = new com.ttProject.bit.EbmlValue();
+      ebml2 = new com.ttProject.bit.EbmlValue();
+      var loader = new com.ttProject.bit.BitLoader(channel);
+      loader.load(ebml1, ebml2, function() {
+        console.log(ebml1.get());
+        console.log(ebml2.get());
+      });
+    }
+    </script>
+  </body>
+</html>

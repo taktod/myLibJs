@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Bitのテスト</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <script type="text/javascript" src="../closure-library/closure/goog/base.js" ></script>
+    <script type="text/javascript" src="../deps.js" ></script>
+    <script type="text/javascript">
+      goog.require("goog.testing.jsunit");
+      goog.require("com.ttProject.channel.XhrIoReadChannel");
+      goog.require("com.ttProject.frame.mp3.Mp3FrameAnalyzer");
+    </script>
+    <script type="text/javascript">
+    function setUp() {
+    }
+    function tearDown() {
+    }
+    function test() {
+      var channel = new com.ttProject.channel.XhrIoReadChannel("../smile.mp3");
+      var analyzer = new com.ttProject.frame.mp3.Mp3FrameAnalyzer();
+      analyzer.analyzer(channel, function(frame){
+        console.log(frame);
+      });
+    }
+    </script>
+  </body>
+</html>

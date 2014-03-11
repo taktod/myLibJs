@@ -3,6 +3,7 @@ goog.provide("com.ttProject.frame.mp3.Mp3FrameSelector");
 goog.require("com.ttProject.bit.Bit8");
 goog.require("com.ttProject.bit.BitLoader");
 goog.require("com.ttProject.frame.mp3.type.Id3Frame");
+goog.require("com.ttProject.frame.mp3.type.Frame");
 
 /**
  * @constructor
@@ -30,6 +31,7 @@ com.ttProject.frame.mp3.Mp3FrameSelector.prototype.select = function(channel, ca
 			throw new Error("Tagの動作は未実装です");
 		case 0xFF: // frame
 			console.log("frame");
+			frame = new com.ttProject.frame.mp3.type.Frame();
 			break;
 		default:
 			throw new Error("解析不能なデータです");

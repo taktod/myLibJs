@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Bitのテスト</title>
+    <title>Mp3のテスト</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   </head>
   <body>
@@ -17,11 +17,18 @@
     function tearDown() {
     }
     function test() {
-      var channel = new com.ttProject.channel.XhrIoReadChannel("../smile.mp3");
+      channel = new com.ttProject.channel.XhrIoReadChannel("../smile.mp3");
       var analyzer = new com.ttProject.frame.mp3.Mp3FrameAnalyzer();
-      analyzer.analyzer(channel, function(frame){
-        console.log(frame);
-      });
+      analyzeLoop = function() {
+        analyzer.analyzer(channel, function(frame) {
+          console.log(frame);
+          if(frame != null) {
+            setTimeout(analyzeLoop, 1000);
+//            analyzeLoop();
+          }
+        });
+      }
+      analyzeLoop();
     }
     </script>
   </body>

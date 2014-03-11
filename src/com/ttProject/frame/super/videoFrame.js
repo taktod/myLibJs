@@ -9,6 +9,7 @@ goog.require("com.ttProject.container.super.Unit");
  * @constructor
  */
 com.ttProject.frame.super.VideoFrame = function() {
+	goog.base(this);
 	this._dts;
 	this._width;
 	this._height;

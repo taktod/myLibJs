@@ -9,6 +9,7 @@ goog.require("com.ttProject.container.super.Unit");
  * @constructor
  */
 com.ttProject.frame.super.AudioFrame = function() {
+	goog.base(this);
 	this._sampleNum;
 	this._sampleRate;
 	this._channels;

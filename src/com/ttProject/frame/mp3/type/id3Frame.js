@@ -11,6 +11,7 @@ goog.require("com.ttProject.bit.Bit7");
  * @constructor
  */
 com.ttProject.frame.mp3.type.Id3Frame = function() {
+	goog.base(this);
 	console.log("id3Frame");
 	this._signature = new com.ttProject.bit.Bit24();
 	this._version   = new com.ttProject.bit.Bit16();
@@ -23,7 +24,7 @@ com.ttProject.frame.mp3.type.Id3Frame = function() {
 	this._size3     = new com.ttProject.bit.Bit7();
 	this._dummy4    = new com.ttProject.bit.Bit1();
 	this._size4     = new com.ttProject.bit.Bit7();
-	this._data;
+	this._buffer;
 };
 
 goog.inherits(com.ttProject.frame.mp3.type.Id3Frame, com.ttProject.frame.mp3.Mp3Frame);
@@ -43,7 +44,8 @@ com.ttProject.frame.mp3.type.Id3Frame.prototype.minimumLoad = function(channel, 
 			function() {
 		_this._signature.set(0x49 << 16 | signature.get());
 		// このデータのサイズは
-		console.log(10 + (_this._size1.get() << 21 | _this._size2.get() << 14 | _this._size3.get() << 7 | _this._size4.get()));
+		_this.setSize(10 + (_this._size1.get() << 21 | _this._size2.get() << 14 | _this._size3.get() << 7 | _this._size4.get()));
+		console.log(_this.getSize());
 		callback(_this);
 	});
 };
@@ -54,5 +56,9 @@ com.ttProject.frame.mp3.type.Id3Frame.prototype.minimumLoad = function(channel, 
  * @param callback
  */
 com.ttProject.frame.mp3.type.Id3Frame.prototype.load = function(channel, callback) {
-	
+	var _this = this;
+	channel.read(this.getSize() - 10, function(data) {
+		_this._buffer = data;
+		callback();
+	});
 };

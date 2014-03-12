@@ -22,7 +22,7 @@ com.ttProject.frame.mp3.Mp3FrameSelector.prototype.select = function(channel, ca
 		var frame = null;
 		switch(firstByte.get()) {
 		case 0x49: // 'I'
-			console.log("ID3Frame");
+//			console.log("ID3Frame");
 			frame = new com.ttProject.frame.mp3.type.Id3Frame();
 			break;
 		case 0x54: // 'T'
@@ -30,13 +30,14 @@ com.ttProject.frame.mp3.Mp3FrameSelector.prototype.select = function(channel, ca
 //			break;
 			throw new Error("Tagの動作は未実装です");
 		case 0xFF: // frame
-			console.log("frame");
+//			console.log("frame");
 			frame = new com.ttProject.frame.mp3.type.Frame();
 			break;
 		default:
+			console.log(firstByte.get());
 			throw new Error("解析不能なデータです");
 		}
-		console.log(frame);
+//		console.log(frame);
 		frame.minimumLoad(channel, callback);
 	});
 };

@@ -32,6 +32,7 @@ com.ttProject.frame.mp3.type.Frame = function() {
 goog.inherits(com.ttProject.frame.mp3.type.Frame, com.ttProject.frame.mp3.Mp3Frame);
 
 com.ttProject.frame.mp3.type.Frame.prototype.minimumLoad = function(channel, callback) {
+//	console.log("minimumLoadを実施します。for frame");
 	var sampleRateTable = [
 	  [11025, 12000,  8000],
 	  [   -1, -1000, -1000],
@@ -46,6 +47,48 @@ com.ttProject.frame.mp3.type.Frame.prototype.minimumLoad = function(channel, cal
 			this._channelMode, this._modeExtension, this._copyRight, this._originalFlag,
 			this._emphasis,
 			function() {
+		var setSize = function() {
+			switch(_this._layer.get()) {
+			case 3: // layer1
+				_this.setSize((Math.floor(12 * _this.getBitrate() / _this.getSampleRate() + _this._paddingBit.get())));
+				break;
+			case 2: // layer2
+				_this.setSize((Math.floor(144 * _this.getBitrate() / _this.getSampleRate() + _this._paddingBit.get())));
+				break;
+			case 1: // layer3
+				if(_this._mpegVersion.get() == 3) {
+					_this.setSize((Math.floor(144 * _this.getBitrate() / _this.getSampleRate() + _this._paddingBit.get())));
+				}
+				else {
+					_this.setSize((Math.floor(72 * _this.getBitrate() / _this.getSampleRate() + _this._paddingBit.get())));
+				}
+				break;
+			default:
+				throw new Error("layerの値が不正です。");
+			}
+		};
+		var setSampleNum = function() {
+			switch(_this._layer.get()) {
+			case 3: // layey1
+				_this.setSampleNum(384);
+				break;
+			case 2: // layer2
+				_this.setSampleNum(1152);
+				break;
+			case 1: // layer3
+				if(_this._mpegVersion.get() == 3) {
+					// mpeg1
+					_this.setSampleNum(1152);
+				}
+				else {
+					// mpeg2 or mpeg2.5
+					_this.setSampleNum(576);
+				}
+				break;
+			default:
+				throw new Error("layerの値が不正です。");
+			}
+		};
 		_this._syncBit.set(0xFF << 3 | syncBit.get());
 		// ここでsampleRate, sampleNum,  size, channelが決定する
 		_this.setSampleRate(sampleRateTable[_this._mpegVersion.get()][_this._samplingRateIndex.get()]);
@@ -54,48 +97,6 @@ com.ttProject.frame.mp3.type.Frame.prototype.minimumLoad = function(channel, cal
 		setSize();
 		callback(_this);
 	});
-	var setSize = function() {
-		switch(_this._layer.get()) {
-		case 3: // layer1
-			_this.setSize((Math.floor(12 * _this.getBitrate() / _this.getSampleRate() + _this._paddingBit.get())));
-			break;
-		case 2: // layer2
-			_this.setSize((Math.floor(144 * _this.getBitrate() / _this.getSampleRate() + _this._paddingBit.get())));
-			break;
-		case 1: // layer3
-			if(_this._mpegVersion.get() == 3) {
-				_this.setSize((Math.floor(144 * _this.getBitrate() / _this.getSampleRate() + _this._paddingBit.get())));
-			}
-			else {
-				_this.setSize((Math.floor(72 * _this.getBitrate() / _this.getSampleRate() + _this._paddingBit.get())));
-			}
-			break;
-		default:
-			throw new Error("layerの値が不正です。");
-		}
-	};
-	var setSampleNum = function() {
-		switch(_this._layer.get()) {
-		case 3: // layey1
-			_this.setSampleNum(384);
-			break;
-		case 2: // layer2
-			_this.setSampleNum(1152);
-			break;
-		case 1: // layer3
-			if(_this._mpegVersion.get() == 3) {
-				// mpeg1
-				_this.setSampleNum(1152);
-			}
-			else {
-				// mpeg2 or mpeg2.5
-				_this.setSampleNum(576);
-			}
-			break;
-		default:
-			throw new Error("layerの値が不正です。");
-		}
-	};
 };
 
 com.ttProject.frame.mp3.type.Frame.prototype.getBitrate = function() {
@@ -127,9 +128,10 @@ com.ttProject.frame.mp3.type.Frame.prototype.getBitrate = function() {
 };
 
 com.ttProject.frame.mp3.type.Frame.prototype.load = function(channel, callback) {
+//	console.log("loadを実施します。 at frame");
 	var _this = this;
 	channel.read(this.getSize() - 4, function(data) {
 		_this._rawBuffer = data;
 		callback();
 	});
-}
+};

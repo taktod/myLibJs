@@ -16,14 +16,15 @@
     }
     function tearDown() {
     }
+    var i = 0;
     function test() {
       channel = new com.ttProject.channel.XhrIoReadChannel("../smile.mp3");
       var analyzer = new com.ttProject.frame.mp3.Mp3FrameAnalyzer();
       analyzeLoop = function() {
         analyzer.analyzer(channel, function(frame) {
-          console.log(frame);
+//          console.log(frame);
           if(frame != null) {
-            setTimeout(analyzeLoop, 1000);
+            setTimeout(analyzeLoop, 1);
 //            analyzeLoop();
           }
         });

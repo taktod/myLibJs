@@ -12,7 +12,6 @@ goog.require("com.ttProject.bit.Bit7");
  */
 com.ttProject.frame.mp3.type.Id3Frame = function() {
 	goog.base(this);
-	console.log("id3Frame");
 	this._signature = new com.ttProject.bit.Bit24();
 	this._version   = new com.ttProject.bit.Bit16();
 	this._flag      = new com.ttProject.bit.Bit8();

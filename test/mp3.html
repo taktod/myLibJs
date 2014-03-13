@@ -22,10 +22,15 @@
       var analyzer = new com.ttProject.frame.mp3.Mp3FrameAnalyzer();
       analyzeLoop = function() {
         analyzer.analyzer(channel, function(frame) {
+//          console.log("フレーム解析済み、次へ");
 //          console.log(frame);
+          i ++;
           if(frame != null) {
             setTimeout(analyzeLoop, 1);
 //            analyzeLoop();
+          }
+          else {
+            console.log("解析おわり");
           }
         });
       }

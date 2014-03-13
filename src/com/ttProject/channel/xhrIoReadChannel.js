@@ -35,7 +35,7 @@ com.ttProject.channel.XhrIoReadChannel = function(targetUrl) {
 	// cacheBufferの始めから必要な分だけ読み込めばOKとなるはず。
 	// またcacheBufferのデータは読み込ませるとその分減っていくものとします。
 	/** データ取得時に最小データ量(最低でもこのデータ分は読み込みます) */
-	this._minimumSize = 65536;
+	this._minimumSize = 6553600;
 	/** 応答のデータ保持(順番にcallbackを発動させるために必要) */
 	this._resOrder = []; // 順番に応答するべきcallbackを保持しておきます。
 	/** 応答の帰ってきたデータリスト */

@@ -22,11 +22,9 @@
       var analyzer = new com.ttProject.frame.mp3.Mp3FrameAnalyzer();
       analyzeLoop = function() {
         analyzer.analyzer(channel, function(frame) {
-//          console.log("フレーム解析済み、次へ");
-//          console.log(frame);
           i ++;
           if(frame != null) {
-            if(i % 150 == 0) {
+            if(i % 150 == 0) { // たまにtimeoutをいれて処理を解放してやらないとフリーズする。
               setTimeout(analyzeLoop, 1);
             }
             else {

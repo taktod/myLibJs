@@ -40,6 +40,8 @@ com.ttProject.channel.XhrIoReadChannel = function(targetUrl) {
 	this._resOrder = []; // 順番に応答するべきcallbackを保持しておきます。
 	/** 応答の帰ってきたデータリスト */
 	this._dlData = []; // ダウンロード済みのデータを保持しておきます。
+	/** ダウンロード完了を確認します。 */
+	this._dlFinishFlg = false;
 };
 goog.inherits(com.ttProject.channel.XhrIoReadChannel, com.ttProject.channel.IReadChannel);
 com.ttProject.channel.XhrIoReadChannel.prototype.isOpen = function() {
@@ -115,6 +117,10 @@ com.ttProject.channel.XhrIoReadChannel.prototype.read = function(length, callbac
 	// 応答を返すべき要求がきたので、データを保持しておきます。
 	this._resOrder.push({length: length, callback: callback});
 	if(this._cacheBuffer == null || this._cacheBuffer.length < length) {
+		if(this._dlFinishFlg) {
+			callback(null);
+			return;
+		}
 		// 保持データがない場合、もしくは保持データのサイズが足りていない場合はxhrIoでデータを読み込む必要があります。
 		// 読み込む必要があるデータ量をきめておく。
 		var holdLength = this._cacheBuffer == null ? 0 : this._cacheBuffer.length;
@@ -130,10 +136,12 @@ com.ttProject.channel.XhrIoReadChannel.prototype.read = function(length, callbac
 		xhr.headers.set("Range", rangeHeader);
 		goog.events.listen(xhr, goog.net.EventType.COMPLETE, function(e) {
 			console.log("応答をうけとった。");
+			// 読み込みデータがrequestLength未満だった場合はフラグをたてておいて、それ以上よみこめないようにしないとだめ。
 			// 応答データからコンテンツサイズを拾っておきます。
 			_this._size = /\/(\d+)/.exec(e.target.getResponseHeader("Content-Range"))[1]; // 相手のデータのサイズを取得できる。
 			// 応答データをUint8Array化しておきます。
 			var array = new Uint8Array(e.target.getResponse());
+			_this._dlFinishFlg = array.length < requestLength;
 			// データをうけとったので、_cacheBufferの内容を更新したいと思います。
 			// まず今回応答があったxhrのオブジェクトが先頭のデータであるか調べます。
 			// 先頭でなかった場合は追記できないので、_dlDataにcacheさせます。

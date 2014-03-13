@@ -26,8 +26,12 @@
 //          console.log(frame);
           i ++;
           if(frame != null) {
-            setTimeout(analyzeLoop, 1);
-//            analyzeLoop();
+            if(i % 150 == 0) {
+              setTimeout(analyzeLoop, 1);
+            }
+            else {
+              analyzeLoop();
+            }
           }
           else {
             console.log("解析おわり");

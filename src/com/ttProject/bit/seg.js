@@ -10,6 +10,7 @@ com.ttProject.bit.Seg = function() {
 };
 // 継承させておく
 goog.inherits(com.ttProject.bit.Seg, com.ttProject.bit.super.ExpGolomb);
+
 com.ttProject.bit.Seg.prototype.get = function() {
 	var val = this.getData();
 	if((val & 0x01) == 1) {
@@ -19,6 +20,7 @@ com.ttProject.bit.Seg.prototype.get = function() {
 		return (value >>> 1);
 	}
 };
+
 com.ttProject.bit.Seg.prototype.set = function(val) {
 	if(val > 0) {
 		this.setData(val << 1);

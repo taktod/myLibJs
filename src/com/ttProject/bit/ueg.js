@@ -13,6 +13,7 @@ goog.inherits(com.ttProject.bit.Ueg, com.ttProject.bit.super.ExpGolomb);
 com.ttProject.bit.Ueg.prototype.get = function() {
 	return this.getData() - 1;
 };
+
 com.ttProject.bit.Ueg.prototype.set = function(val) {
 	this.setData(val + 1);
 };

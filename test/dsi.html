@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Dsiのテスト</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <script type="text/javascript" src="../closure-library/closure/goog/base.js" ></script>
+    <script type="text/javascript" src="../deps.js" ></script>
+    <script type="text/javascript">
+      goog.require("goog.testing.jsunit");
+      goog.require("com.ttProject.frame.aac.DecoderSpecificInfo");
+      goog.require("com.ttProject.channel.Uint8ReadChannel");
+    </script>
+    <script type="text/javascript">
+    function setUp() {
+    }
+    function tearDown() {
+    }
+    var i = 0;
+    function test() {
+      channel = new com.ttProject.channel.Uint8ReadChannel(new Uint8Array([0x12, 0x10]));
+      dsi = new com.ttProject.frame.aac.DecoderSpecificInfo();
+      dsi.minimumLoad(channel, function(output) {
+        console.log(output);
+        console.log(dsi);
+      });
+    }
+    </script>
+  </body>
+</html>

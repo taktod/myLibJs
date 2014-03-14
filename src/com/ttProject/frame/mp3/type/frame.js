@@ -1,6 +1,7 @@
 goog.provide("com.ttProject.frame.mp3.type.Frame");
 
 goog.require("com.ttProject.frame.mp3.Mp3Frame");
+goog.require("com.ttProject.bit.BitLoader");
 goog.require("com.ttProject.bit.Bit11");
 goog.require("com.ttProject.bit.Bit1");
 goog.require("com.ttProject.bit.Bit2");

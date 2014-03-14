@@ -1,5 +1,6 @@
 goog.provide("com.ttProject.frame.aac.DecoderSpecificInfo");
 
+goog.require("com.ttProject.bit.BitLoader");
 goog.require("com.ttProject.bit.Bit4");
 goog.require("com.ttProject.bit.Bit5");
 goog.require("com.ttProject.bit.Bit6");
@@ -20,15 +21,52 @@ com.ttProject.frame.aac.DecoderSpecificInfo = function() {
 /**
  * 最低限読み込みを実施する
  */
-com.ttProject.frame.aac.DecoderSpecificInfo.prototype.minimumLoad = function() {
-	
+com.ttProject.frame.aac.DecoderSpecificInfo.prototype.minimumLoad = function(channel, callback) {
+	var _this = this;
+	var loader = new com.ttProject.bit.BitLoader(channel);
+	var loadChannelConfiguration = function() {
+		loader.load(_this._channelConfiguration, function() {
+			// 残りのbitデータをfillBitに記録しておく。
+			loader.getExtraBit(function(bit) {
+				_this._fillBit = bit;
+				callback(_this);
+			});
+		});
+	};
+	var loadFrequency = function() {
+		if(_this._frequencyIndex.get() == 15) {
+			_this._frequency = new com.ttProject.bit.Bit24();
+			loader.load(_this._frequency, loadChannelConfiguration);
+		}
+		else {
+			loadChannelConfiguration();
+		}
+	};
+	var loadFrequencyIndex = function() {
+		loader.load(_this._frequencyIndex, loadFrequency);
+	};
+	var loadObjectType2 = function() {
+		if(_this._objectType1.get() == 31) {
+			// objectType2が必要
+			_this._objectType2 = new com.ttProject.bit.Bit6();
+			loader.load(_this._objectType2, loadFrequencyIndex);
+		}
+		else {
+			loadFrequencyIndex();
+		}
+	};
+	var loadObjectType1 = function() {
+		loader.load(this._objectType1, loadObjectType2);
+	};
+	loadObjectType1();
 };
 
 /**
  * 全体読み込みを実施する。
  */
-com.ttProject.frame.aac.DecoderSpecificInfo.prototype.load = function() {
+com.ttProject.frame.aac.DecoderSpecificInfo.prototype.load = function(channel, callback) {
 	// minimumLoadですべて読み込むのでやることなし
+	callback();
 };
 
 com.ttProject.frame.aac.DecoderSpecificInfo.prototype.getObjectType = function() {

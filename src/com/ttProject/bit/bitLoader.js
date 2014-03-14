@@ -80,9 +80,12 @@ com.ttProject.bit.BitLoader.prototype.getExtraBit = function(callback) {
 		bit = new com.ttProject.bit.Bit7();
 		break;
 	default:
-		return null;
+		callback(null);
+		return;
 	}
-	this.load(bit, callback);
+	this.load(bit, function() {
+		callback(bit);
+	});
 };
 
 /**

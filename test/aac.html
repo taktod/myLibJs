@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>Mp3のテスト</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <script type="text/javascript" src="../closure-library/closure/goog/base.js" ></script>
+    <script type="text/javascript" src="../deps.js" ></script>
+    <script type="text/javascript">
+      goog.require("goog.testing.jsunit");
+      goog.require("com.ttProject.channel.XhrIoReadChannel");
+      goog.require("com.ttProject.frame.aac.AacFrameAnalyzer");
+    </script>
+    <script type="text/javascript">
+    function setUp() {
+    }
+    function tearDown() {
+    }
+    var i = 0;
+    function test() {
+      channel = new com.ttProject.channel.XhrIoReadChannel("../smile.aac");
+      var analyzer = new com.ttProject.frame.aac.AacFrameAnalyzer();
+      analyzeLoop = function() {
+        analyzer.analyzer(channel, function(frame) {
+          i ++;
+          if(frame != null) {
+            if(i % 150 == 0) { // たまにtimeoutをいれて処理を解放してやらないとフリーズする。
+              setTimeout(analyzeLoop, 1);
+            }
+            else {
+              analyzeLoop();
+            }
+          }
+          else {
+            console.log("解析おわり");
+          }
+        });
+      }
+      analyzeLoop();
+    }
+    </script>
+  </body>
+</html>

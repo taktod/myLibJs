@@ -56,7 +56,7 @@ com.ttProject.frame.aac.DecoderSpecificInfo.prototype.minimumLoad = function(cha
 		}
 	};
 	var loadObjectType1 = function() {
-		loader.load(this._objectType1, loadObjectType2);
+		loader.load(_this._objectType1, loadObjectType2);
 	};
 	loadObjectType1();
 };

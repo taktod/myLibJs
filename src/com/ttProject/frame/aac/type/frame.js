@@ -48,7 +48,7 @@ com.ttProject.frame.aac.type.Frame.prototype.loadDecoderSpecificInfo = function(
 	this._channelConfiguration.set(dsi.getChannelConfiguration());
 	this.setSize(7 + size);
 	this.updateFlagData();
-	callback(this);
+	callback();
 };
 
 com.ttProject.frame.aac.type.Frame.prototype.minimumLoad = function(channel, callback) {

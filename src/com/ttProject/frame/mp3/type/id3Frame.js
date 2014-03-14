@@ -45,7 +45,7 @@ com.ttProject.frame.mp3.type.Id3Frame.prototype.minimumLoad = function(channel, 
 		// このデータのサイズは
 		_this.setSize(10 + (_this._size1.get() << 21 | _this._size2.get() << 14 | _this._size3.get() << 7 | _this._size4.get()));
 		console.log(_this.getSize());
-		callback(_this);
+		callback();
 	});
 };
 

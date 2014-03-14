@@ -61,7 +61,7 @@ com.ttProject.frame.aac.type.Frame.prototype.minimumLoad = function(channel, cal
 			this._noRawDataBlocksInFrame, function() {
 		_this.setSize(_this._frameSize.get());
 		_this.updateFlagData();
-		callback(this);
+		callback();
 	});
 };
 

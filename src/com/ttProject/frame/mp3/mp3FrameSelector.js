@@ -43,6 +43,8 @@ com.ttProject.frame.mp3.Mp3FrameSelector.prototype.select = function(channel, ca
 			throw new Error("解析不能なデータです");
 		}
 //		console.log(frame);
-		frame.minimumLoad(channel, callback);
+		frame.minimumLoad(channel, function(){
+			callback(frame);
+		});
 	});
 };

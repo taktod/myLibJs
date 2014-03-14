@@ -96,7 +96,7 @@ com.ttProject.frame.mp3.type.Frame.prototype.minimumLoad = function(channel, cal
 		setSampleNum();
 		_this.setChannels(_this._channelMode.get() == 3 ? 1 : 2);
 		setSize();
-		callback(_this);
+		callback();
 	});
 };
 

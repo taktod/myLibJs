@@ -228,3 +228,7 @@ com.ttProject.frame.h264.type.SequenceParameterSet.prototype.minimumLoad = funct
 	first();
 };
 
+com.ttProject.frame.h264.type.SequenceParameterSet.prototype.load = function(channel, callback) {
+	// 読み込むべき位置を決定しておかないと、読み込むサイズが決定しない。
+//	channel.read();
+};

@@ -48,5 +48,12 @@ com.ttProject.util.HexUtil.toHex = function(data, offset, length, withSeparator)
 	}
 	return toHexByteOffsetWithSeparator(data, offset, length, withSeparator);
 };
+
 com.ttProject.util.HexUtil.makeBuffer = function(hexString) {
+	var i = 0;
+	var ary = [];
+	for(i = 0;i < hexString.length;i += 2) {
+		ary.push(parseInt(hexString.substr(i, 2), 16));
+	}
+	return new Uint8Array(ary);
 };

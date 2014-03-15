@@ -98,7 +98,16 @@ com.ttProject.bit.BitLoader.prototype.load = function() {
 	// 入力データ確認
 	for(var i = 0;i < arguments.length;i ++) {
 		var element = arguments[i];
-		if(element instanceof com.ttProject.bit.super.Bit) {
+		if(element instanceof Array) {
+			// 中身がBitかもしれないので、分解して、bit化しておく。
+			element.forEach(function(e) {
+				console.log("here...");
+				if(e instanceof com.ttProject.bit.super.Bit) {
+					_this._taskOrder.push(e);
+				}
+			});
+		}
+		else if(element instanceof com.ttProject.bit.super.Bit) {
 			this._taskOrder.push(element);
 		}
 		else if(i == arguments.length - 1 && typeof element == "function") {

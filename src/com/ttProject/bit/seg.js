@@ -14,10 +14,10 @@ goog.inherits(com.ttProject.bit.Seg, com.ttProject.bit.super.ExpGolomb);
 com.ttProject.bit.Seg.prototype.get = function() {
 	var val = this.getData();
 	if((val & 0x01) == 1) {
-		return -1 * (value >>> 1);
+		return -1 * (val >>> 1);
 	}
 	else {
-		return (value >>> 1);
+		return (val >>> 1);
 	}
 };
 

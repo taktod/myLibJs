@@ -142,12 +142,24 @@ com.ttProject.bit.BitLoader.prototype.load = function() {
 			load(bit1, loadBit1);
 		}
 		else if(bit instanceof com.ttProject.bit.super.ExpGolomb) {
+			console.log("golombにきた。");
 			var golomb = bit;
-			var bit1 = null;
+			var bit1 = new com.ttProject.bit.Bit1();
+			var loadBit1 = function() {
+				console.log("bitの読み込み実施:" + bit1.get());
+				if(golomb.addBit1(bit1)) {
+					load(bit1, loadBit1);
+				}
+				else {
+					callback();
+				}
+			};
+			load(bit1, loadBit1);
+/*			var bit1 = null;
 			do {
 				bit1 = new com.ttProject.bit.Bit1();
 				load(bit1);
-			} while(golomb.addBit1(bit1));
+			} while(golomb.addBit1(bit1));*/
 		}
 		else {
 			if(_this._littleEndianFlg) {

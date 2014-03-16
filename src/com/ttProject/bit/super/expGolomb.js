@@ -102,7 +102,7 @@ com.ttProject.bit.super.ExpGolomb.prototype.addBit1 = function(bit) {
 	}
 	var end = this._zeroCount == 0;
 	if(end) {
-		setData(this._value);
+		this.setData(this._value);
 	}
 	return !end;
 };

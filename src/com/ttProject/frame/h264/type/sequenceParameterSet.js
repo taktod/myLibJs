@@ -79,8 +79,8 @@ com.ttProject.frame.h264.type.SequenceParameterSet.prototype.minimumLoad = funct
 	};
 	var tenth = function() {
 		if(_this._vuiParametersPresentFlag.get() == 1) {
-			// parameterを読み込む必要あり。
-			throw new Error("vuiParametersの読み込みはまだつくっていない。");
+			// parameterを読み込む
+			// とりあえずいまは必要ないので、放置しておく。
 		}
 		loader.getExtraBit(function(data) {
 			_this._extraBit = data;
@@ -223,7 +223,8 @@ com.ttProject.frame.h264.type.SequenceParameterSet.prototype.minimumLoad = funct
 				_this._constraintSet5Flag,
 				_this._reservedZeroBits,
 				_this._levelIdc,
-				_this._seqParameterSetId, second);
+				_this._seqParameterSetId,
+				second);
 	};
 	first();
 };

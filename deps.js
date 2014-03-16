@@ -54,4 +54,5 @@ goog.addDependency('../../../src/com/ttProject/frame/super/iAnalyzer.js', ['com.
 goog.addDependency('../../../src/com/ttProject/frame/super/videoFrame.js', ['com.ttProject.frame.super.VideoFrame'], ['com.ttProject.container.super.Unit']);
 goog.addDependency('../../../src/com/ttProject/util/arrayUtil.js', ['com.ttProject.util.ArrayUtil'], []);
 goog.addDependency('../../../src/com/ttProject/util/bitUtil.js', ['com.ttProject.util.BitUtil'], []);
+goog.addDependency('../../../src/com/ttProject/util/enumUtil.js', ['com.ttProject.util.EnumUtil'], []);
 goog.addDependency('../../../src/com/ttProject/util/hexUtil.js', ['com.ttProject.util.HexUtil'], ['com.ttProject.util.ArrayUtil']);

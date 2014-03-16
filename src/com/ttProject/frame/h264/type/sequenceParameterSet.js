@@ -76,6 +76,7 @@ com.ttProject.frame.h264.type.SequenceParameterSet.prototype.minimumLoad = funct
 		}
 		_this.setWidth(width);
 		_this.setHeight(height);
+		callback();
 	};
 	var tenth = function() {
 		if(_this._vuiParametersPresentFlag.get() == 1) {

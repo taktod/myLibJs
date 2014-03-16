@@ -22,7 +22,7 @@
       var data = com.ttProject.util.HexUtil.makeBuffer("014D401EFFE10019674D401E924201405FF2E02200000300C800002ED51E2C5C9001000468EE32C8");
       var channel = new com.ttProject.channel.Uint8ReadChannel(data);
       // このデータを解析して、Spsとppsを取り出したい。
-      var configData = new com.ttProject.frame.h264.ConfigData();
+      configData = new com.ttProject.frame.h264.ConfigData();
       configData.getNalsFrame(channel, function() {
         console.log("読み込み済んだ");
       });

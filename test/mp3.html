@@ -9,7 +9,7 @@
     <script type="text/javascript">
       goog.require("goog.testing.jsunit");
       goog.require("com.ttProject.channel.XhrIoReadChannel");
-      goog.require("com.ttProject.frame.mp3.Mp3FrameAnalyzer");
+      goog.require("com.ttProject.container.mp3.Mp3UnitReader");
     </script>
     <script type="text/javascript">
     function setUp() {
@@ -18,25 +18,23 @@
     }
     var i = 0;
     function test() {
-      channel = new com.ttProject.channel.XhrIoReadChannel("../smile.mp3");
-      var analyzer = new com.ttProject.frame.mp3.Mp3FrameAnalyzer();
-      analyzeLoop = function() {
-        analyzer.analyzer(channel, function(frame) {
+      channel = new com.ttProject.channel.XhrIoReadChannel("../sample.mp3");
+      var reader = new com.ttProject.container.mp3.Mp3UnitReader();
+      readLoop = function() {
+        reader.read(channel, function(unit) {
           i ++;
-          if(frame != null) {
-            if(i % 150 == 0) { // たまにtimeoutをいれて処理を解放してやらないとフリーズする。
-              setTimeout(analyzeLoop, 1);
+          if(unit != null) {
+            console.log(unit.getPts());
+            if(i % 150 == 0) {
+              setTimeout(readLoop, 1);
             }
             else {
-              analyzeLoop();
+              readLoop();
             }
-          }
-          else {
-            console.log("解析おわり");
           }
         });
       }
-      analyzeLoop();
+      readLoop();
     }
     </script>
   </body>

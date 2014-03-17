@@ -6,7 +6,7 @@ goog.require("com.ttProject.container.super.Unit");
  * @constructor
  */
 com.ttProject.container.mp3.Mp3Unit = function(frame, position) {
-	this._frame = null;
+	this._frame = frame;
 	this._position = position;
 };
 

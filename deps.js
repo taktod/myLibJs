@@ -23,8 +23,10 @@ goog.addDependency('../../../src/com/ttProject/channel/xhrIoReadChannel.js', ['c
 goog.addDependency('../../../src/com/ttProject/container/mp3/mp3Unit.js', ['com.ttProject.container.mp3.Mp3Unit'], ['com.ttProject.container.super.Unit']);
 goog.addDependency('../../../src/com/ttProject/container/mp3/mp3UnitReader.js', ['com.ttProject.container.mp3.Mp3UnitReader'], ['com.ttProject.container.mp3.Mp3UnitSelector', 'com.ttProject.container.super.Reader']);
 goog.addDependency('../../../src/com/ttProject/container/mp3/mp3UnitSelector.js', ['com.ttProject.container.mp3.Mp3UnitSelector'], ['com.ttProject.container.mp3.Mp3Unit', 'com.ttProject.frame.mp3.Mp3FrameSelector', 'com.ttProject.frame.mp3.type.Frame']);
+goog.addDependency('../../../src/com/ttProject/container/mp3/mp3UnitWriter.js', ['com.ttProject.container.mp3.Mp3UnitWriter'], ['com.ttProject.container.super.Writer']);
 goog.addDependency('../../../src/com/ttProject/container/super/reader.js', ['com.ttProject.container.super.Reader'], []);
 goog.addDependency('../../../src/com/ttProject/container/super/unit.js', ['com.ttProject.container.super.Unit'], []);
+goog.addDependency('../../../src/com/ttProject/container/super/writer.js', ['com.ttProject.container.super.Writer'], []);
 goog.addDependency('../../../src/com/ttProject/frame/aac/aacDsiFrameAnalyzer.js', ['com.ttProject.frame.aac.AacDsiFrameAnalyzer'], ['com.ttProject.frame.aac.AacDsiFrameSelector', 'com.ttProject.frame.aac.AacFrame', 'com.ttProject.frame.super.IAnalyzer']);
 goog.addDependency('../../../src/com/ttProject/frame/aac/aacDsiFrameSelector.js', ['com.ttProject.frame.aac.AacDsiFrameSelector'], ['com.ttProject.frame.aac.type.Frame']);
 goog.addDependency('../../../src/com/ttProject/frame/aac/aacFrame.js', ['com.ttProject.frame.aac.AacFrame'], ['com.ttProject.frame.super.AudioFrame']);

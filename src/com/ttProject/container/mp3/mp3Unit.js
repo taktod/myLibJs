@@ -24,3 +24,7 @@ com.ttProject.container.mp3.Mp3Unit.prototype.load = function(channel, callback)
 com.ttProject.container.mp3.Mp3Unit.prototype.getFrame = function() {
 	return this._frame;
 };
+
+com.ttProject.container.mp3.Mp3Unit.prototype.getData = function() {
+	return this._frame.getData();
+};

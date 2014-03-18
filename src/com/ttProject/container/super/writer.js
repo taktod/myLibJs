@@ -30,3 +30,7 @@ com.ttProject.container.super.Writer.prototype.prepareHeader = function() {
 com.ttProject.container.super.Writer.prototype.prepareTailer = function() {
 	
 };
+
+com.ttProject.container.super.Writer.prototype.getBlob = function() {
+	
+};

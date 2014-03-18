@@ -10,6 +10,7 @@
       goog.require("goog.testing.jsunit");
       goog.require("com.ttProject.channel.XhrIoReadChannel");
       goog.require("com.ttProject.container.mp3.Mp3UnitReader");
+      goog.require("com.ttProject.container.mp3.Mp3UnitWriter");
     </script>
     <script type="text/javascript">
     function setUp() {
@@ -18,12 +19,16 @@
     }
     var i = 0;
     function test() {
+      writer = new com.ttProject.container.mp3.Mp3UnitWriter();
       channel = new com.ttProject.channel.XhrIoReadChannel("../sample.mp3");
       var reader = new com.ttProject.container.mp3.Mp3UnitReader();
       readLoop = function() {
         reader.read(channel, function(unit) {
           i ++;
           if(unit != null) {
+            if(unit.getPts() < 441000) {
+              writer.addContainer(unit);
+            }
             console.log(unit.getPts());
             if(i % 150 == 0) {
               setTimeout(readLoop, 1);
@@ -31,6 +36,9 @@
             else {
               readLoop();
             }
+          }
+          else {
+            console.log(window.URL.createObjectURL(writer.getBlob()));
           }
         });
       }

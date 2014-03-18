@@ -22,7 +22,7 @@ goog.addDependency('../../../src/com/ttProject/channel/uint8ReadChannel.js', ['c
 goog.addDependency('../../../src/com/ttProject/channel/xhrIoReadChannel.js', ['com.ttProject.channel.XhrIoReadChannel'], ['com.ttProject.channel.IReadChannel', 'com.ttProject.util.ArrayUtil', 'com.ttProject.util.HexUtil', 'goog.net.Jsonp', 'goog.net.XhrIo']);
 goog.addDependency('../../../src/com/ttProject/container/adts/adtsUnit.js', ['com.ttProject.container.adts.AdtsUnit'], ['com.ttProject.container.super.Unit']);
 goog.addDependency('../../../src/com/ttProject/container/adts/adtsUnitReader.js', ['com.ttProject.container.adts.AdtsUnitReader'], ['com.ttProject.container.adts.AdtsUnitSelector', 'com.ttProject.container.super.Reader']);
-goog.addDependency('../../../src/com/ttProject/container/adts/adtsUnitSelector.js', ['com.ttProject.container.adts.AdtsUnitSelector'], []);
+goog.addDependency('../../../src/com/ttProject/container/adts/adtsUnitSelector.js', ['com.ttProject.container.adts.AdtsUnitSelector'], ['com.ttProject.container.adts.AdtsUnit', 'com.ttProject.frame.aac.AacFrameSelector', 'com.ttProject.frame.aac.type.Frame']);
 goog.addDependency('../../../src/com/ttProject/container/adts/adtsUnitWriter.js', ['com.ttProject.container.adts.AdtsUnitWriter'], []);
 goog.addDependency('../../../src/com/ttProject/container/mp3/mp3Unit.js', ['com.ttProject.container.mp3.Mp3Unit'], ['com.ttProject.container.super.Unit']);
 goog.addDependency('../../../src/com/ttProject/container/mp3/mp3UnitReader.js', ['com.ttProject.container.mp3.Mp3UnitReader'], ['com.ttProject.container.mp3.Mp3UnitSelector', 'com.ttProject.container.super.Reader']);

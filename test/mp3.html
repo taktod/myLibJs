@@ -26,7 +26,8 @@
         reader.read(channel, function(unit) {
           i ++;
           if(unit != null) {
-            if(unit.getPts() < 441000) {
+            // 先頭のframeにはメタデータ的なものがはいっているみたいなので、それを除外してみた。
+            if(i > 3 && unit.getPts() < 441000) {
               writer.addContainer(unit);
             }
             console.log(unit.getPts());

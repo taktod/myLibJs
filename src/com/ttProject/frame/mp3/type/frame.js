@@ -1,6 +1,8 @@
 goog.provide("com.ttProject.frame.mp3.type.Frame");
 
 goog.require("com.ttProject.frame.mp3.Mp3Frame");
+goog.require("com.ttProject.util.ArrayUtil");
+goog.require("com.ttProject.bit.BitConnector");
 goog.require("com.ttProject.bit.BitLoader");
 goog.require("com.ttProject.bit.Bit11");
 goog.require("com.ttProject.bit.Bit1");
@@ -135,4 +137,17 @@ com.ttProject.frame.mp3.type.Frame.prototype.load = function(channel, callback) 
 		_this._rawBuffer = data;
 		callback();
 	});
+};
+
+/**
+ * データを応答します。
+ */
+com.ttProject.frame.mp3.type.Frame.prototype.getData = function() {
+	var connector = new com.ttProject.bit.BitConnector();
+	return com.ttProject.util.ArrayUtil.connect(
+			connector.connect(this._syncBit, this._mpegVersion, this._layer, this._protectionBit,
+					this._bitrateIndex, this._samplingRateIndex, this._paddingBit, this._privateBit,
+					this._channelMode, this._modeExtension, this._copyRight, this._originalFlag, this._emphasis),
+			this._rawBuffer
+	);
 };

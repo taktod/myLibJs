@@ -20,6 +20,7 @@ com.ttProject.container.super.Unit.prototype.setData = function(data) {
 };
 
 com.ttProject.container.super.Unit.prototype.getData = function() {
+	// データを再生成していない場合は、作り直す動作がほしいところ。(メモリーがもったいないので、毎回作り直すか？)
 	return this._data;
 };
 

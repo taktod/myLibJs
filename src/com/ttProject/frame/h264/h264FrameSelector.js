@@ -20,6 +20,11 @@ com.ttProject.frame.h264.H264FrameSelector = function() {
 };
 
 com.ttProject.frame.h264.H264FrameSelector.prototype.select = function(channel, callback) {
+	if(channel.size() != 0 && channel.size() == channel.position()) {
+		console.log("データがなくなった。");
+		callback(null);
+		return;
+	}
 	var _this = this;
 	var loader = new com.ttProject.bit.BitLoader(channel);
 	var forbiddenZeroBit = new com.ttProject.bit.Bit1();
@@ -102,7 +107,7 @@ com.ttProject.frame.h264.H264FrameSelector.prototype.select = function(channel, 
 			throw new Error("想定外のframeでした。:" + type.get());
 		};
 		if(frame == null) {
-			throw new Error("frameの実体が作成されていませんでした。");
+			throw new Error("frameの実体が作成されていませんでした。:" + type.get());
 		}
 		if(!(frame instanceof com.ttProject.frame.h264.type.SequenceParameterSet)) {
 			frame.setSps(_this._sps);

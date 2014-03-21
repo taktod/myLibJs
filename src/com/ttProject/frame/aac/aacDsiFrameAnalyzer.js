@@ -25,3 +25,7 @@ com.ttProject.frame.aac.AacDsiFrameAnalyzer.prototype.analyzer = function(channe
 		}
 	});
 };
+
+com.ttProject.frame.aac.AacDsiFrameAnalyzer.prototype.getSelector = function() {
+	return this._selector;
+};

@@ -9,7 +9,9 @@ com.ttProject.util.ArrayUtil.toUint8 = function(array) {
 	if(array instanceof Uint8Array
 	|| array instanceof Uint16Array
 	|| array instanceof Uint32Array) {
-		return new Uint8Array(array.buffer);
+		// これを実施すると元のarrayにもどされるっぽい。
+		// Uint8Arrayとかは一部分だけ保持しているみたいですね。
+		return new Uint8Array(array.buffer, array.byteOffset, array.byteLength);
 	}
 	else if(!isNaN(array)){
 		// 数値だったら
@@ -28,7 +30,7 @@ com.ttProject.util.ArrayUtil.toUint16 = function(array) {
 	if(array instanceof Uint8Array
 	|| array instanceof Uint16Array
 	|| array instanceof Uint32Array) {
-		return new Uint16Array(array.buffer);
+		return new Uint16Array(array.buffer, array.byteOffset, array.byteLength);
 	}
 	else if(!isNaN(array)){
 		// 数値だったら
@@ -47,7 +49,7 @@ com.ttProject.util.ArrayUtil.toUint32 = function(array) {
 	if(array instanceof Uint8Array
 	|| array instanceof Uint16Array
 	|| array instanceof Uint32Array) {
-		return new Uint32Array(array.buffer);
+		return new Uint32Array(array.buffer, array.byteOffset, array.byteLength);
 	}
 	else if(!isNaN(array)){
 		// 数値だったら

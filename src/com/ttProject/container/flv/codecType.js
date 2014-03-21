@@ -1,4 +1,5 @@
 goog.provide("com.ttProject.container.flv.AudioCodecType");
+goog.provide("com.ttProject.container.flv.VideoCodecType");
 
 /**
  * flvのaudioCodec設定定義

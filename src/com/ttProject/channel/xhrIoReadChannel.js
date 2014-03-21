@@ -94,19 +94,16 @@ com.ttProject.channel.XhrIoReadChannel.prototype.read = function(length, callbac
 	var response = function() {
 		// 応答用の処理を実施する場合は応答に必要なデータbufferがあるものとします。
 		// なお読み込みデータがたりなくて処理できないということはないものとします。(要求の段階で必要なデータ量は確保するため。)
-//		console.log(_this._resOrder);
 		// cacheデータから必要なデータを読み込んで必要な分だけ応答を返していきたい。
 		var order = null;
 		while((order = _this._resOrder.shift()) != null) {
 			// データがある場合は処理を実施する。
 			if(order.length > _this._cacheBuffer.length) {
-//				console.log("データが足りないのでぬけます。");
 				// 必要な量bufferがない場合は処理できないので、データを戻して処理をぬける。
 				_this._resOrder.unshift(order);
 				break;
 			}
 			else {
-//				console.log("データがあるので、応答を返します。");
 				// データがある場合は読み込んでcallbackに返す。
 				var resData = _this._cacheBuffer.subarray(0, order.length);
 				_this._cacheBuffer = _this._cacheBuffer.subarray(order.length);
@@ -132,7 +129,6 @@ com.ttProject.channel.XhrIoReadChannel.prototype.read = function(length, callbac
 		// 応答はbinaryArrayにする
 		xhr.setResponseType(goog.net.XhrIo.ResponseType.ARRAY_BUFFER);
 		var rangeHeader = "bytes=" + (this._pos + holdLength) + "-" + (this._pos + holdLength + requestLength - 1);
-		console.log(rangeHeader);
 		xhr.headers.set("Range", rangeHeader);
 		goog.events.listen(xhr, goog.net.EventType.COMPLETE, function(e) {
 			console.log("応答をうけとった。");

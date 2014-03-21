@@ -5,6 +5,7 @@ goog.require("com.ttProject.frame.h264.type.PictureParameterSet");
 goog.require("com.ttProject.frame.h264.H264FrameSelector");
 goog.require("com.ttProject.bit.Bit8");
 goog.require("com.ttProject.bit.Bit16");
+goog.require("com.ttProject.channel.Uint8ReadChannel");
 
 com.ttProject.frame.h264.ConfigData = function() {
 	this._selector = null;

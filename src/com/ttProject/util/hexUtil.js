@@ -42,7 +42,6 @@ com.ttProject.util.HexUtil.toHex = function(data, offset, length, withSeparator)
 		return toHexByte(data);
 	}
 	if(typeof offset == "boolean" || offset instanceof Boolean) {
-		console.log(offset);
 		// 第２引数がtrue falseの場合
 		return toHexByteWithSeparator(data, offset);
 	}

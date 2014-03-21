@@ -17,6 +17,11 @@ com.ttProject.frame.aac.AacDsiFrameSelector.prototype.select = function(channel,
 	if(this.dsi == null) {
 		throw new Error("dsiが未定義なので、処理できません。");
 	}
+	if(channel.size() != 0 && channel.size() == channel.position()) {
+		console.log("データがなくなった。");
+		callback(null);
+		return;
+	}
 	var frame = new Frame();
 	frame.loadDecoderSpecificInfo(channel.size(), dsi, chanel, function() {
 		callback(frame);

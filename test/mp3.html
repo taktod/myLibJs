@@ -27,12 +27,11 @@
           i ++;
           if(unit != null) {
             // 先頭のframeにはメタデータ的なものがはいっているみたいなので、それを除外してみた。
-            if(i > 3 && unit.getPts() < 441000) {
+            if(unit.getPts() < 441000) {
               writer.addContainer(unit);
             }
-            console.log(unit.getPts());
-            if(i % 150 == 0) {
-              setTimeout(readLoop, 1);
+            if(i % 10 == 0) {
+              setTimeout(readLoop, 100);
             }
             else {
               readLoop();

@@ -1,6 +1,7 @@
 goog.provide("com.ttProject.container.mp3.Mp3UnitWriter");
 
 goog.require("com.ttProject.container.super.Writer");
+goog.require("com.ttProject.frame.mp3.type.Frame");
 
 /**
  * mp3frameからmp3を作成する動作
@@ -28,7 +29,9 @@ com.ttProject.container.mp3.Mp3UnitWriter.prototype.addContainer = function(mp3U
  * @param mp3Frame
  */
 com.ttProject.container.mp3.Mp3UnitWriter.prototype.addFrame = function(mp3Frame) {
-	this._frameList.push(mp3Frame.getData());
+	if(mp3Frame instanceof com.ttProject.frame.mp3.type.Frame) {
+		this._frameList.push(mp3Frame.getData());
+	}
 };
 
 /**

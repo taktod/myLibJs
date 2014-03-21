@@ -6,6 +6,7 @@ goog.require("com.ttProject.container.super.Unit");
  * @constructor
  */
 com.ttProject.container.adts.AdtsUnit = function(frame, position) {
+	goog.base(this);
 	this._frame = frame;
 	this._position = position;
 };

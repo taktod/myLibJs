@@ -20,9 +20,11 @@ goog.inherits(com.ttProject.frame.h264.SliceFrame, com.ttProject.frame.h264.H264
 com.ttProject.frame.h264.SliceFrame.prototype.minimumLoad = function(channel, callback) {
 	var _this = this;
 	var loader = new com.ttProject.bit.BitLoader(channel);
+	this.setSize(channel.size());
 	loader.load(this._firstMbInSlice, this._sliceType, this._pictureParameterSetId, function() {
 		loader.getExtraBit(function(bit) {
 			_this._extraBit = bit;
+			callback();
 		});
 	});
 };

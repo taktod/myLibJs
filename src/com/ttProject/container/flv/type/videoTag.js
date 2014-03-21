@@ -102,7 +102,7 @@ com.ttProject.container.flv.type.VideoTag.prototype.load = function(channel, cal
 					console.log(frame);
 					// この部分でframeの読み込みをやっちゃう。
 					channel.read(4, function(data) {
-//						callback();
+						callback();
 					});
 				});
 			}

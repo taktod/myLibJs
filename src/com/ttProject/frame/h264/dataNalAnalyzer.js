@@ -36,7 +36,7 @@ com.ttProject.frame.h264.DataNalAnalyzer.prototype.analyze = function(channel, c
 		// このサイズ分切り出して送る必要あり。
 		channel.read(size.get(), function(data) {
 			_this._frameSelector.select(new com.ttProject.channel.Uint8ReadChannel(data), function(frame) {
-				console.log(frame);
+				callback(frame);
 			});
 		});
 	});

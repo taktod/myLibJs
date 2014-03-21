@@ -95,8 +95,9 @@ com.ttProject.container.flv.type.AudioTag.prototype.load = function(channel, cal
 				});
 			}
 			else {
+				console.log("ここでおわっちゃう。");
 				channel.read(4, function(data){
-					callback();
+//					callback();
 				});
 			}
 		});

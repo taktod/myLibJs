@@ -5,6 +5,7 @@ goog.require("com.ttProject.frame.h264.type.AccessUnitDelimiter");
 goog.require("com.ttProject.frame.h264.type.PictureParameterSet");
 goog.require("com.ttProject.frame.h264.type.SequenceParameterSet");
 goog.require("com.ttProject.frame.h264.type.SupplementalEnhancementInformation");
+goog.require("com.ttProject.frame.h264.type.SliceIDR");
 goog.require("com.ttProject.frame.h264.Type");
 goog.require("com.ttProject.bit.BitLoader");
 goog.require("com.ttProject.bit.Bit1");
@@ -44,6 +45,8 @@ com.ttProject.frame.h264.H264FrameSelector.prototype.select = function(channel, 
 		case com.ttProject.frame.h264.Type.SliceDataPartitionC:
 			break;
 		case com.ttProject.frame.h264.Type.SliceIDR:
+			// ここつくる必要あり。
+			frame = new com.ttProject.frame.h264.type.SliceIDR(forbiddenZeroBit, nalRefIdc, type);
 			break;
 		case com.ttProject.frame.h264.Type.SupplementalEnhancementInformation:
 			frame = new com.ttProject.frame.h264.type.SupplementalEnhancementInformation(forbiddenZeroBit, nalRefIdc, type);

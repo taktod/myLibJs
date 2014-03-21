@@ -3,6 +3,7 @@ goog.provide("com.ttProject.frame.h264.SliceFrame");
 goog.require("com.ttProject.frame.h264.H264Frame");
 goog.require("com.ttProject.bit.BitLoader");
 goog.require("com.ttProject.bit.Ueg");
+goog.require("com.ttProject.bit.BitConnector");
 
 /**
  * @constructor
@@ -30,7 +31,13 @@ com.ttProject.frame.h264.SliceFrame.prototype.minimumLoad = function(channel, ca
 };
 
 com.ttProject.frame.h264.SliceFrame.prototype.getSliceHeaderBuffer = function() {
-	
+	var connector = new com.ttProject.bit.BitConnector();
+	return connector.connect(
+			this._firstMbInSlice,
+			this._sliceType,
+			this._pictureParameterSetId,
+			this._extraBit
+	);
 };
 
 com.ttProject.frame.h264.SliceFrame.prototype.getFirstMbInSlice = function() {

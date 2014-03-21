@@ -1,6 +1,7 @@
 goog.provide("com.ttProject.frame.h264.type.SliceIDR");
 
 goog.require("com.ttProject.frame.h264.SliceFrame");
+goog.require("com.ttProject.util.ArrayUtil");
 
 /**
  * @constructor
@@ -20,4 +21,12 @@ com.ttProject.frame.h264.type.SliceIDR.prototype.load = function(channel, callba
 		_this._buffer = data;
 		callback();
 	});
+};
+
+com.ttProject.frame.h264.type.SliceIDR.prototype.getData = function() {
+	return com.ttProject.util.ArrayUtil.connect(
+			this.getTypeBuffer(),
+			this.getSliceHeaderBuffer(),
+			this._buffer
+	);
 };

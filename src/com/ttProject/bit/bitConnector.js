@@ -2,6 +2,7 @@ goog.provide("com.ttProject.bit.BitConnector");
 
 goog.require("com.ttProject.bit.super.ExpGolomb");
 goog.require("com.ttProject.bit.super.BitN");
+goog.require("com.ttProject.bit.super.Bit");
 goog.require("com.ttProject.bit.EbmlValue");
 
 /**
@@ -75,11 +76,10 @@ com.ttProject.bit.BitConnector.prototype.connect = function() {
 	this.left = 0;
 	this.size = 0;
 	this.buffer = [];
-	for(var i = 0;i < bits.length;i ++) {
-		var bit = bits[i];
+	var check = function(bit) {
 		if(bit instanceof com.ttProject.bit.super.ExpGolomb) {
 			var eg = bit;
-			var egBits = eg.bits;
+			var egBits = eg._bits;
 			for(var j = 0;j < egBits.length;j ++) {
 				var egBit = egBits[j];
 				appendBit(egBit);
@@ -91,7 +91,7 @@ com.ttProject.bit.BitConnector.prototype.connect = function() {
 			var dataBit = ebml.getEbmlDataBit();
 			if(dataBit instanceof com.ttProject.bit.super.BitN) {
 				var bitN = dataBit;
-				if(this.littleEndianFlg) {
+				if(_this.littleEndianFlg) {
 					for(var j = bitN._bits.length - 1;j >= 0;j --) {
 						appendBit(bitN._bits[j]);
 					}
@@ -119,8 +119,18 @@ com.ttProject.bit.BitConnector.prototype.connect = function() {
 				}
 			}
 		}
-		else {
+		else if(bit instanceof com.ttProject.bit.super.Bit){
 			appendBit(bit);
+		}
+	};
+	for(var i = 0;i < bits.length;i ++) {
+		var bit = bits[i];
+		if(bit instanceof Array) {
+			var ary = bit;
+			ary.forEach(check);
+		}
+		else {
+			check(bit);
 		}
 	}
 	// 端数bitがでたときに、最終データの埋め合わせをしなければならない。

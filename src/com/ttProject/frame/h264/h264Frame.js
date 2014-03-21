@@ -1,6 +1,8 @@
 goog.provide("com.ttProject.frame.h264.H264Frame");
 
 goog.require("com.ttProject.frame.super.VideoFrame");
+goog.require("com.ttProject.bit.BitConnector");
+
 /**
  * @constructor
  */
@@ -18,7 +20,8 @@ com.ttProject.frame.h264.H264Frame = function(forbiddenZeroBit, nalRefIdc, type)
 goog.inherits(com.ttProject.frame.h264.H264Frame, com.ttProject.frame.super.VideoFrame);
 
 com.ttProject.frame.h264.H264Frame.prototype.getTypeBuffer = function() {
-	
+	var connector = new com.ttProject.bit.BitConnector();
+	return connector.connect(this._forbiddenZeroBit, this._nalRefIdc, this._type);
 };
 
 com.ttProject.frame.h264.H264Frame.prototype.setPps = function(pps) {
@@ -61,3 +64,4 @@ com.ttProject.frame.h264.H264Frame.prototype.isFirstNal = function() {
 	return true;
 };
 */
+

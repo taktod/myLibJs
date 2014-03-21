@@ -6,6 +6,8 @@ goog.require("com.ttProject.bit.Seg");
 goog.require("com.ttProject.bit.Bit1");
 goog.require("com.ttProject.bit.Bit2");
 goog.require("com.ttProject.bit.Bit8");
+goog.require("com.ttProject.bit.BitConnector");
+goog.require("com.ttProject.util.ArrayUtil");
 
 /**
  * @constructor
@@ -231,6 +233,62 @@ com.ttProject.frame.h264.type.SequenceParameterSet.prototype.minimumLoad = funct
 };
 
 com.ttProject.frame.h264.type.SequenceParameterSet.prototype.load = function(channel, callback) {
+	var _this = this;
 	// 読み込むべき位置を決定しておかないと、読み込むサイズが決定しない。
-//	channel.read();
+	channel.read(channel.size() - channel.position(), function(data) {
+		_this._buffer = data;
+		callback();
+	});
+};
+
+com.ttProject.frame.h264.type.SequenceParameterSet.prototype.getData = function() {
+	var connector = new com.ttProject.bit.BitConnector();
+	return com.ttProject.util.ArrayUtil.connect(
+			this.getTypeBuffer(),
+			connector.connect(
+					this._profileIdc,
+					this._constraintSet0Flag,
+					this._constraintSet1Flag,
+					this._constraintSet2Flag,
+					this._constraintSet3Flag,
+					this._constraintSet4Flag,
+					this._constraintSet5Flag,
+					this._reservedZeroBits,
+					this._levelIdc,
+					
+					this._seqParameterSetId,
+					this._chromaFormatIdc,
+					this._separateColourPlaneFlag,
+					this._bitDepthLumaMinus8,
+					this._bitDepthChromaMinus8,
+					this._qpprimeYZeroTransformBypassFlag,
+					this._seqScalingMatrixPresentFlag,
+					this._seqScalingListPresentFlag,
+					
+					this._log2MaxFrameNumMinus4,
+					this._picOrderCntType,
+					this._log2MaxPicOrderCntLsbMinus4,
+					this._deltaPicOrderAlwaysZeroFlag,
+					this._offsetForNonRefPic,
+					this._offsetForTopToBottomField,
+					this._numRefFramesInPicOrderCntCycle,
+					this._offsetForRefFrame,
+
+					this._maxNumRefFrames,
+					this._gapsInFrameNumValueAllowedFlag,
+					this._picWidthInMbsMinus1,
+					this._picHeightInMapUnitsMinus1,
+					this._frameMbsOnlyFlag,
+					this._mbAdaptiveFrameFieldFlag,
+					this._direct8x8InferenceFlag,
+					this._frameCroppingFlag,
+					this._frameCropLeftOffset,
+					this._frameCropRightOffset,
+					this._frameCropTopOffset,
+					this._frameCropBottomOffset,
+					this._vuiParametersPresentFlag,
+
+					this._extraBit),
+			this._buffer
+	);
 };

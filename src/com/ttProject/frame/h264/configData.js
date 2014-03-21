@@ -56,7 +56,7 @@ com.ttProject.frame.h264.ConfigData.prototype.getNalsFrame = function(channel, c
 				var byteChannel = new com.ttProject.channel.Uint8ReadChannel(data);
 				selector.select(byteChannel, function(frame) {
 					_this._pps = frame;
-					callback();
+					_this._pps.load(byteChannel, callback);
 				});
 			});
 		});
@@ -70,7 +70,7 @@ com.ttProject.frame.h264.ConfigData.prototype.getNalsFrame = function(channel, c
 				var byteChannel = new com.ttProject.channel.Uint8ReadChannel(data);
 				selector.select(byteChannel, function(frame) {
 					_this._sps = frame;
-					loadPps();
+					_this._sps.load(byteChannel, loadPps);
 				});
 			});
 		});

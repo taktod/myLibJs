@@ -80,6 +80,13 @@ com.ttProject.container.flv.type.VideoTag.prototype.load = function(channel, cal
 		// h264の場合
 		// bufferデータを読み込んで保持します。
 		// packetTypeが0の場合はmshなので、MSHデータを読み込んでおきます。
+		// データサイズがなければ、そのままおわらせる。
+		if(this.getSize() - 16 - 4 == 0) {
+			channel.read(4, function(data) {
+				callback();
+			});
+			return;
+		}
 		channel.read(this.getSize() - 16 - 4, function(data) {
 			_this._frameBuffer = data;
 			// 必要があればframeAnalyzerを実施しておく。

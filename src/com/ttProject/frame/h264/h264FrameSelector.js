@@ -6,6 +6,7 @@ goog.require("com.ttProject.frame.h264.type.PictureParameterSet");
 goog.require("com.ttProject.frame.h264.type.SequenceParameterSet");
 goog.require("com.ttProject.frame.h264.type.SupplementalEnhancementInformation");
 goog.require("com.ttProject.frame.h264.type.SliceIDR");
+goog.require("com.ttProject.frame.h264.type.Slice");
 goog.require("com.ttProject.frame.h264.Type");
 goog.require("com.ttProject.bit.BitLoader");
 goog.require("com.ttProject.bit.Bit1");
@@ -37,6 +38,7 @@ com.ttProject.frame.h264.H264FrameSelector.prototype.select = function(channel, 
 		case com.ttProject.frame.h264.Type.Unspecified1:
 			break;
 		case com.ttProject.frame.h264.Type.Slice:
+			frame = new com.ttProject.frame.h264.type.Slice(forbiddenZeroBit, nalRefIdc, type);
 			break;
 		case com.ttProject.frame.h264.Type.SliceDataPartitionA:
 			break;

@@ -97,12 +97,10 @@ com.ttProject.container.flv.type.AudioTag.prototype.load = function(channel, cal
 			else {
 				var byteChannel = new com.ttProject.channel.Uint8ReadChannel(data);
 				_this._frameAnalyzer.analyze(byteChannel, function(frame) {
-					console.log(frame);
 					channel.read(4, function(data){
-//						callback();
+						callback();
 					});
 				});
-				console.log("ここでおわっちゃう。");
 			}
 		});
 		break;

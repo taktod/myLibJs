@@ -10,11 +10,11 @@ com.ttProject.frame.aac.AacDsiFrameSelector = function() {
 };
 
 com.ttProject.frame.aac.AacDsiFrameSelector.prototype.setDecoderSpecificInfo = function(dsi) {
-	this.dsi = dsi;
+	this._dsi = dsi;
 };
 
 com.ttProject.frame.aac.AacDsiFrameSelector.prototype.select = function(channel, callback) {
-	if(this.dsi == null) {
+	if(this._dsi == null) {
 		throw new Error("dsiが未定義なので、処理できません。");
 	}
 	if(channel.size() != 0 && channel.size() == channel.position()) {
@@ -22,8 +22,8 @@ com.ttProject.frame.aac.AacDsiFrameSelector.prototype.select = function(channel,
 		callback(null);
 		return;
 	}
-	var frame = new Frame();
-	frame.loadDecoderSpecificInfo(channel.size(), dsi, chanel, function() {
+	var frame = new com.ttProject.frame.aac.type.Frame();
+	frame.loadDecoderSpecificInfo(channel.size(), this._dsi, channel, function() {
 		callback(frame);
 	});
 };

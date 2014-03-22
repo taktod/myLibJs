@@ -3,6 +3,7 @@ goog.provide("com.ttProject.frame.aac.type.Frame");
 goog.require("com.ttProject.frame.aac.AacFrame");
 goog.require("com.ttProject.frame.aac.DecoderSpecificInfo");
 goog.require("com.ttProject.bit.BitLoader");
+goog.require("com.ttProject.bit.BitConnector");
 goog.require("com.ttProject.bit.Bit1");
 goog.require("com.ttProject.bit.Bit2");
 goog.require("com.ttProject.bit.Bit3");
@@ -10,6 +11,7 @@ goog.require("com.ttProject.bit.Bit4");
 goog.require("com.ttProject.bit.Bit11");
 goog.require("com.ttProject.bit.Bit12");
 goog.require("com.ttProject.bit.Bit13");
+goog.require("com.ttProject.util.ArrayUtil");
 
 /**
  * aacの音声部分の実体
@@ -32,7 +34,7 @@ com.ttProject.frame.aac.type.Frame = function() {
 	this._frameSize                    = new com.ttProject.bit.Bit13(0);
 	this._adtsBufferFullness           = new com.ttProject.bit.Bit11(0x7FF);
 	this._noRawDataBlocksInFrame       = new com.ttProject.bit.Bit2();
-	this._rawBuffer;
+	this._rawBuffer = null;
 };
 
 goog.inherits(com.ttProject.frame.aac.type.Frame, com.ttProject.frame.aac.AacFrame);
@@ -86,4 +88,28 @@ com.ttProject.frame.aac.type.Frame.prototype.getDecoderSpecificInfo = function()
 	dsi.setFrequencyIndex(this._samplingFrequenceIndex.get(), 0);
 	dsi.setChannelConfiguration(this._channelConfiguration.get());
 	return dsi;
+};
+
+com.ttProject.frame.aac.type.Frame.prototype.getData = function() {
+	var connector = new com.ttProject.bit.BitConnector();
+	return com.ttProject.util.ArrayUtil.connect(
+			connector.connect(
+					this._syncBit,
+					this._id,
+					this._layer,
+					this._protectionAbsent,
+					this._profile,
+					this._samplingFrequenceIndex,
+					this._privateBit,
+					this._channelConfiguration,
+					this._originalFlg,
+					this._home,
+					this._copyrightIdentificationBit,
+					this._copyrightIdentificationStart,
+					this._frameSize,
+					this._adtsBufferFullness,
+					this._noRawDataBlocksInFrame
+			),
+			this._rawBuffer
+	);
 };

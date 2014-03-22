@@ -13,7 +13,7 @@ com.ttProject.frame.aac.AacFrameAnalyzer = function() {
 
 goog.inherits(com.ttProject.frame.aac.AacFrameAnalyzer, com.ttProject.frame.super.IAnalyzer);
 
-com.ttProject.frame.aac.AacFrameAnalyzer.prototype.analyzer = function(channel, callback) {
+com.ttProject.frame.aac.AacFrameAnalyzer.prototype.analyze = function(channel, callback) {
 	this._selector.select(channel, function(frame) {
 		if(frame instanceof com.ttProject.frame.aac.AacFrame) {
 			frame.load(channel, function() {

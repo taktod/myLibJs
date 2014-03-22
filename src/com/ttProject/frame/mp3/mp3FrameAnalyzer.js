@@ -17,7 +17,7 @@ goog.inherits(com.ttProject.frame.mp3.Mp3FrameAnalyzer, com.ttProject.frame.supe
  * フレームを解析して取り出す
  * @param channel
  */
-com.ttProject.frame.mp3.Mp3FrameAnalyzer.prototype.analyzer = function(channel, callback) {
+com.ttProject.frame.mp3.Mp3FrameAnalyzer.prototype.analyze = function(channel, callback) {
 	this._selector.select(channel, function(frame){
 		if(frame instanceof com.ttProject.frame.mp3.Mp3Frame) {
 			frame.load(channel, function() {

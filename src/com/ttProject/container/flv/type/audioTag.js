@@ -95,10 +95,14 @@ com.ttProject.container.flv.type.AudioTag.prototype.load = function(channel, cal
 				});
 			}
 			else {
-				console.log("ここでおわっちゃう。");
-				channel.read(4, function(data){
-//					callback();
+				var byteChannel = new com.ttProject.channel.Uint8ReadChannel(data);
+				_this._frameAnalyzer.analyze(byteChannel, function(frame) {
+					console.log(frame);
+					channel.read(4, function(data){
+//						callback();
+					});
 				});
+				console.log("ここでおわっちゃう。");
 			}
 		});
 		break;

@@ -97,6 +97,7 @@ com.ttProject.container.flv.type.AudioTag.prototype.load = function(channel, cal
 			else {
 				var byteChannel = new com.ttProject.channel.Uint8ReadChannel(data);
 				_this._frameAnalyzer.analyze(byteChannel, function(frame) {
+					_this._frame = frame;
 					channel.read(4, function(data){
 						callback();
 					});
@@ -116,4 +117,8 @@ com.ttProject.container.flv.type.AudioTag.prototype.load = function(channel, cal
 	default:
 		throw new Error("エラー発生");
 	}
+};
+
+com.ttProject.container.flv.type.AudioTag.prototype.getFrame = function() {
+	this._frame;
 };

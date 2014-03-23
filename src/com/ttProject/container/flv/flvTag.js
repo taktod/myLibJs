@@ -1,6 +1,6 @@
 goog.provide("com.ttProject.container.flv.FlvTag");
 
-goog.require("com.ttProject.container.super.Unit");
+goog.require("com.ttProject.container.base.Unit");
 goog.require("com.ttProject.bit.Bit8");
 goog.require("com.ttProject.bit.Bit24");
 goog.require("com.ttProject.bit.Bit32");
@@ -20,7 +20,7 @@ com.ttProject.container.flv.FlvTag = function(tagType) {
 	this.setTimebase(1000); // flvはtimebaseが1/1000固定
 };
 
-goog.inherits(com.ttProject.container.flv.FlvTag, com.ttProject.container.super.Unit);
+goog.inherits(com.ttProject.container.flv.FlvTag, com.ttProject.container.base.Unit);
 
 com.ttProject.container.flv.FlvTag.prototype.minimumLoad = function(channel, callback) {
 	var _this = this;

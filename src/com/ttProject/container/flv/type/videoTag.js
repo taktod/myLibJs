@@ -106,6 +106,7 @@ com.ttProject.container.flv.type.VideoTag.prototype.load = function(channel, cal
 			}
 			else {
 				_this._frameAnalyzer.analyze(new com.ttProject.channel.Uint8ReadChannel(_this._frameBuffer), function(frame) {
+					_this._frame = frame;
 					// この部分でframeの読み込みをやっちゃう。
 					channel.read(4, function(data) {
 						callback();
@@ -128,4 +129,12 @@ com.ttProject.container.flv.type.VideoTag.prototype.getCodec = function() {
 		return null;
 	}
 	return this._codecId.get();
+};
+
+/**
+ * フレームを参照
+ * @returns
+ */
+com.ttProject.container.flv.type.VideoTag.prototype.getFrame = function() {
+	return this._frame;
 };

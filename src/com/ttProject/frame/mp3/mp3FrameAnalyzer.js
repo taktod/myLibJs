@@ -1,6 +1,6 @@
 goog.provide("com.ttProject.frame.mp3.Mp3FrameAnalyzer");
 
-goog.require("com.ttProject.frame.super.IAnalyzer");
+goog.require("com.ttProject.frame.base.IAnalyzer");
 goog.require("com.ttProject.frame.mp3.Mp3FrameSelector");
 goog.require("com.ttProject.frame.mp3.Mp3Frame");
 
@@ -11,7 +11,7 @@ com.ttProject.frame.mp3.Mp3FrameAnalyzer = function() {
 	this._selector = new com.ttProject.frame.mp3.Mp3FrameSelector();
 };
 
-goog.inherits(com.ttProject.frame.mp3.Mp3FrameAnalyzer, com.ttProject.frame.super.IAnalyzer);
+goog.inherits(com.ttProject.frame.mp3.Mp3FrameAnalyzer, com.ttProject.frame.base.IAnalyzer);
 
 /**
  * フレームを解析して取り出す

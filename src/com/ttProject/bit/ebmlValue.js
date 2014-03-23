@@ -1,7 +1,7 @@
 goog.provide("com.ttProject.bit.EbmlValue");
 
-goog.require("com.ttProject.bit.super.Bit");
-goog.require("com.ttProject.bit.super.BitN");
+goog.require("com.ttProject.bit.base.Bit");
+goog.require("com.ttProject.bit.base.BitN");
 goog.require("com.ttProject.bit.Bit1");
 goog.require("com.ttProject.bit.Bit2");
 goog.require("com.ttProject.bit.Bit3");
@@ -28,7 +28,7 @@ com.ttProject.bit.EbmlValue = function() {
 	this.zeroCount = 0;
 };
 // 継承
-goog.inherits(com.ttProject.bit.EbmlValue, com.ttProject.bit.super.Bit);
+goog.inherits(com.ttProject.bit.EbmlValue, com.ttProject.bit.base.Bit);
 com.ttProject.bit.EbmlValue.prototype.getCount = function() {
 	return this.numBit.getBitCount() + this.dataBit.getBitCount();
 };
@@ -73,7 +73,7 @@ com.ttProject.bit.EbmlValue.prototype.set = function(val) {
 	}
 };
 com.ttProject.bit.EbmlValue.prototype.getEbmlValue = function() {
-	return new com.ttProject.bit.super.BitN(this.numBit, this.dataBit).get();
+	return new com.ttProject.bit.base.BitN(this.numBit, this.dataBit).get();
 };
 com.ttProject.bit.EbmlValue.prototype.setEbmlValue = function(val) {
 	if(val >>> 7 == 1) {

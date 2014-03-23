@@ -1,17 +1,19 @@
 goog.provide("com.ttProject.bit.Bit1");
 
-goog.require("com.ttProject.bit.super.Bit");
+goog.require("com.ttProject.bit.base.Bit");
 
 /**
  * @constructor
  */
 com.ttProject.bit.Bit1 = function(value) {
 	goog.base(this, 1);
-	if(value != undefined) {
-		this.set(value);
-	}
+	this.set(value);
 };
-goog.inherits(com.ttProject.bit.Bit1, com.ttProject.bit.super.Bit);
+
+goog.inherits(com.ttProject.bit.Bit1, com.ttProject.bit.base.Bit);
+
 com.ttProject.bit.Bit1.prototype.set = function(val) {
-	goog.base(this, "set", val & 0x01);
+	if(val != undefined) {
+		goog.base(this, "set", val & 0x01);
+	}
 };

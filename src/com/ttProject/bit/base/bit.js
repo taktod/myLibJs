@@ -1,4 +1,4 @@
-goog.provide("com.ttProject.bit.super.Bit");
+goog.provide("com.ttProject.bit.base.Bit");
 
 goog.require("com.ttProject.util.BitUtil");
 
@@ -8,7 +8,7 @@ goog.require("com.ttProject.util.BitUtil");
 /**
  * @constructor
  */
-com.ttProject.bit.super.Bit = function(count) {
+com.ttProject.bit.base.Bit = function(count) {
 	this._bitCount = count;
 	this._value = 0;
 };
@@ -16,33 +16,33 @@ com.ttProject.bit.super.Bit = function(count) {
  * データ設定
  * @param value
  */
-com.ttProject.bit.super.Bit.prototype.set = function(val) {
+com.ttProject.bit.base.Bit.prototype.set = function(val) {
 	this._value = val;
 };
 /**
  * データ参照
  * @returns {Number}
  */
-com.ttProject.bit.super.Bit.prototype.get = function() {
+com.ttProject.bit.base.Bit.prototype.get = function() {
 	return this._value;
 };
 /**
  * データの長さ参照
  * @returns {Number}
  */
-com.ttProject.bit.super.Bit.prototype.getBitCount = function() {
+com.ttProject.bit.base.Bit.prototype.getBitCount = function() {
 	return this._bitCount;
 };
 /**
  * データの長さ設定
  * @returns {Number}
  */
-com.ttProject.bit.super.Bit.prototype.setBitCount = function(val) {
+com.ttProject.bit.base.Bit.prototype.setBitCount = function(val) {
 	this._bitCount = val;
 };
 /**
  * データDump
  */
-com.ttProject.bit.super.Bit.prototype.toString = function() {
+com.ttProject.bit.base.Bit.prototype.toString = function() {
 	return com.ttProject.util.BitUtil.toBit(this._value, this._bitCount);
 };

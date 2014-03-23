@@ -1,6 +1,6 @@
-goog.provide("com.ttProject.bit.super.ExpGolomb");
+goog.provide("com.ttProject.bit.base.ExpGolomb");
 
-goog.require("com.ttProject.bit.super.Bit");
+goog.require("com.ttProject.bit.base.Bit");
 goog.require("com.ttProject.bit.Bit1");
 goog.require("com.ttProject.bit.Bit2");
 goog.require("com.ttProject.bit.Bit3");
@@ -16,7 +16,7 @@ goog.require("com.ttProject.bit.Bit8");
 /**
  * @constructor
  */
-com.ttProject.bit.super.ExpGolomb = function() {
+com.ttProject.bit.base.ExpGolomb = function() {
 	// 初期化として0を表現しておきます。
 	goog.base(this, 1);
 	this._value = 0;
@@ -25,19 +25,19 @@ com.ttProject.bit.super.ExpGolomb = function() {
 	this._bits = [new com.ttProject.bit.Bit1(1)];
 };
 // 継承しとく
-goog.inherits(com.ttProject.bit.super.ExpGolomb, com.ttProject.bit.super.Bit);
+goog.inherits(com.ttProject.bit.base.ExpGolomb, com.ttProject.bit.base.Bit);
 // 内部関数定義
 /**
  * @proteced
  */
-com.ttProject.bit.super.ExpGolomb.prototype.getData = function() {
+com.ttProject.bit.base.ExpGolomb.prototype.getData = function() {
 	return this._value;
 };
 /**
  * @protected
  * @param val
  */
-com.ttProject.bit.super.ExpGolomb.prototype.setData = function(val) {
+com.ttProject.bit.base.ExpGolomb.prototype.setData = function(val) {
 	this._value = val;
 	this._bits = [];
 	var data = val;
@@ -85,7 +85,7 @@ com.ttProject.bit.super.ExpGolomb.prototype.setData = function(val) {
  * @param bit bit1データ
  * @reutrn false:登録がおわった場合 true:まだ登録が必要な場合
  */
-com.ttProject.bit.super.ExpGolomb.prototype.addBit1 = function(bit) {
+com.ttProject.bit.base.ExpGolomb.prototype.addBit1 = function(bit) {
 	if(!this._find1Flg) {
 		if(bit.get() == 0) {
 			this._zeroCount ++;
@@ -106,7 +106,7 @@ com.ttProject.bit.super.ExpGolomb.prototype.addBit1 = function(bit) {
 	}
 	return !end;
 };
-com.ttProject.bit.super.ExpGolomb.prototype.toString = function() {
+com.ttProject.bit.base.ExpGolomb.prototype.toString = function() {
 	var data = "";
 	for(var i = 0;i < this._bits.length;i ++) {
 		var bit = this._bits[i];

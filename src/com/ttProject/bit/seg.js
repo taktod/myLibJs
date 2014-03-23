@@ -1,6 +1,6 @@
 goog.provide("com.ttProject.bit.Seg");
 
-goog.require("com.ttProject.bit.super.ExpGolomb");
+goog.require("com.ttProject.bit.base.ExpGolomb");
 
 /**
  * @constructor
@@ -9,7 +9,7 @@ com.ttProject.bit.Seg = function() {
 	goog.base(this);
 };
 // 継承させておく
-goog.inherits(com.ttProject.bit.Seg, com.ttProject.bit.super.ExpGolomb);
+goog.inherits(com.ttProject.bit.Seg, com.ttProject.bit.base.ExpGolomb);
 
 com.ttProject.bit.Seg.prototype.get = function() {
 	var val = this.getData();

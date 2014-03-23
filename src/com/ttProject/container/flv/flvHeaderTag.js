@@ -1,6 +1,6 @@
 goog.provide("com.ttProject.container.flv.FlvHeaderTag");
 
-goog.require("com.ttProject.container.super.Unit");
+goog.require("com.ttProject.container.base.Unit");
 goog.require("com.ttProject.bit.Bit8");
 goog.require("com.ttProject.bit.Bit5");
 goog.require("com.ttProject.bit.Bit1");
@@ -30,7 +30,7 @@ com.ttProject.container.flv.FlvHeaderTag = function(signature) {
 	this.setSize(13);
 };
 
-goog.inherits(com.ttProject.container.flv.FlvHeaderTag, com.ttProject.container.super.Unit);
+goog.inherits(com.ttProject.container.flv.FlvHeaderTag, com.ttProject.container.base.Unit);
 
 com.ttProject.container.flv.FlvHeaderTag.prototype.minimumLoad = function(channel, callback) {
 	var loader = new com.ttProject.bit.BitLoader(channel);

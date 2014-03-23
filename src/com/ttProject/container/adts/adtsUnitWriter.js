@@ -1,6 +1,6 @@
 goog.provide("com.ttProject.container.adts.AdtsUnitWriter");
 
-goog.require("com.ttProject.container.super.Writer");
+goog.require("com.ttProject.container.base.Writer");
 
 /**
  * @constructor
@@ -10,7 +10,7 @@ com.ttProject.container.adts.AdtsUnitWriter = function() {
 	this._frameList = [];
 };
 
-goog.inherits(com.ttProject.container.adts.AdtsUnitWriter, com.ttProject.container.super.Writer);
+goog.inherits(com.ttProject.container.adts.AdtsUnitWriter, com.ttProject.container.base.Writer);
 
 com.ttProject.container.adts.AdtsUnitWriter.prototype.addContainer = function(adtsUnit) {
 	this.addFrame(adtsUnit.getFrame());

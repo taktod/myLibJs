@@ -1,9 +1,9 @@
-goog.provide("com.ttProject.container.super.Reader");
+goog.provide("com.ttProject.container.base.Reader");
 
 /**
  * @constructor
  */
-com.ttProject.container.super.Reader = function(selector) {
+com.ttProject.container.base.Reader = function(selector) {
 	this._selector = selector;
 };
 
@@ -11,7 +11,7 @@ com.ttProject.container.super.Reader = function(selector) {
  * selectorを参照します。
  * @returns
  */
-com.ttProject.container.super.Reader.prototype.getSelector = function() {
+com.ttProject.container.base.Reader.prototype.getSelector = function() {
 	return this._selector;
 };
 
@@ -20,7 +20,7 @@ com.ttProject.container.super.Reader.prototype.getSelector = function() {
  * @param channel
  * @param callback
  */
-com.ttProject.container.super.Reader.prototype.read = function(channel, callback) {
+com.ttProject.container.base.Reader.prototype.read = function(channel, callback) {
 	this._selector.select(channel, function(container) {
 		if(container != null) {
 			container.load(channel, function() {
@@ -37,6 +37,6 @@ com.ttProject.container.super.Reader.prototype.read = function(channel, callback
  * 処理で残ったデータを参照します
  * @param callback
  */
-com.ttProject.container.super.Reader.prototype.getRemainData = function(callback) {
+com.ttProject.container.base.Reader.prototype.getRemainData = function(callback) {
 	callback(null);
 };

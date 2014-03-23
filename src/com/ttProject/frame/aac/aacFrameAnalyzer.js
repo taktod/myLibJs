@@ -1,6 +1,6 @@
 goog.provide("com.ttProject.frame.aac.AacFrameAnalyzer");
 
-goog.require("com.ttProject.frame.super.IAnalyzer");
+goog.require("com.ttProject.frame.base.IAnalyzer");
 goog.require("com.ttProject.frame.aac.AacFrameSelector");
 goog.require("com.ttProject.frame.aac.AacFrame");
 
@@ -11,7 +11,7 @@ com.ttProject.frame.aac.AacFrameAnalyzer = function() {
 	this._selector = new com.ttProject.frame.aac.AacFrameSelector();
 };
 
-goog.inherits(com.ttProject.frame.aac.AacFrameAnalyzer, com.ttProject.frame.super.IAnalyzer);
+goog.inherits(com.ttProject.frame.aac.AacFrameAnalyzer, com.ttProject.frame.base.IAnalyzer);
 
 com.ttProject.frame.aac.AacFrameAnalyzer.prototype.analyze = function(channel, callback) {
 	this._selector.select(channel, function(frame) {

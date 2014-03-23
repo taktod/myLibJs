@@ -1,8 +1,8 @@
 goog.provide("com.ttProject.bit.BitConnector");
 
-goog.require("com.ttProject.bit.super.ExpGolomb");
-goog.require("com.ttProject.bit.super.BitN");
-goog.require("com.ttProject.bit.super.Bit");
+goog.require("com.ttProject.bit.base.ExpGolomb");
+goog.require("com.ttProject.bit.base.BitN");
+goog.require("com.ttProject.bit.base.Bit");
 goog.require("com.ttProject.bit.EbmlValue");
 
 /**
@@ -77,7 +77,7 @@ com.ttProject.bit.BitConnector.prototype.connect = function() {
 	this.size = 0;
 	this.buffer = [];
 	var check = function(bit) {
-		if(bit instanceof com.ttProject.bit.super.ExpGolomb) {
+		if(bit instanceof com.ttProject.bit.base.ExpGolomb) {
 			var eg = bit;
 			var egBits = eg._bits;
 			for(var j = 0;j < egBits.length;j ++) {
@@ -89,7 +89,7 @@ com.ttProject.bit.BitConnector.prototype.connect = function() {
 			var ebml = bit;
 			appendBit(ebml.getEbmlNumBit());
 			var dataBit = ebml.getEbmlDataBit();
-			if(dataBit instanceof com.ttProject.bit.super.BitN) {
+			if(dataBit instanceof com.ttProject.bit.base.BitN) {
 				var bitN = dataBit;
 				if(_this.littleEndianFlg) {
 					for(var j = bitN._bits.length - 1;j >= 0;j --) {
@@ -106,7 +106,7 @@ com.ttProject.bit.BitConnector.prototype.connect = function() {
 				appendBit(dataBit);
 			}
 		}
-		else if(bit instanceof com.ttProject.bit.super.BitN) {
+		else if(bit instanceof com.ttProject.bit.base.BitN) {
 			var bitN = bit;
 			if(this.littleEndianFlg) {
 				for(var j = bitN._bits.length - 1;j >= 0;j --) {
@@ -119,7 +119,7 @@ com.ttProject.bit.BitConnector.prototype.connect = function() {
 				}
 			}
 		}
-		else if(bit instanceof com.ttProject.bit.super.Bit){
+		else if(bit instanceof com.ttProject.bit.base.Bit){
 			appendBit(bit);
 		}
 	};

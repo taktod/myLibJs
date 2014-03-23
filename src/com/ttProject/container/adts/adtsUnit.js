@@ -1,6 +1,6 @@
 goog.provide("com.ttProject.container.adts.AdtsUnit");
 
-goog.require("com.ttProject.container.super.Unit");
+goog.require("com.ttProject.container.base.Unit");
 
 /**
  * @constructor
@@ -11,7 +11,7 @@ com.ttProject.container.adts.AdtsUnit = function(frame, position) {
 	this._position = position;
 };
 
-goog.inherits(com.ttProject.container.adts.AdtsUnit, com.ttProject.container.super.Unit);
+goog.inherits(com.ttProject.container.adts.AdtsUnit, com.ttProject.container.base.Unit);
 
 com.ttProject.container.adts.AdtsUnit.prototype.minimumLoad = function(channel, callback) {
 	callback();

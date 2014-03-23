@@ -1,6 +1,6 @@
 goog.provide("com.ttProject.container.mp3.Mp3UnitWriter");
 
-goog.require("com.ttProject.container.super.Writer");
+goog.require("com.ttProject.container.base.Writer");
 goog.require("com.ttProject.frame.mp3.type.Frame");
 
 /**
@@ -14,7 +14,7 @@ com.ttProject.container.mp3.Mp3UnitWriter = function() {
 	this._frameList = [];
 };
 
-goog.inherits(com.ttProject.container.mp3.Mp3UnitWriter, com.ttProject.container.super.Writer);
+goog.inherits(com.ttProject.container.mp3.Mp3UnitWriter, com.ttProject.container.base.Writer);
 
 /**
  * コンテナを追加する

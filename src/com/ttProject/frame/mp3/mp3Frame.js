@@ -1,6 +1,6 @@
 goog.provide("com.ttProject.frame.mp3.Mp3Frame");
 
-goog.require("com.ttProject.frame.super.AudioFrame");
+goog.require("com.ttProject.frame.base.AudioFrame");
 
 /**
  * mp3Frameのベース
@@ -10,4 +10,4 @@ com.ttProject.frame.mp3.Mp3Frame = function() {
 	goog.base(this);
 };
 
-goog.inherits(com.ttProject.frame.mp3.Mp3Frame, com.ttProject.frame.super.AudioFrame);
+goog.inherits(com.ttProject.frame.mp3.Mp3Frame, com.ttProject.frame.base.AudioFrame);

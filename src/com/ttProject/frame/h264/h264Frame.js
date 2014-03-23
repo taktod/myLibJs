@@ -1,6 +1,6 @@
 goog.provide("com.ttProject.frame.h264.H264Frame");
 
-goog.require("com.ttProject.frame.super.VideoFrame");
+goog.require("com.ttProject.frame.base.VideoFrame");
 goog.require("com.ttProject.bit.BitConnector");
 
 /**
@@ -17,7 +17,7 @@ com.ttProject.frame.h264.H264Frame = function(forbiddenZeroBit, nalRefIdc, type)
 	this._frameList; // 複数フレームで同一データとする場合のフレームリスト
 };
 
-goog.inherits(com.ttProject.frame.h264.H264Frame, com.ttProject.frame.super.VideoFrame);
+goog.inherits(com.ttProject.frame.h264.H264Frame, com.ttProject.frame.base.VideoFrame);
 
 com.ttProject.frame.h264.H264Frame.prototype.getTypeBuffer = function() {
 	var connector = new com.ttProject.bit.BitConnector();

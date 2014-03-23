@@ -1,6 +1,6 @@
 goog.provide("com.ttProject.frame.h264.DataNalAnalyzer");
 
-goog.require("com.ttProject.frame.super.IAnalyzer");
+goog.require("com.ttProject.frame.base.IAnalyzer");
 goog.require("com.ttProject.bit.Bit32");
 goog.require("com.ttProject.frame.h264.H264FrameSelector");
 goog.require("com.ttProject.bit.BitLoader");
@@ -16,7 +16,7 @@ com.ttProject.frame.h264.DataNalAnalyzer = function() {
 	this._frameSelector = new com.ttProject.frame.h264.H264FrameSelector();
 };
 
-goog.inherits(com.ttProject.frame.h264.DataNalAnalyzer, com.ttProject.frame.super.IAnalyzer);
+goog.inherits(com.ttProject.frame.h264.DataNalAnalyzer, com.ttProject.frame.base.IAnalyzer);
 
 com.ttProject.frame.h264.DataNalAnalyzer.prototype.getSelector = function() {
 	return this._frameSelector;

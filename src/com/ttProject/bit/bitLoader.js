@@ -1,9 +1,9 @@
 goog.provide("com.ttProject.bit.BitLoader");
 
 goog.require("com.ttProject.channel.IReadChannel");
-goog.require("com.ttProject.bit.super.Bit");
-goog.require("com.ttProject.bit.super.BitN");
-goog.require("com.ttProject.bit.super.ExpGolomb");
+goog.require("com.ttProject.bit.base.Bit");
+goog.require("com.ttProject.bit.base.BitN");
+goog.require("com.ttProject.bit.base.ExpGolomb");
 goog.require("com.ttProject.bit.Bit1");
 goog.require("com.ttProject.bit.Bit2");
 goog.require("com.ttProject.bit.Bit3");
@@ -102,12 +102,12 @@ com.ttProject.bit.BitLoader.prototype.load = function() {
 			// 中身がBitかもしれないので、分解して、bit化しておく。
 			element.forEach(function(e) {
 				console.log("here...");
-				if(e instanceof com.ttProject.bit.super.Bit) {
+				if(e instanceof com.ttProject.bit.base.Bit) {
 					_this._taskOrder.push(e);
 				}
 			});
 		}
-		else if(element instanceof com.ttProject.bit.super.Bit) {
+		else if(element instanceof com.ttProject.bit.base.Bit) {
 			this._taskOrder.push(element);
 		}
 		else if(i == arguments.length - 1 && typeof element == "function") {
@@ -141,7 +141,7 @@ com.ttProject.bit.BitLoader.prototype.load = function() {
 			};
 			load(bit1, loadBit1);
 		}
-		else if(bit instanceof com.ttProject.bit.super.ExpGolomb) {
+		else if(bit instanceof com.ttProject.bit.base.ExpGolomb) {
 			var golomb = bit;
 			var bit1 = new com.ttProject.bit.Bit1();
 			var loadBit1 = function() {
@@ -166,7 +166,7 @@ com.ttProject.bit.BitLoader.prototype.load = function() {
 //				}
 			}
 			else {
-				if(bit instanceof com.ttProject.bit.super.BitN && bit.getBitCount() > 64) {
+				if(bit instanceof com.ttProject.bit.base.BitN && bit.getBitCount() > 64) {
 					var i = 0;
 					var loadBigBit = function() {
 						if(bit._bits.length > i) {

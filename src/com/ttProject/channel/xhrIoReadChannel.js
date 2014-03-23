@@ -20,6 +20,7 @@ goog.require("com.ttProject.util.ArrayUtil");
  * XhrIoReadChannelは複数読み込みorderがはいったときに、前から順に応答を返すようにしておきたい。
  * 前のデータの処理がおわっていなかったら、データがおわるまで待ってその後、データを返すみたいな感じで・・・
  * @param com.ttProject.channel
+ * @constructor
  */
 com.ttProject.channel.XhrIoReadChannel = function(targetUrl) {
 	/** アクセス可不可フラグ */

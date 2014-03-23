@@ -3,7 +3,7 @@ goog.provide("com.ttProject.bit.Ueg");
 goog.require("com.ttProject.bit.base.ExpGolomb");
 
 /**
- * @constractor
+ * @constructor
  */
 com.ttProject.bit.Ueg = function() {
 	goog.base(this);

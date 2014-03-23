@@ -19,7 +19,7 @@ goog.require("com.ttProject.bit.Bit49");
 goog.require("com.ttProject.bit.Bit56");
 
 /**
- * @constractor
+ * @constructor
  */
 com.ttProject.bit.EbmlValue = function() {
 	goog.base(this, 0);
@@ -27,14 +27,18 @@ com.ttProject.bit.EbmlValue = function() {
 	this.dataBit = new com.ttProject.bit.Bit7();
 	this.zeroCount = 0;
 };
+
 // 継承
 goog.inherits(com.ttProject.bit.EbmlValue, com.ttProject.bit.base.Bit);
+
 com.ttProject.bit.EbmlValue.prototype.getCount = function() {
 	return this.numBit.getBitCount() + this.dataBit.getBitCount();
 };
+
 com.ttProject.bit.EbmlValue.prototype.get = function() {
 	return this.dataBit.get();
 };
+
 com.ttProject.bit.EbmlValue.prototype.set = function(val) {
 	if(val >>> 7 == 0) {
 		this.numBit = new com.ttProject.bit.Bit1(1);

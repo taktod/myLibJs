@@ -7,6 +7,9 @@ goog.require("com.ttProject.bit.Bit8");
 goog.require("com.ttProject.bit.Bit16");
 goog.require("com.ttProject.channel.Uint8ReadChannel");
 
+/**
+ * @constructor
+ */
 com.ttProject.frame.h264.ConfigData = function() {
 	this._selector = null;
 	this._sps = null;

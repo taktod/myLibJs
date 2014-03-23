@@ -82,6 +82,20 @@ com.ttProject.frame.h264.ConfigData.prototype.getNalsFrame = function(channel, c
 	loader.load(avcCVersion, profile, compatibility, level, reserved, loadSps);
 };
 
-com.ttProject.frame.h264.ConfigData.prototype.makeConfigData = function() {
-	
+com.ttProject.frame.h264.ConfigData.prototype.makeConfigData = function(sps, pps) {
+	var spsData = sps.getData();
+	var ppsData = pps.getData();
+	var data = new Uint8Array(11 + spsData.length + ppsData.length);
+	var dataView = new DataView(data.buffer);
+	dataView.setUint8(0, 1);
+	dataView.setUint8(1, spsData[1]);
+	dataView.setUint8(2, spsData[2]);
+	dataView.setUint8(3, spsData[3]);
+	dataView.setUint16(4, 0xFFE1);
+	dataView.setUint16(6, spsData.length);
+	data.set(spsData, 8);
+	dataView.setUint8(spsData.length + 8, 1);
+	dataView.setUint16(spsData.length + 9, ppsData.length);
+	data.set(ppsData, spsData.length + 11);
+	return data;
 };

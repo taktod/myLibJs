@@ -107,6 +107,9 @@ com.ttProject.container.flv.type.VideoTag.prototype.load = function(channel, cal
 			else {
 				_this._frameAnalyzer.analyze(new com.ttProject.channel.Uint8ReadChannel(_this._frameBuffer), function(frame) {
 					_this._frame = frame;
+					_this._frame.setTimebase(1000);
+					_this._frame.setPts(_this.getPts());
+					_this._frame.setId(0x09);
 					// この部分でframeの読み込みをやっちゃう。
 					channel.read(4, function(data) {
 						callback();

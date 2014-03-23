@@ -14,6 +14,7 @@ com.ttProject.frame.base.VideoFrame = function() {
 	this._width = null;
 	this._height = null;
 	this._isKeyFrame = null;
+	this._id = null;
 };
 
 goog.inherits(com.ttProject.frame.base.VideoFrame, com.ttProject.container.base.Unit);
@@ -48,4 +49,12 @@ com.ttProject.frame.base.VideoFrame.prototype.setKeyFrame = function(flg) {
 
 com.ttProject.frame.base.VideoFrame.prototype.isKeyFrame = function() {
 	return this._isKeyFrame;
+};
+
+com.ttProject.frame.base.VideoFrame.prototype.setId = function(id) {
+	this._id = id;
+};
+
+com.ttProject.frame.base.VideoFrame.prototype.getId = function() {
+	return this._id;
 };

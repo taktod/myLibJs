@@ -13,6 +13,7 @@ com.ttProject.frame.base.AudioFrame = function() {
 	this._sampleNum = null;
 	this._sampleRate = null;
 	this._channels = null;
+	this._id = null;
 };
 
 goog.inherits(com.ttProject.frame.base.AudioFrame, com.ttProject.container.base.Unit);
@@ -39,4 +40,12 @@ com.ttProject.frame.base.AudioFrame.prototype.setChannels = function(channels) {
 
 com.ttProject.frame.base.AudioFrame.prototype.getChannels = function() {
 	return this._channels;
+};
+
+com.ttProject.frame.base.AudioFrame.prototype.setId = function(id) {
+	this._id = id;
+};
+
+com.ttProject.frame.base.AudioFrame.prototype.getId = function() {
+	return this._id;
 };

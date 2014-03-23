@@ -23,7 +23,7 @@ com.ttProject.frame.mp3.type.Id3Frame = function() {
 	this._size3     = new com.ttProject.bit.Bit7();
 	this._dummy4    = new com.ttProject.bit.Bit1();
 	this._size4     = new com.ttProject.bit.Bit7();
-	this._buffer;
+	this._buffer = null;
 };
 
 goog.inherits(com.ttProject.frame.mp3.type.Id3Frame, com.ttProject.frame.mp3.Mp3Frame);

@@ -120,5 +120,5 @@ com.ttProject.container.flv.type.AudioTag.prototype.load = function(channel, cal
 };
 
 com.ttProject.container.flv.type.AudioTag.prototype.getFrame = function() {
-	this._frame;
+	return this._frame;
 };

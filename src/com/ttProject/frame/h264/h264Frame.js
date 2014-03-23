@@ -12,9 +12,9 @@ com.ttProject.frame.h264.H264Frame = function(forbiddenZeroBit, nalRefIdc, type)
 	this._nalRefIdc = nalRefIdc;
 	this._type = type;
 	
-	this._sps;
-	this._pps;
-	this._frameList; // 複数フレームで同一データとする場合のフレームリスト
+	this._sps = null;
+	this._pps = null;
+	this._frameList = null; // 複数フレームで同一データとする場合のフレームリスト
 };
 
 goog.inherits(com.ttProject.frame.h264.H264Frame, com.ttProject.frame.base.VideoFrame);

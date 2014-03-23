@@ -10,9 +10,9 @@ goog.require("com.ttProject.container.base.Unit");
  */
 com.ttProject.frame.base.AudioFrame = function() {
 	goog.base(this);
-	this._sampleNum;
-	this._sampleRate;
-	this._channels;
+	this._sampleNum = null;
+	this._sampleRate = null;
+	this._channels = null;
 };
 
 goog.inherits(com.ttProject.frame.base.AudioFrame, com.ttProject.container.base.Unit);

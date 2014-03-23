@@ -10,10 +10,10 @@ goog.require("com.ttProject.container.base.Unit");
  */
 com.ttProject.frame.base.VideoFrame = function() {
 	goog.base(this);
-	this._dts;
-	this._width;
-	this._height;
-	this._isKeyFrame;
+	this._dts = null;
+	this._width = null;
+	this._height = null;
+	this._isKeyFrame = null;
 };
 
 goog.inherits(com.ttProject.frame.base.VideoFrame, com.ttProject.container.base.Unit);

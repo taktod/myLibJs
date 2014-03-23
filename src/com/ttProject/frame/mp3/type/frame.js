@@ -29,7 +29,7 @@ com.ttProject.frame.mp3.type.Frame = function() {
 	this._copyRight         = new com.ttProject.bit.Bit1();
 	this._originalFlag      = new com.ttProject.bit.Bit1();
 	this._emphasis          = new com.ttProject.bit.Bit2();
-	this._rawBuffer;
+	this._rawBuffer = null;
 };
 
 goog.inherits(com.ttProject.frame.mp3.type.Frame, com.ttProject.frame.mp3.Mp3Frame);

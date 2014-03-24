@@ -2,6 +2,7 @@ goog.provide("com.ttProject.ms.mp4.h264.Manager");
 
 goog.require("com.ttProject.frame.h264.ConfigData");
 goog.require("com.ttProject.util.HexUtil");
+goog.require("com.ttProject.frame.h264.type.SliceIDR");
 
 /**
  * @constructor
@@ -13,6 +14,7 @@ com.ttProject.ms.mp4.h264.Manager = function(mediaSource) {
 	this._frames = [];
 	this._sps = null;
 	this._pps = null;
+	this._sequenceNum = 1;
 };
 
 /**
@@ -22,6 +24,9 @@ com.ttProject.ms.mp4.h264.Manager = function(mediaSource) {
 com.ttProject.ms.mp4.h264.Manager.prototype.appendFrame = function(frame) {
 	// spsとppsを取り出してデータを確認する。
 	if(this._sps == null || this._pps == null) {
+		this._sps = frame.getSps();
+		this._pps = frame.getPps();
+		
 		// spsとppsが変更されている場合はh264データが更新されているので、以前のmediaSourceを破棄する必要がありそう。
 		// とりあえず初入力をベースにheaderをつくる動作は必要なので、さくっとつくっておきたい。
 		
@@ -109,4 +114,56 @@ com.ttProject.ms.mp4.h264.Manager.prototype.appendFrame = function(frame) {
 	// headerができたら、keyFrame + innerFrameの組をためていく。
 	// 次のkeyFrameを投入したらいままでのグループをmp4のmoof + mdatに変換して流し込む
 	// これをやっておけば、再生可能な状況にできると思われる。
+	if(this._frames.length != 0 && frame instanceof com.ttProject.frame.h264.type.SliceIDR) {
+		/*
+		moof moofSize6D6F6F66
+		mfhd 000000106D66686400000000seqNum__
+		traf trafSize74726166
+		tfhd 00000010746668640000000000000001
+		tfdt 000000107466647400000000timestam
+		開始位置のtimestamp保持
+		trun trunSize7472756E00000305 (dataOffsetあり firstSampleあり(keyFrame指定) sampleDurationとsampleSizeあり)
+		     0000000F sample数
+		     000000D8 このfragmentのmdatの開始位置を設定
+		     00000000 sampleFragmentのデータ(これにより先頭がkeyFrameであると指定されます。trexによりデフォルトはinnerFrame)
+		     0000002100000300 duration + size
+		     00000022000000C0
+		     0000002100000190
+		     0000002100000324
+		     00000022000006CC
+		     0000002100000859
+		     0000002200000B4A
+		     0000002100000D4A
+		     0000002100000FD2
+		     0000002200000E29
+		     0000002100000DCA
+		     0000002100000FA1
+		     0000002200000DEA
+		     0000002100001684
+		     00000022000012DA
+		*/
+		var base = "000000CC6D6F6F66000000106D6668640000000000000002000000B47472616600000010746668640000000000000001000000107466647400000000000001F50000008C7472756E000003010000000F000000D400000000";
+		var data = com.ttProject.util.HexUtil.makeBuffer(base);
+		var dataView = new DataView(data.buffer);
+		// 保持しているframe数からtrunの要素数が決まります。
+		var sampleNum = this._frames.length;
+		// 先頭のframeのtimestampからtfdtのtimestamp値がきまります。
+		var moofSize = 0x58 + sampleNum * 8;
+		var trafSize = 0x40 + sampleNum * 8;
+		var trunSize = 0x18 + sampleNum * 8;
+		dataView.setUint32(0x00, moofSize);
+		dataView.setUint32(0x14, this._sequenceNum ++);
+		dataView.setUint32(0x18, trafSize);
+		dataView.setUint32(0x3C, this._frames[0].getPts());
+		dataView.setUint32(0x40, trunSize);
+		dataView.setUint32(0x4C, sampleNum);
+		dataView.setUint32(0x50, moofSize + 8);
+		var body = new Uint8Array(moofSize + 8);
+		body.set(data, 0);
+		var dataView = new DataView(body.buffer);
+		
+		console.log(com.ttProject.util.HexUtil.toHex(body));
+		throw new Error("error End");
+	}
+	this._frames.push(frame);
 };

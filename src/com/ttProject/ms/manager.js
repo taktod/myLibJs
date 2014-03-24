@@ -112,9 +112,13 @@ com.ttProject.ms.Manager = function(target, type) {
 /*					else {
 						throw new Error("想定外のフレームでした。");
 					}*/
+					openLoop();
+					return;
 				}
 			}
 			_this._msManagers[frame.getId()].appendFrame(frame);
+			setTimeout(openLoop, 10);
+//			openLoop();
 		});// */
 		// 拡張子にしたがって、データを読み取ればよしか？
 		// で、再生可能にすればよし。

@@ -8,7 +8,8 @@ var onload = function() {
 	manager = new com.ttProject.ms.Manager("../mario.flv");
 	var video = document.querySelector("video");
 	video.src = manager.getUrl();
+	video.play();
 	console.log("ここまできた。");
 };
 
-window["onload"] = onload;
+onload();

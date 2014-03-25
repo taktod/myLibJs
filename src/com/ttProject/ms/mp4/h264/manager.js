@@ -106,9 +106,11 @@ com.ttProject.ms.mp4.h264.Manager.prototype.appendFrame = function(frame) {
 		var codecs = "avc1." + com.ttProject.util.HexUtil.toHex(cd.subarray(1,4));
 		console.log(codecs);
 		
+//		console.log(com.ttProject.util.HexUtil.toHex(header));
 		// msからsourceBufferをつくる必要あり。
-		this._sourceBuffer = this._mediaSource.addSourceBuffer('video/mp4; codecs="' + codecs + '"');
-		this._sourceBuffer.appendBuffer(header);
+		this._sourceBuffer = this._mediaSource["addSourceBuffer"]('video/mp4; codecs="' + codecs + '"');
+		this._sourceBuffer["appendBuffer"](header);
+		console.log("addHeader");
 		// sourceBufferの準備おわり。
 	}
 	// headerができたら、keyFrame + innerFrameの組をためていく。
@@ -142,7 +144,7 @@ com.ttProject.ms.mp4.h264.Manager.prototype.appendFrame = function(frame) {
 		     0000002100001684
 		     00000022000012DA
 		*/
-		var base = "000000CC6D6F6F66000000106D6668640000000000000002000000B47472616600000010746668640000000000000001000000107466647400000000000001F50000008C7472756E000003010000000F000000D400000000";
+		var base = "000000CC6D6F6F66000000106D6668640000000000000002000000B47472616600000010746668640000000000000001000000107466647400000000000001F50000008C7472756E000003050000000F000000D400000000";
 		var data = com.ttProject.util.HexUtil.makeBuffer(base);
 		var dataView = new DataView(data.buffer);
 		// 保持しているframe数からtrunの要素数が決まります。
@@ -161,9 +163,43 @@ com.ttProject.ms.mp4.h264.Manager.prototype.appendFrame = function(frame) {
 		var body = new Uint8Array(moofSize + 8);
 		body.set(data, 0);
 		var dataView = new DataView(body.buffer);
-		
+		// ここからptsとsizeを書き込む必要あり。
+		var size = 0;
+		for(var i = 0;i < sampleNum;i ++) {
+			// ptsの差分を計算して挿入する。
+			var diff = 0;
+			if(i != sampleNum - 1) {
+				diff = this._frames[i + 1].getPts() - this._frames[i].getPts();
+			}
+			else {
+				diff = frame.getPts() - this._frames[i].getPts();
+			}
+			dataView.setUint32(0x58 + i * 8, diff);
+			var frameSize = this._frames[i].getSize();
+			size += frameSize + 4;
+			dataView.setUint32(0x58 + i * 8 + 4, frameSize + 4);
+		}
+		dataView.setUint32(0x58 + sampleNum * 8, size + 8);
+		dataView.setUint32(0x58 + sampleNum * 8 + 4, 0x6D646174);
 		console.log(com.ttProject.util.HexUtil.toHex(body));
-		throw new Error("error End");
+		var media = new Uint8Array(size);
+		var dataView = new DataView(media.buffer);
+		var pos = 0;
+		for(var i = 0;i < sampleNum;i ++) {
+			var f = this._frames[i];
+			dataView.setUint32(pos, f.getSize());
+			pos += 4;
+			media.set(f.getData(), pos);
+			pos += f.getSize();
+//			break;
+		}
+//		console.log(com.ttProject.util.HexUtil.toHex(media));
+		this._sourceBuffer["appendBuffer"](com.ttProject.util.ArrayUtil.connect(body, media));
+		console.log("addData");
+		console.log(this._mediaSource);
+//		console.log("おわー");
+//		throw new Error("error End");
+		this._frames = [];
 	}
 	this._frames.push(frame);
 };

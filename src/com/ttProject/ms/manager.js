@@ -80,7 +80,7 @@ com.ttProject.ms.Manager = function(target, type) {
 	var openLoop = function() {
 		// 開いたら動作開始、mediaSourceに必要なデータをつっこんでいく。
 		_this._reader.read(_this._channel, function(unit) {
-			console.log(unit);
+//			console.log(unit);
 			if(unit.getFrame == undefined || unit.getFrame() == null) {
 				openLoop();
 				return;

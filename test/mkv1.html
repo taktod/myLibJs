@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>MKVのテスト</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <script type="text/javascript" src="../closure-library/closure/goog/base.js" ></script>
+    <script type="text/javascript" src="../deps.js" ></script>
+    <script type="text/javascript">
+      goog.require("goog.testing.jsunit");
+      goog.require("com.ttProject.channel.XhrIoReadChannel");
+      goog.require("com.ttProject.container.mkv.MkvTagReader");
+    </script>
+    <script type="text/javascript">
+    function setUp() {
+    }
+    function tearDown() {
+    }
+    var i = 0;
+    function test() {
+//      writer = new com.ttProject.container.flv.FlvTagWriter();
+      channel = new com.ttProject.channel.XhrIoReadChannel("../mario.mkv");
+      var reader = new com.ttProject.container.mkv.MkvTagReader();
+      readLoop = function() {
+        reader.read(channel, function(unit) {
+          console.log(unit);
+          readLoop();
+        });
+      }
+      readLoop();
+    }
+    </script>
+  </body>
+</html>

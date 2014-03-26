@@ -68,7 +68,26 @@ com.ttProject.channel.XhrIoReadChannel.prototype.position = function(position) {
 		if(this._size != 0 && position > this._size) {
 			throw new Error("コンテンツデータより大きな値が指定されました。");
 		}
-		this._pos = position;
+		// cacheBufferがある場合は、cacheBufferの保持量を変更しないとだめ。
+		// 面倒なので、対象のデータを読み込むことにしたいとおもいます。
+		if(this._pos < position) {
+			// 差分を読み込む
+			var diff = position - this._pos;
+			if(this._cacheBuffer.length > diff) {
+				this.read(diff, function() {
+					; // なにもしない
+				});
+			}
+			else {
+				this._pos = position;
+				this._cacheBuffer = null;
+			}
+		}
+		else {
+			this._pos = position;
+			this._cacheBuffer = null;
+		}
+//		this._pos = position;
 	}
 	return this;
 };

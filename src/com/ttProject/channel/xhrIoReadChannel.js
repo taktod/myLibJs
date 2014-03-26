@@ -132,7 +132,6 @@ com.ttProject.channel.XhrIoReadChannel.prototype.read = function(length, callbac
 		var rangeHeader = "bytes=" + (this._pos + holdLength) + "-" + (this._pos + holdLength + requestLength - 1);
 		xhr.headers.set("Range", rangeHeader);
 		goog.events.listen(xhr, goog.net.EventType.COMPLETE, function(e) {
-			console.log("応答をうけとった。");
 			// 読み込みデータがrequestLength未満だった場合はフラグをたてておいて、それ以上よみこめないようにしないとだめ。
 			// 応答データからコンテンツサイズを拾っておきます。
 			_this._size = /\/(\d+)/.exec(e.target.getResponseHeader("Content-Range"))[1]; // 相手のデータのサイズを取得できる。

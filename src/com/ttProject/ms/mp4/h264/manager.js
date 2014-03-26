@@ -5,6 +5,10 @@ goog.require("com.ttProject.util.HexUtil");
 goog.require("com.ttProject.frame.h264.type.SliceIDR");
 
 /**
+ * TODO とりあえずこのクラス・・・
+ * というかappendFrameの部分肥大化しすぎなので、調整しておきたい。
+ * あとadvanceモードでコンパイルすると壊れる件もなんとかしたいね。
+ * advanceモードのコンパイルは修正済み。よかったよかった
  * @constructor
  */
 com.ttProject.ms.mp4.h264.Manager = function(mediaSource) {
@@ -100,17 +104,14 @@ com.ttProject.ms.mp4.h264.Manager.prototype.appendFrame = function(frame) {
 		// height設定
 		dataView.setUint16(0x10C, frame.getHeight());
 		dataView.setUint16(0x220, frame.getHeight());
-		console.log(com.ttProject.util.HexUtil.toHex(header, true));
 		// このheaderの値がsourceBufferに投入すべき初データになる予定。
 		// sourceBuffer用のcodec値
 		var codecs = "avc1." + com.ttProject.util.HexUtil.toHex(cd.subarray(1,4));
-		console.log(codecs);
 		
-//		console.log(com.ttProject.util.HexUtil.toHex(header));
 		// msからsourceBufferをつくる必要あり。
+		window["ttHeader"] = header;
 		this._sourceBuffer = this._mediaSource["addSourceBuffer"]('video/mp4; codecs="' + codecs + '"');
 		this._sourceBuffer["appendBuffer"](header);
-		console.log("addHeader");
 		// sourceBufferの準備おわり。
 	}
 	// headerができたら、keyFrame + innerFrameの組をためていく。
@@ -181,7 +182,6 @@ com.ttProject.ms.mp4.h264.Manager.prototype.appendFrame = function(frame) {
 		}
 		dataView.setUint32(0x58 + sampleNum * 8, size + 8);
 		dataView.setUint32(0x58 + sampleNum * 8 + 4, 0x6D646174);
-		console.log(com.ttProject.util.HexUtil.toHex(body));
 		var media = new Uint8Array(size);
 		var dataView = new DataView(media.buffer);
 		var pos = 0;
@@ -191,14 +191,10 @@ com.ttProject.ms.mp4.h264.Manager.prototype.appendFrame = function(frame) {
 			pos += 4;
 			media.set(f.getData(), pos);
 			pos += f.getSize();
-//			break;
 		}
-//		console.log(com.ttProject.util.HexUtil.toHex(media));
-		this._sourceBuffer["appendBuffer"](com.ttProject.util.ArrayUtil.connect(body, media));
-		console.log("addData");
-		console.log(this._mediaSource);
-//		console.log("おわー");
-//		throw new Error("error End");
+		var name = "ttMedia" + this._sequenceNum;
+		window[name] = com.ttProject.util.ArrayUtil.connect(body, media);
+		this._sourceBuffer["appendBuffer"](window[name]);
 		this._frames = [];
 	}
 	this._frames.push(frame);

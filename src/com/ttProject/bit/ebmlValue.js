@@ -31,7 +31,7 @@ com.ttProject.bit.EbmlValue = function() {
 // 継承
 goog.inherits(com.ttProject.bit.EbmlValue, com.ttProject.bit.base.Bit);
 
-com.ttProject.bit.EbmlValue.prototype.getCount = function() {
+com.ttProject.bit.EbmlValue.prototype.getBitCount = function() {
 	return this.numBit.getBitCount() + this.dataBit.getBitCount();
 };
 

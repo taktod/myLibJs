@@ -9,6 +9,8 @@ goog.require("com.ttProject.container.mkv.type.SeekHead");
 goog.require("com.ttProject.container.mkv.type.Seek");
 goog.require("com.ttProject.container.mkv.type.SeekID");
 goog.require("com.ttProject.container.mkv.type.SeekPosition");
+goog.require("com.ttProject.container.mkv.type.Void");
+goog.require("com.ttProject.container.mkv.type.Info");
 
 /**
  * @constructor
@@ -48,6 +50,10 @@ com.ttProject.container.mkv.MkvTagSelector.prototype.select = function(channel, 
 			mkvTag = new com.ttProject.container.mkv.type.SeekPosition(id, size);
 			break;
 		case com.ttProject.container.mkv.Type.Void:
+			mkvTag = new com.ttProject.container.mkv.type.Void(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.Info:
+			mkvTag = new com.ttProject.container.mkv.type.Info(id, size);
 			break;
 		default:
 			throw new Error("解析されていないタグを発見しました。:" + id.getEbmlValue().toString(16));

@@ -42,7 +42,7 @@ com.ttProject.bit.BitConnector.prototype.connect = function() {
 	 * バッファの書き込み実施
 	 */
 	var writeBuffer = function(shift) {
-		if(this.littleEndianFlg) {
+		if(_this.littleEndianFlg) {
 			_this.buffer.push(_this.data & 0xFF);
 		}
 		else {

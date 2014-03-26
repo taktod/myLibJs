@@ -184,6 +184,10 @@ com.ttProject.bit.BitLoader.prototype.load = function() {
 				else {
 					var setData = function(bit, callback) {
 						var bitCount = bit.getBitCount();
+						// ココかな・・・
+						console.log("fd:" + _this._floatData);
+						console.log("left:" + _this._left);
+						console.log("bCount:" + bitCount);
 						bit.set(_this._floatData >>> (_this._left - bitCount));
 						_this._left -= bitCount;
 						callback();
@@ -196,8 +200,11 @@ com.ttProject.bit.BitLoader.prototype.load = function() {
 						_this._channel.read(size, function(data) {
 							// 読み込んだデータを結合しないとだめ。
 							for(var i = 0;i < data.length;i ++) {
+								// floatDataがどうしても32bitになるらしい。
 								_this._floatData = (_this._floatData << 8 | data[i] & 0xFF);
 								_this._left += 8;
+								console.log("ffd:" + _this._floatData);
+								console.log("ffd:" + _this._floatData.toString(16));
 							}
 							setData(bit, callback);
 						});

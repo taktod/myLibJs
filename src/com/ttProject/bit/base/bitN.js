@@ -11,13 +11,21 @@ goog.require("com.ttProject.bit.base.Bit");
 com.ttProject.bit.base.BitN = function() {
 	this._bits = [];
 	var count = 0;
-	for(var i = 0;i < arguments.length;i ++) {
-		var bit = arguments[i];
+	var _this = this;
+	var addBit = function(bit) {
 		if(bit == null || !(bit instanceof com.ttProject.bit.base.Bit)) {
-			continue;
+			return;
 		}
 		count += bit.getBitCount();
-		this._bits.push(bit);
+		_this._bits.push(bit);
+	};
+	for(var i = 0;i < arguments.length;i ++) {
+		var bit = arguments[i];
+		if(bit instanceof Array) {
+			bit.forEach(addBit);
+			continue;
+		}
+		addBit(bit);
 	}
 	goog.base(this, count);
 };

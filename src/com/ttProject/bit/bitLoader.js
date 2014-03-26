@@ -101,7 +101,6 @@ com.ttProject.bit.BitLoader.prototype.load = function() {
 		if(element instanceof Array) {
 			// 中身がBitかもしれないので、分解して、bit化しておく。
 			element.forEach(function(e) {
-				console.log("here...");
 				if(e instanceof com.ttProject.bit.base.Bit) {
 					_this._taskOrder.push(e);
 				}

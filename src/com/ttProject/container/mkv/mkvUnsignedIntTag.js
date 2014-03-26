@@ -27,3 +27,9 @@ com.ttProject.container.mkv.MkvUnsignedIntTag.prototype.load = function(channel,
 		callback();
 	});
 };
+
+com.ttProject.container.mkv.MkvUnsignedIntTag.prototype.getValue = function() {
+	return this._value.get();
+};
+
+// これにはsetValueも必要(writerを実装するならいる。)

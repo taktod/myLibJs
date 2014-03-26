@@ -12,6 +12,8 @@ goog.require("com.ttProject.container.mkv.type.SeekPosition");
 goog.require("com.ttProject.container.mkv.type.Void");
 goog.require("com.ttProject.container.mkv.type.Info");
 goog.require("com.ttProject.container.mkv.type.TimecodeScale");
+goog.require("com.ttProject.container.mkv.type.MuxingApp");
+goog.require("com.ttProject.container.mkv.type.WritingApp");
 
 /**
  * @constructor
@@ -58,6 +60,12 @@ com.ttProject.container.mkv.MkvTagSelector.prototype.select = function(channel, 
 			break;
 		case com.ttProject.container.mkv.Type.TimecodeScale:
 			mkvTag = new com.ttProject.container.mkv.type.TimecodeScale(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.MuxingApp:
+			mkvTag = new com.ttProject.container.mkv.type.MuxingApp(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.WritingApp:
+			mkvTag = new com.ttProject.container.mkv.type.WritingApp(id, size);
 			break;
 		default:
 			throw new Error("解析されていないタグを発見しました。:" + id.getEbmlValue().toString(16));

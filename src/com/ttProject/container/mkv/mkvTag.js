@@ -31,3 +31,7 @@ com.ttProject.container.mkv.MkvTag.prototype.setMkvTagReader = function(reader) 
 com.ttProject.container.mkv.MkvTag.prototype.getMkvTagReader = function() {
 	return this._reader;
 };
+
+com.ttProject.container.mkv.MkvTag.prototype.getMkvSize = function() {
+	return this._ebmlSize.get();
+};

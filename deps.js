@@ -40,9 +40,10 @@ goog.addDependency('../../../src/com/ttProject/container/mkv/codecType.js', ['co
 goog.addDependency('../../../src/com/ttProject/container/mkv/mkvMasterTag.js', ['com.ttProject.container.mkv.MkvMasterTag'], ['com.ttProject.container.mkv.MkvTag']);
 goog.addDependency('../../../src/com/ttProject/container/mkv/mkvTag.js', ['com.ttProject.container.mkv.MkvTag'], ['com.ttProject.container.base.Unit']);
 goog.addDependency('../../../src/com/ttProject/container/mkv/mkvTagReader.js', ['com.ttProject.container.mkv.MkvTagReader'], ['com.ttProject.container.base.Reader', 'com.ttProject.container.mkv.MkvTagSelector', 'com.ttProject.container.mkv.type.Segment']);
-goog.addDependency('../../../src/com/ttProject/container/mkv/mkvTagSelector.js', ['com.ttProject.container.mkv.MkvTagSelector'], ['com.ttProject.bit.BitLoader', 'com.ttProject.bit.EbmlValue', 'com.ttProject.container.mkv.Type', 'com.ttProject.container.mkv.type.EBML', 'com.ttProject.container.mkv.type.SeekHead', 'com.ttProject.container.mkv.type.Segment']);
+goog.addDependency('../../../src/com/ttProject/container/mkv/mkvTagSelector.js', ['com.ttProject.container.mkv.MkvTagSelector'], ['com.ttProject.bit.BitLoader', 'com.ttProject.bit.EbmlValue', 'com.ttProject.container.mkv.Type', 'com.ttProject.container.mkv.type.EBML', 'com.ttProject.container.mkv.type.Seek', 'com.ttProject.container.mkv.type.SeekHead', 'com.ttProject.container.mkv.type.Segment']);
 goog.addDependency('../../../src/com/ttProject/container/mkv/type.js', ['com.ttProject.container.mkv.Type'], []);
 goog.addDependency('../../../src/com/ttProject/container/mkv/type/ebml.js', ['com.ttProject.container.mkv.type.EBML'], ['com.ttProject.container.mkv.MkvTag']);
+goog.addDependency('../../../src/com/ttProject/container/mkv/type/seek.js', ['com.ttProject.container.mkv.type.Seek'], ['com.ttProject.container.mkv.MkvMasterTag']);
 goog.addDependency('../../../src/com/ttProject/container/mkv/type/seekHead.js', ['com.ttProject.container.mkv.type.SeekHead'], ['com.ttProject.container.mkv.MkvMasterTag']);
 goog.addDependency('../../../src/com/ttProject/container/mkv/type/segment.js', ['com.ttProject.container.mkv.type.Segment'], ['com.ttProject.container.mkv.MkvMasterTag']);
 goog.addDependency('../../../src/com/ttProject/container/mp3/mp3Unit.js', ['com.ttProject.container.mp3.Mp3Unit'], ['com.ttProject.container.base.Unit']);

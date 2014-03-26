@@ -1,8 +1,9 @@
 goog.provide("com.ttProject.ms.mp4.h264.Manager");
 
 goog.require("com.ttProject.frame.h264.ConfigData");
-goog.require("com.ttProject.util.HexUtil");
 goog.require("com.ttProject.frame.h264.type.SliceIDR");
+goog.require("com.ttProject.util.HexUtil");
+goog.require("com.ttProject.util.ArrayUtil");
 
 /**
  * TODO とりあえずこのクラス・・・

@@ -10,7 +10,7 @@ goog.require("com.ttProject.bit.BitLoader");
  */
 com.ttProject.container.mkv.MkvUnsignedIntTag = function(id, size) {
 	goog.base(this, id, size);
-	this._value = null;
+	this._value = null; // bitNで保持させるか・・・
 };
 
 goog.inherits(com.ttProject.container.mkv.MkvUnsignedIntTag, com.ttProject.container.mkv.MkvTag);

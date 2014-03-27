@@ -118,7 +118,7 @@ com.ttProject.channel.XhrIoReadChannel.prototype.read = function(length, callbac
 		var order = null;
 		while((order = _this._resOrder.shift()) != null) {
 			// データがある場合は処理を実施する。
-			if(order.length > _this._cacheBuffer.length) {
+			if(_this._cacheBuffer == null || order.length > _this._cacheBuffer.length) {
 				// 必要な量bufferがない場合は処理できないので、データを戻して処理をぬける。
 				_this._resOrder.unshift(order);
 				break;

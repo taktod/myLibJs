@@ -38,6 +38,10 @@ goog.require("com.ttProject.container.mkv.type.BitDepth");
 goog.require("com.ttProject.container.mkv.type.Tags");
 goog.require("com.ttProject.container.mkv.type.Tag");
 goog.require("com.ttProject.container.mkv.type.Targets");
+goog.require("com.ttProject.container.mkv.type.SimpleTag");
+goog.require("com.ttProject.container.mkv.type.TagName");
+goog.require("com.ttProject.container.mkv.type.TagString");
+goog.require("com.ttProject.container.mkv.type.Cluster");
 
 /**
  * @constructor
@@ -162,6 +166,18 @@ com.ttProject.container.mkv.MkvTagSelector.prototype.select = function(channel, 
 			break;
 		case com.ttProject.container.mkv.Type.Targets:
 			mkvTag = new com.ttProject.container.mkv.type.Targets(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.SimpleTag:
+			mkvTag = new com.ttProject.container.mkv.type.SimpleTag(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.TagName:
+			mkvTag = new com.ttProject.container.mkv.type.TagName(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.TagString:
+			mkvTag = new com.ttProject.container.mkv.type.TagString(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.Cluster:
+			mkvTag = new com.ttProject.container.mkv.type.Cluster(id, size);
 			break;
 		default:
 			throw new Error("解析されていないタグを発見しました。:" + id.getEbmlValue().toString(16));

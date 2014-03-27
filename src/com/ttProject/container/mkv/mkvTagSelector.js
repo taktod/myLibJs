@@ -16,6 +16,12 @@ goog.require("com.ttProject.container.mkv.type.MuxingApp");
 goog.require("com.ttProject.container.mkv.type.WritingApp");
 goog.require("com.ttProject.container.mkv.type.SegmentUID");
 goog.require("com.ttProject.container.mkv.type.Duration");
+goog.require("com.ttProject.container.mkv.type.Tracks");
+goog.require("com.ttProject.container.mkv.type.TrackEntry");
+goog.require("com.ttProject.container.mkv.type.TrackNumber");
+goog.require("com.ttProject.container.mkv.type.TrackUID");
+goog.require("com.ttProject.container.mkv.type.FlagLacing");
+goog.require("com.ttProject.container.mkv.type.Language");
 
 /**
  * @constructor
@@ -74,6 +80,24 @@ com.ttProject.container.mkv.MkvTagSelector.prototype.select = function(channel, 
 			break;
 		case com.ttProject.container.mkv.Type.Duration:
 			mkvTag = new com.ttProject.container.mkv.type.Duration(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.Tracks:
+			mkvTag = new com.ttProject.container.mkv.type.Tracks(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.TrackEntry:
+			mkvTag = new com.ttProject.container.mkv.type.TrackEntry(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.TrackNumber:
+			mkvTag = new com.ttProject.container.mkv.type.TrackNumber(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.TrackUID:
+			mkvTag = new com.ttProject.container.mkv.type.TrackUID(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.FlagLacing:
+			mkvTag = new com.ttProject.container.mkv.type.FlagLacing(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.Language:
+			mkvTag = new com.ttProject.container.mkv.type.Language(id, size);
 			break;
 		default:
 			throw new Error("解析されていないタグを発見しました。:" + id.getEbmlValue().toString(16));

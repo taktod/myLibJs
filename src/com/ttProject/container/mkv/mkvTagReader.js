@@ -19,8 +19,8 @@ com.ttProject.container.mkv.MkvTagReader.prototype.read = function(channel, call
 	this.getSelector().select(channel, function(container) {
 		container.setMkvTagReader(_this);
 		// clusterやsegmentでないなら、loadを実行すべき
-		if(container instanceof com.ttProject.container.mkv.type.Segment || 
-				container instanceof com.ttProject.container.mkv.type.Cluster) {
+		if(container instanceof com.ttProject.container.mkv.type.Segment
+			/*|| container instanceof com.ttProject.container.mkv.type.Cluster*/) {
 			callback(container);
 			return;
 		}

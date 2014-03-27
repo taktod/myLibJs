@@ -44,6 +44,12 @@ goog.require("com.ttProject.container.mkv.type.TagString");
 goog.require("com.ttProject.container.mkv.type.Cluster");
 goog.require("com.ttProject.container.mkv.type.Timecode");
 goog.require("com.ttProject.container.mkv.type.SimpleBlock");
+goog.require("com.ttProject.container.mkv.type.Cues");
+goog.require("com.ttProject.container.mkv.type.CuePoint");
+goog.require("com.ttProject.container.mkv.type.CueTime");
+goog.require("com.ttProject.container.mkv.type.CueTrackPositions");
+goog.require("com.ttProject.container.mkv.type.CueTrack");
+goog.require("com.ttProject.container.mkv.type.CueClusterPosition");
 
 /**
  * @constructor
@@ -186,6 +192,24 @@ com.ttProject.container.mkv.MkvTagSelector.prototype.select = function(channel, 
 			break;
 		case com.ttProject.container.mkv.Type.SimpleBlock:
 			mkvTag = new com.ttProject.container.mkv.type.SimpleBlock(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.Cues:
+			mkvTag = new com.ttProject.container.mkv.type.Cues(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.CuePoint:
+			mkvTag = new com.ttProject.container.mkv.type.CuePoint(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.CueTime:
+			mkvTag = new com.ttProject.container.mkv.type.CueTime(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.CueTrackPositions:
+			mkvTag = new com.ttProject.container.mkv.type.CueTrackPositions(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.CueTrack:
+			mkvTag = new com.ttProject.container.mkv.type.CueTrack(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.CueClusterPosition:
+			mkvTag = new com.ttProject.container.mkv.type.CueClusterPosition(id, size);
 			break;
 		default:
 			throw new Error("解析されていないタグを発見しました。:" + id.getEbmlValue().toString(16));

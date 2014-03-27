@@ -16,16 +16,16 @@ com.ttProject.container.mkv.MkvMasterTag.prototype.load = function(channel, call
 	var size = this.getMkvSize();
 	var _this = this;
 	var readTags = function() {
-		_this.getMkvTagReader().read(channel, function(mkvTag) {
-			size -= mkvTag.getSize();
-			_this._tags.push(mkvTag);
-			if(size <= 0) {
-				callback();
-			}
-			else {
+		if(size <= 0) {
+			callback();
+		}
+		else {
+			_this.getMkvTagReader().read(channel, function(mkvTag) {
+				size -= mkvTag.getSize();
+				_this._tags.push(mkvTag);
 				readTags();
-			}
-		});
+			});
+		}
 	};
 	readTags();
 };

@@ -31,6 +31,13 @@ goog.require("com.ttProject.container.mkv.type.PixelHeight");
 goog.require("com.ttProject.container.mkv.type.DisplayWidth");
 goog.require("com.ttProject.container.mkv.type.DisplayHeight");
 goog.require("com.ttProject.container.mkv.type.DisplayUnit");
+goog.require("com.ttProject.container.mkv.type.Audio");
+goog.require("com.ttProject.container.mkv.type.Channels");
+goog.require("com.ttProject.container.mkv.type.SamplingFrequency");
+goog.require("com.ttProject.container.mkv.type.BitDepth");
+goog.require("com.ttProject.container.mkv.type.Tags");
+goog.require("com.ttProject.container.mkv.type.Tag");
+goog.require("com.ttProject.container.mkv.type.Targets");
 
 /**
  * @constructor
@@ -134,6 +141,27 @@ com.ttProject.container.mkv.MkvTagSelector.prototype.select = function(channel, 
 			break;
 		case com.ttProject.container.mkv.Type.DisplayUnit:
 			mkvTag = new com.ttProject.container.mkv.type.DisplayUnit(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.Audio:
+			mkvTag = new com.ttProject.container.mkv.type.Audio(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.Channels:
+			mkvTag = new com.ttProject.container.mkv.type.Channels(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.SamplingFrequency:
+			mkvTag = new com.ttProject.container.mkv.type.SamplingFrequency(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.BitDepth:
+			mkvTag = new com.ttProject.container.mkv.type.BitDepth(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.Tags:
+			mkvTag = new com.ttProject.container.mkv.type.Tags(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.Tag:
+			mkvTag = new com.ttProject.container.mkv.type.Tag(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.Targets:
+			mkvTag = new com.ttProject.container.mkv.type.Targets(id, size);
 			break;
 		default:
 			throw new Error("解析されていないタグを発見しました。:" + id.getEbmlValue().toString(16));

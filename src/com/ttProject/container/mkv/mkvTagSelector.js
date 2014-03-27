@@ -42,6 +42,8 @@ goog.require("com.ttProject.container.mkv.type.SimpleTag");
 goog.require("com.ttProject.container.mkv.type.TagName");
 goog.require("com.ttProject.container.mkv.type.TagString");
 goog.require("com.ttProject.container.mkv.type.Cluster");
+goog.require("com.ttProject.container.mkv.type.Timecode");
+goog.require("com.ttProject.container.mkv.type.SimpleBlock");
 
 /**
  * @constructor
@@ -178,6 +180,12 @@ com.ttProject.container.mkv.MkvTagSelector.prototype.select = function(channel, 
 			break;
 		case com.ttProject.container.mkv.Type.Cluster:
 			mkvTag = new com.ttProject.container.mkv.type.Cluster(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.Timecode:
+			mkvTag = new com.ttProject.container.mkv.type.Timecode(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.SimpleBlock:
+			mkvTag = new com.ttProject.container.mkv.type.SimpleBlock(id, size);
 			break;
 		default:
 			throw new Error("解析されていないタグを発見しました。:" + id.getEbmlValue().toString(16));

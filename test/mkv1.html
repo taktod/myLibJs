@@ -23,8 +23,15 @@
       var reader = new com.ttProject.container.mkv.MkvTagReader();
       readLoop = function() {
         reader.read(channel, function(unit) {
+          i++;
           console.log(unit);
-          readLoop();
+          if(i % 10 == 0) {
+            console.clear();
+            setTimeout(readLoop, 100);
+          }
+          else {
+            readLoop();
+          }
         });
       }
       readLoop();

@@ -27,11 +27,8 @@
           console.log(unit);
           if(i % 10 == 0) {
             console.clear();
-            setTimeout(readLoop, 100);
           }
-          else {
-            readLoop();
-          }
+          readLoop();
         });
       }
       readLoop();

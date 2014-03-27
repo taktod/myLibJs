@@ -79,11 +79,13 @@ com.ttProject.channel.XhrIoReadChannel.prototype.position = function(position) {
 				});
 			}
 			else {
+				this._dlFinishFlg = false;
 				this._pos = position;
 				this._cacheBuffer = null;
 			}
 		}
 		else {
+			this._dlFinishFlg = false;
 			this._pos = position;
 			this._cacheBuffer = null;
 		}

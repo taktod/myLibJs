@@ -120,91 +120,103 @@ com.ttProject.bit.BitLoader.prototype.load = function() {
 	 * bit 読み込むbit
 	 * callback 完了時の応答
 	 */
-	var load = function(bit, callback) {
-		if(bit instanceof com.ttProject.bit.EbmlValue) {
-			var ebml = bit;
-			var bit1 = new com.ttProject.bit.Bit1();
-			var loadBit1 = function() {
-				// 読み込み実行したので、ebml.addBit1を実行する。
-				if(ebml.addBit1(bit1)) {
-					// もっかい読みこむ必要あり。
-					load(bit1, loadBit1);
-				}
-				else {
-					// もう読み込まなくてよい
-					load(ebml.getDataBit(), function() {
-						// 読み込みおわった？
-						callback();
-					});
-				}
-			};
-			load(bit1, loadBit1);
-		}
-		else if(bit instanceof com.ttProject.bit.base.ExpGolomb) {
-			var golomb = bit;
-			var bit1 = new com.ttProject.bit.Bit1();
-			var loadBit1 = function() {
-				if(golomb.addBit1(bit1)) {
-					load(bit1, loadBit1);
-				}
-				else {
-					callback();
-				}
-			};
-			load(bit1, loadBit1);
-/*			var bit1 = null;
-			do {
-				bit1 = new com.ttProject.bit.Bit1();
-				load(bit1);
-			} while(golomb.addBit1(bit1));*/
-		}
-		else {
-			if(_this._littleEndianFlg) {
-				throw new Error("littleEndianはあとで作る予定");
-//				while(this.left < bit.getBitCount()) {
-//				}
-			}
-			else {
-				if(bit instanceof com.ttProject.bit.base.BitN) {
-					var i = 0;
-					var loadBigBit = function() {
-						if(bit._bits.length > i) {
-							load(bit._bits[i ++], loadBigBit);
-						}
-						else {
-							callback();
-						}
-					};
-					loadBigBit();
-				}
-				else {
-					var setData = function(bit, callback) {
-						var bitCount = bit.getBitCount();
-						// ココかな・・・
-						bit.set(_this._floatData >>> (_this._left - bitCount));
-						_this._left -= bitCount;
-						callback();
-					};
-					// なんBit読み込む必要があるか計算しなければならない。
-					if(_this._left < bit.getBitCount()) {
-						// 読み込もうとしたデータに足りない場合は、追加データの読み込みを実施しないとだめ。
-						// 読み込むサイズを計算する。
-						var size = Math.ceil((bit.getBitCount() - _this._left) / 8);
-						_this._channel.read(size, function(data) {
-							// 読み込んだデータを結合しないとだめ。
-							for(var i = 0;i < data.length;i ++) {
-								// floatDataがどうしても32bitになるらしい。
-								_this._floatData = (_this._floatData << 8 | data[i] & 0xFF);
-								_this._left += 8;
-							}
-							setData(bit, callback);
-						});
+	var load = function(bit, callback, resumed) {
+		var pos = _this._channel.position();
+		var floatData = _this._floatData;
+		var left = _this._left;
+		try {
+			if(bit instanceof com.ttProject.bit.EbmlValue) {
+				var ebml = bit;
+				var bit1 = new com.ttProject.bit.Bit1();
+				var loadBit1 = function() {
+					// 読み込み実行したので、ebml.addBit1を実行する。
+					if(ebml.addBit1(bit1)) {
+						// もっかい読みこむ必要あり。
+						load(bit1, loadBit1);
 					}
 					else {
-						setData(bit, callback);
+						// もう読み込まなくてよい
+						load(ebml.getDataBit(), function() {
+							// 読み込みおわった？
+							callback();
+						});
+					}
+				};
+				load(bit1, loadBit1);
+			}
+			else if(bit instanceof com.ttProject.bit.base.ExpGolomb) {
+				var golomb = bit;
+				var bit1 = new com.ttProject.bit.Bit1();
+				var loadBit1 = function() {
+					if(golomb.addBit1(bit1)) {
+						load(bit1, loadBit1);
+					}
+					else {
+						callback();
+					}
+				};
+				load(bit1, loadBit1);
+			}
+			else {
+				if(_this._littleEndianFlg) {
+					throw new Error("littleEndianはあとで作る予定");
+				}
+				else {
+					if(bit instanceof com.ttProject.bit.base.BitN) {
+						var i = 0;
+						var loadBigBit = function() {
+							if(bit._bits.length > i) {
+								load(bit._bits[i ++], loadBigBit);
+							}
+							else {
+								callback();
+							}
+						};
+						loadBigBit();
+					}
+					else {
+						var setData = function(bit, callback) {
+							var bitCount = bit.getBitCount();
+							// ココかな・・・
+							bit.set(_this._floatData >>> (_this._left - bitCount));
+							_this._left -= bitCount;
+							callback();
+						};
+						// なんBit読み込む必要があるか計算しなければならない。
+						if(_this._left < bit.getBitCount()) {
+							// 読み込もうとしたデータに足りない場合は、追加データの読み込みを実施しないとだめ。
+							// 読み込むサイズを計算する。
+							var size = Math.ceil((bit.getBitCount() - _this._left) / 8);
+							_this._channel.read(size, function(data) {
+								// 読み込んだデータを結合しないとだめ。
+								for(var i = 0;i < data.length;i ++) {
+									// floatDataがどうしても32bitになるらしい。
+									_this._floatData = (_this._floatData << 8 | data[i] & 0xFF);
+									_this._left += 8;
+								}
+								setData(bit, callback);
+							});
+						}
+						else {
+							setData(bit, callback);
+						}
 					}
 				}
 			}
+		}
+		catch(e) {
+			// timeoutかけてからやり直す。
+			// 余計な処理は呼び出さない方がよさそう。
+			if(resumed) {
+//				console.log(e);
+				return;
+			}
+			setTimeout(function() {
+				_this._channel.position(pos);
+				_this._floatData = floatData;
+				_this._left = left;
+				load(bit, callback, true);
+			}, 100);
 		}
 	};
 	// load開始

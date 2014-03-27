@@ -22,6 +22,15 @@ goog.require("com.ttProject.container.mkv.type.TrackNumber");
 goog.require("com.ttProject.container.mkv.type.TrackUID");
 goog.require("com.ttProject.container.mkv.type.FlagLacing");
 goog.require("com.ttProject.container.mkv.type.Language");
+goog.require("com.ttProject.container.mkv.type.CodecID");
+goog.require("com.ttProject.container.mkv.type.TrackType");
+goog.require("com.ttProject.container.mkv.type.DefaultDuration");
+goog.require("com.ttProject.container.mkv.type.Video");
+goog.require("com.ttProject.container.mkv.type.PixelWidth");
+goog.require("com.ttProject.container.mkv.type.PixelHeight");
+goog.require("com.ttProject.container.mkv.type.DisplayWidth");
+goog.require("com.ttProject.container.mkv.type.DisplayHeight");
+goog.require("com.ttProject.container.mkv.type.DisplayUnit");
 
 /**
  * @constructor
@@ -98,6 +107,33 @@ com.ttProject.container.mkv.MkvTagSelector.prototype.select = function(channel, 
 			break;
 		case com.ttProject.container.mkv.Type.Language:
 			mkvTag = new com.ttProject.container.mkv.type.Language(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.CodecID:
+			mkvTag = new com.ttProject.container.mkv.type.CodecID(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.TrackType:
+			mkvTag = new com.ttProject.container.mkv.type.TrackType(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.DefaultDuration:
+			mkvTag = new com.ttProject.container.mkv.type.DefaultDuration(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.Video:
+			mkvTag = new com.ttProject.container.mkv.type.Video(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.PixelWidth:
+			mkvTag = new com.ttProject.container.mkv.type.PixelWidth(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.PixelHeight:
+			mkvTag = new com.ttProject.container.mkv.type.PixelHeight(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.DisplayWidth:
+			mkvTag = new com.ttProject.container.mkv.type.DisplayWidth(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.DisplayHeight:
+			mkvTag = new com.ttProject.container.mkv.type.DisplayHeight(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.DisplayUnit:
+			mkvTag = new com.ttProject.container.mkv.type.DisplayUnit(id, size);
 			break;
 		default:
 			throw new Error("解析されていないタグを発見しました。:" + id.getEbmlValue().toString(16));

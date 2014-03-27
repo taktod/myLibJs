@@ -165,7 +165,7 @@ com.ttProject.bit.BitLoader.prototype.load = function() {
 //				}
 			}
 			else {
-				if(bit instanceof com.ttProject.bit.base.BitN && bit.getBitCount() > 64) {
+				if(bit instanceof com.ttProject.bit.base.BitN) {
 					var i = 0;
 					var loadBigBit = function() {
 						if(bit._bits.length > i) {
@@ -176,18 +176,11 @@ com.ttProject.bit.BitLoader.prototype.load = function() {
 						}
 					};
 					loadBigBit();
-//					for(var i = 0;i < bit._bits.length;i ++) {
-//						console.log(bit._bits[i]);
-//					}
-//					throw new Error("64bit以上のデータ読み込みはとりあえずあとまわし");
 				}
 				else {
 					var setData = function(bit, callback) {
 						var bitCount = bit.getBitCount();
 						// ココかな・・・
-						console.log("fd:" + _this._floatData);
-						console.log("left:" + _this._left);
-						console.log("bCount:" + bitCount);
 						bit.set(_this._floatData >>> (_this._left - bitCount));
 						_this._left -= bitCount;
 						callback();
@@ -203,8 +196,6 @@ com.ttProject.bit.BitLoader.prototype.load = function() {
 								// floatDataがどうしても32bitになるらしい。
 								_this._floatData = (_this._floatData << 8 | data[i] & 0xFF);
 								_this._left += 8;
-								console.log("ffd:" + _this._floatData);
-								console.log("ffd:" + _this._floatData.toString(16));
 							}
 							setData(bit, callback);
 						});

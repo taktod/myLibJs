@@ -30,13 +30,9 @@ com.ttProject.container.mkv.MkvFloatTag.prototype.load = function(channel, callb
 	default:
 		throw new Error("データ量がおかしいです。:" + this.getMkvSize());
 	}
-	console.log(channel.position());
 	loader.load(bitValue, function() {
-		console.log(channel.position());
 		_this._value = bitValue;
-		console.log(bitValue);
-		console.log(bitValue.get().toString(16));
-		console.log(_this.getValue());
+		callback();
 	});
 };
 

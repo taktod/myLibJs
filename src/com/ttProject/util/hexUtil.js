@@ -1,4 +1,5 @@
 goog.provide("com.ttProject.util.HexUtil");
+
 goog.require("com.ttProject.util.ArrayUtil");
 
 /**

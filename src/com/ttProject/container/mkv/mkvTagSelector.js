@@ -197,7 +197,6 @@ com.ttProject.container.mkv.MkvTagSelector.prototype.select = function(channel, 
 			mkvTag = new com.ttProject.container.mkv.type.Cues(id, size);
 			break;
 		case com.ttProject.container.mkv.Type.CuePoint:
-			console.log("cuePoint");
 			mkvTag = new com.ttProject.container.mkv.type.CuePoint(id, size);
 			break;
 		case com.ttProject.container.mkv.Type.CueTime:

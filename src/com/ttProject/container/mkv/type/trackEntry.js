@@ -9,6 +9,8 @@ goog.require("com.ttProject.container.mkv.type.Video");
 goog.require("com.ttProject.container.mkv.type.Audio");
 goog.require("com.ttProject.container.mkv.type.TrackType");
 //goog.require(ContentEncodings); // contentEncodingsも未実装(圧縮や暗号化のあるtrackの場合に必要)
+goog.require("com.ttProject.frame.mp3.Mp3FrameAnalyzer");
+goog.require("com.ttProject.frame.mjpeg.MjpegFrameAnalyzer");
 
 /**
  * @constructor
@@ -79,7 +81,39 @@ com.ttProject.container.mkv.type.TrackEntry.prototype.setupEntry = function(defa
 	}
 	// まずコーデックについて調査しておく。
 	var codecName = this._codecId.getValue();
-	console.log(codecName);
-	// analyzerについて、調整しておく。
+	if(codecName.indexOf("V_MPEG4") == 0) {
+		// avcかも？
+		if(codecName.indexOf("AVC") > 0) {
+			// avc(h264)
+			console.log("avc");
+			throw new Error("avcの処理はまだ作成していません。");
+		}
+	}
+	else if(codecName.indexOf("V_MJPEG") == 0) {
+		// mjpeg決定(mjpeg2000とかかもしれないけど・・・)
+		console.log("mjpeg");
+		this._analyzer = new com.ttProject.frame.mjpeg.MjpegFrameAnalyzer();
+	}
+	else if(codecName.indexOf("A_AAC") == 0) {
+		// aac
+		console.log("aac");
+		throw new Error("aacの処理はまだ作成していません。");
+	}
+	else if(codecName.indexOf("A_MPEG/L3") == 0) {
+		// mp3
+		console.log("mp3");
+		this._analyzer = new com.ttProject.frame.mp3.Mp3FrameAnalyzer();
+	}
+	else {
+		throw new Error("unknown codec:" + codecName);
+	}
+	// analyzerについて調整しておく。
+	switch(this._type) {
+	case 1: // video
+		break;
+	case 2: // audio
+		break;
+	}
+	console.log(this._type);
 	return trackNumber.getValue();
 };

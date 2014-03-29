@@ -7,7 +7,7 @@ goog.require("com.ttProject.frame.h264.NalAnalyzer");
  * @constructor
  */
 com.ttProject.frame.h264.H264FrameAnalyzer = function() {
-	
+	goog.base(this);
 };
 
 goog.inherits(com.ttProject.frame.h264.H264FrameAnalyzer, com.ttProject.frame.h264.NalAnalyzer);

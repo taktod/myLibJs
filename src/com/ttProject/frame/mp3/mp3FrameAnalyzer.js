@@ -29,3 +29,7 @@ com.ttProject.frame.mp3.Mp3FrameAnalyzer.prototype.analyze = function(channel, c
 		}
 	});
 };
+
+com.ttProject.frame.mp3.Mp3FrameAnalyzer.prototype.getSelector = function() {
+	return this._selector;
+};

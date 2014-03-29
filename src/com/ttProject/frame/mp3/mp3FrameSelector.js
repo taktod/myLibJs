@@ -5,12 +5,16 @@ goog.require("com.ttProject.bit.BitLoader");
 goog.require("com.ttProject.frame.mp3.type.Id3Frame");
 goog.require("com.ttProject.frame.mp3.type.Frame");
 
+goog.require("com.ttProject.frame.base.AudioSelector");
+
 /**
  * @constructor
  */
 com.ttProject.frame.mp3.Mp3FrameSelector = function() {
-	
+	goog.base(this);
 };
+
+goog.inherits(com.ttProject.frame.mp3.Mp3FrameSelector, com.ttProject.frame.base.AudioSelector);
 
 com.ttProject.frame.mp3.Mp3FrameSelector.prototype.select = function(channel, callback) {
 	if(channel.size() != 0 && channel.size() == channel.position()) {
@@ -42,7 +46,7 @@ com.ttProject.frame.mp3.Mp3FrameSelector.prototype.select = function(channel, ca
 			console.log(firstByte.get());
 			throw new Error("解析不能なデータです");
 		}
-//		console.log(frame);
+		this.setup(frame);
 		frame.minimumLoad(channel, function(){
 			callback(frame);
 		});

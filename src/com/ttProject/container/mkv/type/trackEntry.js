@@ -44,6 +44,10 @@ com.ttProject.container.mkv.type.TrackEntry = function(id, size) {
 
 goog.inherits(com.ttProject.container.mkv.type.TrackEntry, com.ttProject.container.mkv.MkvMasterTag);
 
+com.ttProject.container.mkv.type.TrackEntry.prototype.getFrameAnalyzer = function() {
+	return this._analyzer;
+};
+
 /**
  * trackEntryの中身をセットアップしておく。
  * @param defaultTimebase

@@ -10,6 +10,7 @@
       goog.require("goog.testing.jsunit");
       goog.require("com.ttProject.channel.XhrIoReadChannel");
       goog.require("com.ttProject.container.mkv.MkvTagReader");
+      goog.require("com.ttProject.container.mkv.type.SimpleBlock");
     </script>
     <script type="text/javascript">
     function setUp() {
@@ -19,11 +20,15 @@
     var i = 0;
     function test() {
 //      writer = new com.ttProject.container.flv.FlvTagWriter();
-      channel = new com.ttProject.channel.XhrIoReadChannel("../mario.mkv");
+      channel = new com.ttProject.channel.XhrIoReadChannel("../mario2.mkv");
       var reader = new com.ttProject.container.mkv.MkvTagReader();
       readLoop = function() {
         reader.read(channel, function(unit) {
           i++;
+          if(unit instanceof com.ttProject.container.mkv.type.SimpleBlock) {
+//            console.log(unit);
+            unit; // ここでunitが拾えているのであとは、このデータを適当なやつにまわして処理してしまえばよし。
+          }
 //          console.log(unit);
 //          if(i % 10 == 0) {
 //            console.clear();

@@ -44,7 +44,7 @@ com.ttProject.container.mkv.MkvTagReader.prototype.read = function(channel, call
 			}
 			if(container instanceof com.ttProject.container.mkv.type.TrackEntry) {
 				// trackEntryを保持
-				var id = container.setupEntry();
+				var id = container.setupEntry(_this._defaultTimebase);
 				_this._trackEntryMap[id] = container;
 			}
 			if(container instanceof com.ttProject.container.mkv.type.Timecode) {
@@ -57,4 +57,8 @@ com.ttProject.container.mkv.MkvTagReader.prototype.read = function(channel, call
 
 com.ttProject.container.mkv.MkvTagReader.prototype.getClusterTime = function() {
 	return this._clusterTime;
+};
+
+com.ttProject.container.mkv.MkvTagReader.prototype.getTrackEntry = function(number) {
+	return this._trackEntryMap[number];
 };

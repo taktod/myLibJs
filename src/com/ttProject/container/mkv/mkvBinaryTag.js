@@ -23,3 +23,7 @@ com.ttProject.container.mkv.MkvBinaryTag.prototype.load = function(channel, call
 com.ttProject.container.mkv.MkvBinaryTag.prototype.getRemainedSize = function() {
 	return this.getMkvSize();
 };
+
+com.ttProject.container.mkv.MkvBinaryTag.prototype.getMkvData = function() {
+	return this._buffer;
+};

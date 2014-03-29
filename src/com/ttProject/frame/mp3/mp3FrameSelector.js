@@ -23,6 +23,7 @@ com.ttProject.frame.mp3.Mp3FrameSelector.prototype.select = function(channel, ca
 		return;
 	}
 	// まず始めの8bitを読み込んでみる。
+	var _this = this;
 	var firstByte = new com.ttProject.bit.Bit8();
 	var loader = new com.ttProject.bit.BitLoader(channel);
 	loader.load(firstByte, function() {
@@ -46,7 +47,7 @@ com.ttProject.frame.mp3.Mp3FrameSelector.prototype.select = function(channel, ca
 			console.log(firstByte.get());
 			throw new Error("解析不能なデータです");
 		}
-		this.setup(frame);
+		_this.setup(frame);
 		frame.minimumLoad(channel, function(){
 			callback(frame);
 		});

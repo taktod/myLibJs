@@ -8,4 +8,4 @@ com.ttProject.container.mkv.LacingType = {
 	Xiph: 1,
 	EBML: 3,
 	FixedSize: 2
-}
+};

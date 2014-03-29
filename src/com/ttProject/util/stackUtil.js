@@ -52,4 +52,4 @@ com.ttProject.util.StackUtil.run = function() {
 com.ttProject.util.StackUtil.call = function(callback) {
 	com.ttProject.util.StackUtil.push(callback);
 	com.ttProject.util.StackUtil.run();
-}
+};

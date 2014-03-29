@@ -29,3 +29,7 @@ com.ttProject.container.mkv.MkvMasterTag.prototype.load = function(channel, call
 	};
 	readTags();
 };
+
+com.ttProject.container.mkv.MkvMasterTag.prototype.getTags = function() {
+	return this._tags;
+};

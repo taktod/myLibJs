@@ -23,24 +23,39 @@
     function tearDown() {
     }
     function test() {
-/*      // 通常のbitデータ読み込みテスト
       b1 = new com.ttProject.bit.Bit1();
       b2 = new com.ttProject.bit.Bit2();
       b3 = new com.ttProject.bit.Bit11();
       b4 = new com.ttProject.bit.Bit2();
       // 00110101 0010 0100
-      var channel = new com.ttProject.channel.Uint8ReadChannel(new Uint8Array([0x35, 0x24]));
-//      var channel = new com.ttProject.channel.XhrIoReadChannel("../readme.txt");
+//      var channel = new com.ttProject.channel.Uint8ReadChannel(new Uint8Array([0x35, 0x24]));
+      var channel = new com.ttProject.channel.XhrIoReadChannel("../data.dat");
       // 0 01 101 01
       // 0 01  10101001001 00
       var loader = new com.ttProject.bit.BitLoader(channel);
-      loader.load(b1,b2,b3,b4,function(){
+      loader.load(b1,b2,function(){
         console.log(b1.toString());
         console.log(b2.toString());
-        console.log(b3.toString());
-        console.log(b4.toString());
+        loader.load(b3,b4,function(){
+          console.log(b3.toString());
+          console.log(b4.toString());
+        });
       });
-      // ebmlValueの読み込みテスト
+/*      b21 = new com.ttProject.bit.Bit1();
+      b22 = new com.ttProject.bit.Bit2();
+      b23 = new com.ttProject.bit.Bit11();
+      b24 = new com.ttProject.bit.Bit2();
+          var channel2 = new com.ttProject.channel.XhrIoReadChannel("../data.dat");
+          // 0 01 101 01
+          // 0 01  10101001001 00
+          var loader = new com.ttProject.bit.BitLoader(channel2);
+          loader.load(b21,b22,b23,b24,function(){
+            console.log(b21.toString());
+            console.log(b22.toString());
+            console.log(b23.toString());
+            console.log(b24.toString());
+          });
+/*      // ebmlValueの読み込みテスト
       var channel = new com.ttProject.channel.Uint8ReadChannel(new Uint8Array([0x81, 0x40, 0x05]));
       ebml1 = new com.ttProject.bit.EbmlValue();
       ebml2 = new com.ttProject.bit.EbmlValue();

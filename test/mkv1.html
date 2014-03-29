@@ -24,10 +24,10 @@
       readLoop = function() {
         reader.read(channel, function(unit) {
           i++;
-          console.log(unit);
-          if(i % 10 == 0) {
-            console.clear();
-          }
+//          console.log(unit);
+//          if(i % 10 == 0) {
+//            console.clear();
+//          }
           readLoop();
         });
       }

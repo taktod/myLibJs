@@ -23,3 +23,7 @@ com.ttProject.container.mkv.MkvStringTag.prototype.load = function(channel, call
 		reader.readAsText(new Blob([data]));
 	});
 };
+
+com.ttProject.container.mkv.MkvStringTag.prototype.getValue = function() {
+	return this._str;
+};

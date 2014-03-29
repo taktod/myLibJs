@@ -44,10 +44,42 @@ goog.inherits(com.ttProject.container.mkv.type.TrackEntry, com.ttProject.contain
 com.ttProject.container.mkv.type.TrackEntry.prototype.setupEntry = function(defaultTimebase) {
 	var _this = this;
 	this._timebase = defaultTimebase;
+	var trackNumber = null;
+	var codecPrivate = null;
 	// 中身を調整する。
-	this.getTags.forEach(function(tag) {
+	this.getTags().forEach(function(tag) {
 		// タグの解析を実施
-		console.log(tag);
-		
+		if(tag instanceof com.ttProject.container.mkv.type.TrackNumber) {
+			trackNumber = tag;
+		}
+		else if(tag instanceof com.ttProject.container.mkv.type.FlagLacing) {
+			_this._lacingFlag = tag.getValue();
+		}
+		else if(tag instanceof com.ttProject.container.mkv.type.CodecID) {
+			_this._codecId = tag;
+		}
+//		else if(tag instanceof CodecPrivate) {
+//			
+//		}
+		else if(tag instanceof com.ttProject.container.mkv.type.Video) {
+			// videoをsetupする
+		}
+		else if(tag instanceof com.ttProject.container.mkv.type.Audio) {
+			// audioをsetupする
+		}
+		else if(tag instanceof com.ttProject.container.mkv.type.TrackType) {
+			_this._type = tag.getValue();
+		}
+//		else if(tag instanceof ContentEncodings) {
+//			
+//		}
 	});
+	if(trackNumber == null) {
+		throw new Error("trackNumberが見つかりませんでした。");
+	}
+	// まずコーデックについて調査しておく。
+	var codecName = this._codecId.getValue();
+	console.log(codecName);
+	// analyzerについて、調整しておく。
+	return trackNumber.getValue();
 };

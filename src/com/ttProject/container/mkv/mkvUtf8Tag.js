@@ -23,3 +23,7 @@ com.ttProject.container.mkv.MkvUtf8Tag.prototype.load = function(channel, callba
 		reader.readAsText(new Blob([data]));
 	});
 };
+
+com.ttProject.container.mkv.MkvUtf8Tag.prototype.getValue = function() {
+	return this._str;
+};

@@ -41,15 +41,14 @@ com.ttProject.container.mkv.MkvTagReader.prototype.read = function(channel, call
 			// loadを実行した場合
 			if(container instanceof com.ttProject.container.mkv.type.TimecodeScale) {
 				_this._defaultTimebase = container.getTimebaseValue();
-//				console.log("defaultTimebase:" + _this._defaultTimebase);
 			}
 			if(container instanceof com.ttProject.container.mkv.type.TrackEntry) {
 				// trackEntryを保持
-				container.setupEntry();
+				var id = container.setupEntry();
+				_this._trackEntryMap[id] = container;
 			}
 			if(container instanceof com.ttProject.container.mkv.type.Timecode) {
 				_this._clusterTime = container.getValue();
-//				console.log("timecode:" + _this._clusterTime);
 			}
 			callback(container);
 		});

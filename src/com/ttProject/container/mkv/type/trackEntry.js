@@ -11,6 +11,11 @@ goog.require("com.ttProject.container.mkv.type.TrackType");
 //goog.require(ContentEncodings); // contentEncodingsも未実装(圧縮や暗号化のあるtrackの場合に必要)
 goog.require("com.ttProject.frame.mp3.Mp3FrameAnalyzer");
 goog.require("com.ttProject.frame.mjpeg.MjpegFrameAnalyzer");
+goog.require("com.ttProject.container.mkv.type.PixelWidth");
+goog.require("com.ttProject.container.mkv.type.PixelHeight");
+goog.require("com.ttProject.container.mkv.type.SamplingFrequency");
+goog.require("com.ttProject.container.mkv.type.Channels");
+goog.require("com.ttProject.container.mkv.type.BitDepth");
 
 /**
  * @constructor
@@ -65,9 +70,28 @@ com.ttProject.container.mkv.type.TrackEntry.prototype.setupEntry = function(defa
 //		}
 		else if(tag instanceof com.ttProject.container.mkv.type.Video) {
 			// videoをsetupする
+			tag.getTags().forEach(function(tag) {
+				if(tag instanceof com.ttProject.container.mkv.type.PixelWidth) {
+					_this._pixelWidth = tag.getValue();
+				}
+				if(tag instanceof com.ttProject.container.mkv.type.PixelHeight) {
+					_this._pixelHeight = tag.getValue();
+				}
+			});
 		}
 		else if(tag instanceof com.ttProject.container.mkv.type.Audio) {
 			// audioをsetupする
+			tag.getTags().forEach(function(tag) {
+				if(tag instanceof com.ttProject.container.mkv.type.SamplingFrequency) {
+					_this._samplingFrequency = tag.getValue();
+				}
+				if(tag instanceof com.ttProject.container.mkv.type.Channels) {
+					_this._channels = tag.getValue();
+				}
+				if(tag instanceof com.ttProject.container.mkv.type.BitDepth) {
+					_this._bitDepth = tag.getValue();
+				}
+			});
 		}
 		else if(tag instanceof com.ttProject.container.mkv.type.TrackType) {
 			_this._type = tag.getValue();

@@ -11,3 +11,7 @@ com.ttProject.frame.h264.NalAnalyzer = function() {
 };
 
 goog.inherits(com.ttProject.frame.h264.NalAnalyzer, com.ttProject.frame.base.IAnalyzer);
+
+com.ttProject.frame.h264.NalAnalyzer.prototype.getSelector = function() {
+	return this._selector;
+};

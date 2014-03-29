@@ -3,7 +3,7 @@ goog.provide("com.ttProject.frame.base.VideoSelector");
 /**
  * @constructor
  */
-com.ttProject.frame.base.VideoSelector = function(){
+com.ttProject.frame.base.VideoSelector = function() {
 	this._width  = null;
 	this._height = null;
 };

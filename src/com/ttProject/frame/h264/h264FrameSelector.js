@@ -12,14 +12,18 @@ goog.require("com.ttProject.bit.BitLoader");
 goog.require("com.ttProject.bit.Bit1");
 goog.require("com.ttProject.bit.Bit2");
 goog.require("com.ttProject.bit.Bit5");
+goog.require("com.ttProject.frame.base.VideoSelector");
 
 /**
  * @constructor
  */
 com.ttProject.frame.h264.H264FrameSelector = function() {
+	goog.base(this);
 	this._sps = null;
 	this._pps = null;
 };
+
+goog.inherits(com.ttProject.frame.h264.H264FrameSelector, com.ttProject.frame.base.VideoSelector);
 
 com.ttProject.frame.h264.H264FrameSelector.prototype.select = function(channel, callback) {
 	if(channel.size() != 0 && channel.size() == channel.position()) {
@@ -114,6 +118,7 @@ com.ttProject.frame.h264.H264FrameSelector.prototype.select = function(channel, 
 		if(frame == null) {
 			throw new Error("frameの実体が作成されていませんでした。:" + type.get());
 		}
+		_this.setup(frame);
 		if(!(frame instanceof com.ttProject.frame.h264.type.SequenceParameterSet)) {
 			frame.setSps(_this._sps);
 			if(!(frame instanceof com.ttProject.frame.h264.type.PictureParameterSet)) {

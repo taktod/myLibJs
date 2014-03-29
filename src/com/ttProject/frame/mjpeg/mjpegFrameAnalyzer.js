@@ -25,3 +25,7 @@ com.ttProject.frame.mjpeg.MjpegFrameAnalyzer.prototype.analyze = function(channe
 		}
 	});
 };
+
+com.ttProject.frame.mjpeg.MjpegFrameAnalyzer.prototype.getSelector = function() {
+	return this._selector;
+};

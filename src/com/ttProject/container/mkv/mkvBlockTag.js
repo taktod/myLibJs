@@ -31,7 +31,8 @@ com.ttProject.container.mkv.MkvBlockTag.prototype.load = function(channel, callb
 	var _this = this;
 	goog.base(this, "load", channel, function() {
 		// clusterTimeの参照はまだつくってないはず
-//		_this._time = _this.getMkvTagReader().getClusterTime() + _this._timestampDiff.get();
+		_this._time = _this.getMkvTagReader().getClusterTime() + _this._timestampDiff.get();
+//		console.log(_this._time);
 		// このタイミングでframeの読み込みを実施しておきたい。
 		callback();
 	});

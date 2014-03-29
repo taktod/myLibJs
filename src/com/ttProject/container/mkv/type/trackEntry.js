@@ -134,10 +134,13 @@ com.ttProject.container.mkv.type.TrackEntry.prototype.setupEntry = function(defa
 	// analyzerについて調整しておく。
 	switch(this._type) {
 	case 1: // video
+		this._analyzer.getSelector().setWidth(this._pixelWidth);
+		this._analyzer.getSelector().setHeight(this._pixelHeight);
 		break;
 	case 2: // audio
+		this._analyzer.getSelector().setChannels(this._channels);
+		this._analyzer.getSelector().setSampleRate(this._samplingFrequency);
 		break;
 	}
-	console.log(this._type);
 	return trackNumber.getValue();
 };

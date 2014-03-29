@@ -54,3 +54,7 @@ com.ttProject.container.mkv.MkvTagReader.prototype.read = function(channel, call
 		});
 	});
 };
+
+com.ttProject.container.mkv.MkvTagReader.prototype.getClusterTime = function() {
+	return this._clusterTime;
+};

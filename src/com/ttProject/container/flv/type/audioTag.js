@@ -44,6 +44,44 @@ com.ttProject.container.flv.type.AudioTag.prototype.getCodec = function() {
 	return this._codecId.get();
 };
 
+com.ttProject.container.flv.type.AudioTag.prototype.getSampleRate = function() {
+	// ここでサンプルレートを応答しておきたい。
+	switch(this.getCodec()) {
+	case com.ttProject.container.flv.AudioCodecType.NELLY_16:
+	case com.ttProject.container.flv.AudioCodecType.SPEEX:
+		return 16000;
+	case com.ttProject.container.flv.AudioCodecType.NELLY_8:
+	case com.ttProject.container.flv.AudioCodecType.MP3_8:
+		return 8000;
+	case com.ttProject.container.flv.AudioCodecType.RESERVED:
+	case com.ttProject.container.flv.AudioCodecType.DEVICE_SPECIFIC:
+		throw new Error("定義が不明なコーデックです。");
+	default:
+		switch(this._sampleRate.get()) {
+		case 0:
+			return 5512;
+		case 1:
+			return 11025;
+		case 2:
+			return 22050;
+		case 3:
+			return 44100;
+		default:
+			throw new Error("想定外の設定値を発見しました。");
+		}
+	}
+};
+
+com.ttProject.container.flv.type.AudioTag.prototype.getChannels = function() {
+	// ここでチャンネル数を応答しておきたい。
+	if(this._channels.get() == 1) {
+		return 2;
+	}
+	else {
+		return 1;
+	}
+};
+
 com.ttProject.container.flv.type.AudioTag.prototype.minimumLoad = function(channel, callback) {
 	var _this = this;
 	goog.base(this, "minimumLoad", channel, function() {

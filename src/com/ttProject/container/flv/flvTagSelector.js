@@ -68,12 +68,18 @@ com.ttProject.container.flv.FlvTagSelector.prototype.select = function(channel, 
 				case com.ttProject.container.flv.AudioCodecType.AAC:
 					if(_this._audioFrameAnalyzer == null || !(_this._audioFrameAnalyzer instanceof com.ttProject.frame.aac.AacDsiFrameAnalyzer)) {
 						_this._audioFrameAnalyzer = new com.ttProject.frame.aac.AacDsiFrameAnalyzer();
+						var audioSelector = _this._audioFrameAnalyzer.getSelector();
+						audioSelector.setChannels(audioTag.getChannels());
+						audioSelector.setSampleRate(audioTag.getSampleRate());
 					}
 					break;
 				case com.ttProject.container.flv.AudioCodecType.MP3:
 				case com.ttProject.container.flv.AudioCodecType.MP3_8:
 					if(_this._audioFrameAnalyzer == null || !(_this._audioFrameAnalyzer instanceof com.ttProject.frame.mp3.Mp3FrameAnalyzer)) {
 						_this._audioFrameAnalyzer = new com.ttProject.frame.mp3.Mp3FrameAnalyzer();
+						var audioSelector = _this._audioFrameAnalyzer.getSelector();
+						audioSelector.setChannels(audioTag.getChannels());
+						audioSelector.setSampleRate(audioTag.getSampleRate());
 					}
 					break;
 				default:

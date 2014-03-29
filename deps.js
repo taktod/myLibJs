@@ -38,6 +38,7 @@ goog.addDependency('../../../src/com/ttProject/container/flv/type/metaTag.js', [
 goog.addDependency('../../../src/com/ttProject/container/flv/type/videoTag.js', ['com.ttProject.container.flv.type.VideoTag'], ['com.ttProject.bit.Bit24', 'com.ttProject.bit.Bit4', 'com.ttProject.bit.Bit8', 'com.ttProject.bit.BitLoader', 'com.ttProject.channel.Uint8ReadChannel', 'com.ttProject.container.flv.FlvTag', 'com.ttProject.container.flv.VideoCodecType', 'com.ttProject.frame.h264.ConfigData']);
 goog.addDependency('../../../src/com/ttProject/container/mkv/codecType.js', ['com.ttProject.container.mkv.CodecType'], []);
 goog.addDependency('../../../src/com/ttProject/container/mkv/mkvBinaryTag.js', ['com.ttProject.container.mkv.MkvBinaryTag'], ['com.ttProject.container.mkv.MkvTag']);
+goog.addDependency('../../../src/com/ttProject/container/mkv/mkvBlockTag.js', ['com.ttProject.container.mkv.MkvBlockTag'], ['com.ttProject.bit.BitLoader', 'com.ttProject.container.mkv.MkvBinaryTag']);
 goog.addDependency('../../../src/com/ttProject/container/mkv/mkvFloatTag.js', ['com.ttProject.container.mkv.MkvFloatTag'], ['com.ttProject.bit.Bit32', 'com.ttProject.bit.Bit64', 'com.ttProject.bit.BitConnector', 'com.ttProject.bit.BitLoader', 'com.ttProject.container.mkv.MkvTag']);
 goog.addDependency('../../../src/com/ttProject/container/mkv/mkvMasterTag.js', ['com.ttProject.container.mkv.MkvMasterTag'], ['com.ttProject.container.mkv.MkvTag']);
 goog.addDependency('../../../src/com/ttProject/container/mkv/mkvStringTag.js', ['com.ttProject.container.mkv.MkvStringTag'], ['com.ttProject.container.mkv.MkvTag']);
@@ -77,7 +78,7 @@ goog.addDependency('../../../src/com/ttProject/container/mkv/type/seekId.js', ['
 goog.addDependency('../../../src/com/ttProject/container/mkv/type/seekPosition.js', ['com.ttProject.container.mkv.type.SeekPosition'], ['com.ttProject.container.mkv.MkvUnsignedIntTag']);
 goog.addDependency('../../../src/com/ttProject/container/mkv/type/segment.js', ['com.ttProject.container.mkv.type.Segment'], ['com.ttProject.container.mkv.MkvMasterTag']);
 goog.addDependency('../../../src/com/ttProject/container/mkv/type/segmentUid.js', ['com.ttProject.container.mkv.type.SegmentUID'], ['com.ttProject.container.mkv.MkvBinaryTag']);
-goog.addDependency('../../../src/com/ttProject/container/mkv/type/simpleBlock.js', ['com.ttProject.container.mkv.type.SimpleBlock'], ['com.ttProject.container.mkv.MkvBinaryTag']);
+goog.addDependency('../../../src/com/ttProject/container/mkv/type/simpleBlock.js', ['com.ttProject.container.mkv.type.SimpleBlock'], ['com.ttProject.container.mkv.MkvBlockTag']);
 goog.addDependency('../../../src/com/ttProject/container/mkv/type/simpleTag.js', ['com.ttProject.container.mkv.type.SimpleTag'], ['com.ttProject.container.mkv.MkvMasterTag']);
 goog.addDependency('../../../src/com/ttProject/container/mkv/type/tag.js', ['com.ttProject.container.mkv.type.Tag'], ['com.ttProject.container.mkv.MkvMasterTag']);
 goog.addDependency('../../../src/com/ttProject/container/mkv/type/tagName.js', ['com.ttProject.container.mkv.type.TagName'], ['com.ttProject.container.mkv.MkvUtf8Tag']);

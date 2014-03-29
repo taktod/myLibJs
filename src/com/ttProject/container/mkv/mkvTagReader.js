@@ -6,6 +6,9 @@ goog.require("com.ttProject.container.mkv.type.Segment");
 goog.require("com.ttProject.container.mkv.type.Cluster");
 
 /**
+ * trackEntryを保持させておいて、どういうコーデックであるか判定できるようにしておいた方がよさげ。
+ * trackEntryの情報とdefaultTimebase値
+ * 処理途上のclusterTime値の保持が必須っぽいですね。
  * @constructor
  */
 com.ttProject.container.mkv.MkvTagReader = function() {

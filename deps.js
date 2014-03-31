@@ -25,7 +25,7 @@ goog.addDependency('../../../src/com/ttProject/container/adts/adtsUnit.js', ['co
 goog.addDependency('../../../src/com/ttProject/container/adts/adtsUnitReader.js', ['com.ttProject.container.adts.AdtsUnitReader'], ['com.ttProject.container.adts.AdtsUnitSelector', 'com.ttProject.container.base.Reader']);
 goog.addDependency('../../../src/com/ttProject/container/adts/adtsUnitSelector.js', ['com.ttProject.container.adts.AdtsUnitSelector'], ['com.ttProject.container.adts.AdtsUnit', 'com.ttProject.frame.aac.AacFrameSelector', 'com.ttProject.frame.aac.type.Frame']);
 goog.addDependency('../../../src/com/ttProject/container/adts/adtsUnitWriter.js', ['com.ttProject.container.adts.AdtsUnitWriter'], ['com.ttProject.container.base.Writer']);
-goog.addDependency('../../../src/com/ttProject/container/base/reader.js', ['com.ttProject.container.base.Reader'], []);
+goog.addDependency('../../../src/com/ttProject/container/base/reader.js', ['com.ttProject.container.base.Reader'], ['com.ttProject.util.StackUtil']);
 goog.addDependency('../../../src/com/ttProject/container/base/unit.js', ['com.ttProject.container.base.Unit'], []);
 goog.addDependency('../../../src/com/ttProject/container/base/writer.js', ['com.ttProject.container.base.Writer'], []);
 goog.addDependency('../../../src/com/ttProject/container/flv/codecType.js', ['com.ttProject.container.flv.AudioCodecType', 'com.ttProject.container.flv.VideoCodecType'], []);
@@ -139,6 +139,7 @@ goog.addDependency('../../../src/com/ttProject/frame/mp3/type/id3Frame.js', ['co
 goog.addDependency('../../../src/com/ttProject/frame/mp3/type/tagFrame.js', ['com.ttProject.frame.mp3.type.TagFrame'], ['com.ttProject.frame.mp3.Mp3Frame']);
 goog.addDependency('../../../src/com/ttProject/ms/manager.js', ['com.ttProject.ms.Manager', 'com.ttProject.ms.Type'], ['com.ttProject.channel.BlobReadChannel', 'com.ttProject.channel.XhrIoReadChannel', 'com.ttProject.container.flv.FlvTagReader', 'com.ttProject.frame.aac.AacFrame', 'com.ttProject.frame.base.AudioFrame', 'com.ttProject.frame.base.VideoFrame', 'com.ttProject.frame.h264.H264Frame', 'com.ttProject.frame.mp3.Mp3Frame', 'com.ttProject.ms.mp4.h264.Manager']);
 goog.addDependency('../../../src/com/ttProject/ms/mp4/h264/manager.js', ['com.ttProject.ms.mp4.h264.Manager'], ['com.ttProject.frame.h264.ConfigData', 'com.ttProject.frame.h264.type.SliceIDR', 'com.ttProject.util.ArrayUtil', 'com.ttProject.util.HexUtil']);
+goog.addDependency('../../../src/com/ttProject/tt/player.js', ['com.ttProject.tt.Player'], ['com.ttProject.channel.BlobReadChannel', 'com.ttProject.channel.XhrIoReadChannel', 'com.ttProject.container.mkv.MkvTagReader', 'com.ttProject.container.mp3.Mp3UnitReader']);
 goog.addDependency('../../../src/com/ttProject/util/arrayUtil.js', ['com.ttProject.util.ArrayUtil'], []);
 goog.addDependency('../../../src/com/ttProject/util/bitUtil.js', ['com.ttProject.util.BitUtil'], []);
 goog.addDependency('../../../src/com/ttProject/util/hexUtil.js', ['com.ttProject.util.HexUtil'], ['com.ttProject.util.ArrayUtil']);

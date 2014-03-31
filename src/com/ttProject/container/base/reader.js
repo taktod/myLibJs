@@ -1,5 +1,7 @@
 goog.provide("com.ttProject.container.base.Reader");
 
+goog.require("com.ttProject.util.StackUtil");
+
 /**
  * @constructor
  */
@@ -24,11 +26,15 @@ com.ttProject.container.base.Reader.prototype.read = function(channel, callback)
 	this._selector.select(channel, function(container) {
 		if(container != null) {
 			container.load(channel, function() {
-				callback(container);
+				com.ttProject.util.StackUtil.call(function() {
+					callback(container);
+				});
 			});
 		}
 		else {
-			callback(container);
+			com.ttProject.util.StackUtil.call(function() {
+				callback(container);
+			});
 		}
 	});
 };

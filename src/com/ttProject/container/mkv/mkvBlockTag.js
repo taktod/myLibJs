@@ -60,6 +60,7 @@ com.ttProject.container.mkv.MkvBlockTag.prototype.load = function(channel, callb
 			pos += size;
 			analyzeFrame(entry, channel);
 		});
+		// blockTagの終了の部分が確実に最終に入るようにするためにstackUtilを利用
 		com.ttProject.util.StackUtil.call(callback);
 //		callback();
 	};

@@ -5,6 +5,8 @@ goog.require("goog.net.Jsonp"); // 別パッケージにあるみたいですね
 goog.require("com.ttProject.channel.IReadChannel");
 goog.require("com.ttProject.util.HexUtil");
 goog.require("com.ttProject.util.ArrayUtil");
+goog.require("goog.Uri.QueryData");
+goog.require("goog.structs.Map");
 
 /**
  * XhrIoをベースにしたデータ読み取りChannel動作
@@ -36,7 +38,7 @@ com.ttProject.channel.XhrIoReadChannel = function(targetUrl) {
 	// cacheBufferの始めから必要な分だけ読み込めばOKとなるはず。
 	// またcacheBufferのデータは読み込ませるとその分減っていくものとします。
 	/** データ取得時に最小データ量(最低でもこのデータ分は読み込みます) */
-	this._minimumSize = 655360;
+	this._minimumSize = 65536;
 	/** 応答のデータ保持(順番にcallbackを発動させるために必要) */
 	this._resOrder = []; // 順番に応答するべきcallbackを保持しておきます。
 	/** 応答の帰ってきたデータリスト */
@@ -152,6 +154,7 @@ com.ttProject.channel.XhrIoReadChannel.prototype.read = function(length, callbac
 		xhr.setResponseType(goog.net.XhrIo.ResponseType.ARRAY_BUFFER);
 		var rangeHeader = "bytes=" + (this._pos + holdLength) + "-" + (this._pos + holdLength + requestLength - 1);
 		xhr.headers.set("Range", rangeHeader);
+		xhr.headers.set("Cache-Control", "no-cache");
 		goog.events.listen(xhr, goog.net.EventType.COMPLETE, function(e) {
 			// 読み込みデータがrequestLength未満だった場合はフラグをたてておいて、それ以上よみこめないようにしないとだめ。
 			// 応答データからコンテンツサイズを拾っておきます。
@@ -211,7 +214,10 @@ com.ttProject.channel.XhrIoReadChannel.prototype.read = function(length, callbac
 		this._pos += length;
 		// dlを実行するので、dlDataにデータを記載しておきます。
 		this._dlData.push({xhr:xhr, data:null});
-		xhr.send(this._url);
+		var data = goog.Uri.QueryData.createFromMap(new goog.structs.Map({pos: this._pos}));
+		xhr.send(this._url, "POST"); // ここのURL、アクセスごとにurl変更しないと、safariでcacheが効いてしまうみたいです。
+		// ただし、rangeリクエストはきちんと動作するっぽいです。
+		// POSTにすることでも一応回避できるみたいですね。
 	}
 	else {
 		this._pos += length;

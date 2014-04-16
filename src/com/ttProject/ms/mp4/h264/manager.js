@@ -41,7 +41,7 @@ com.ttProject.ms.mp4.h264.Manager.prototype.appendFrame = function(frame) {
 		// まずconfigDataをつくることで、全体のsizeが決定します。
 		// moovSize
 		// trakSize
-		// mediaSize
+		// mdiaSize
 		// minfSize
 		// stblSize
 		// stsdSize

@@ -1,4 +1,3 @@
-012345
 タイトル：myLibJs
 
  僕が利用するjavascriptのライブラリをつくっていってみたいと思います
@@ -6,6 +5,11 @@
 ライセンス：
 
  MITライセンスとしておきます。
+
+closure libraryとpolyfillを利用しています。
+
+https://developers.google.com/closure/library/
+https://github.com/inexorabletash/polyfill
 
 作者情報：
 

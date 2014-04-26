@@ -18,5 +18,12 @@
       <version>0.0.2-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.mozilla</groupId>
+      <artifactId>rhino</artifactId>
+      <version>1.7R5-20130827-1</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/js.jar</systemPath>
+    </dependency>
   </dependencies>
 </project>

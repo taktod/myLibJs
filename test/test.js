@@ -2,7 +2,7 @@ goog.provide("com.ttProject.Test");
 
 goog.require("com.ttProject.util.StackUtil");
 goog.require("com.ttProject.util.HexUtil");
-goog.require("com.ttProject.channel.JavaFileReadChannel");
+goog.require("com.ttProject.channel.ReadChannel");
 
 function testHoge() {
 	console.log("testHoge開始");
@@ -15,7 +15,7 @@ function testHoge() {
 
 function testAiueo() {
 	console.log("testAiueo開始");
-	var channel = new com.ttProject.channel.JavaFileReadChannel("http://49.212.39.17/mario.flv");
+	var channel = new com.ttProject.channel.ReadChannel("mario.flv");
 	channel.read(4, function(buf) {
 		console.log(com.ttProject.util.HexUtil.toHex(buf, true));
 	});

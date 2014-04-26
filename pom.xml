@@ -11,4 +11,12 @@
     <artifactId>myLib.m2eHelper</artifactId>
     <version>0.0.1</version>
   </parent>
+  <dependencies>
+    <dependency>
+      <groupId>com.ttProject</groupId>
+      <artifactId>myLib.channels</artifactId>
+      <version>0.0.2-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 </project>

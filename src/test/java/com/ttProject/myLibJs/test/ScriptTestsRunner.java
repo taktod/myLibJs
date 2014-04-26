@@ -47,7 +47,7 @@ public class ScriptTestsRunner extends Runner {
 			engine.eval("console.dir = function(val) {print(val);};", vars);
 			engine.eval("console.clear = function() {};", vars);
 			// javaオブジェクトとして予約されている部分を撤去(closureで初期化できるようにする)
-			engine.eval("com = null;", vars);
+			engine.eval("jcom = com;com = null;", vars);
 			// typedArrayを利用するためのライブラリ読み込み
 			engine.eval(new FileReader("polyfill/typedarray.js"), vars);
 			// closure-library利用する

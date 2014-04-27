@@ -102,10 +102,10 @@ com.ttProject.ms.Manager = function(target, type) {
 					}
 				}
 				else if(frame instanceof com.ttProject.frame.base.AudioFrame) {
-/*					if(frame instanceof com.ttProject.frame.mp3.Mp3Frame) {
-						_this._msManagers[frame.getId()] = new com.ttProject.ms.mp4.mp3.Manager(_this._ms);
-					}
-					else {
+//					if(frame instanceof com.ttProject.frame.mp3.Mp3Frame) {
+//						_this._msManagers[frame.getId()] = new com.ttProject.ms.mp4.mp3.Manager(_this._ms);
+//					}
+//					else {
 /*						else if(frame instanceof com.ttProject.frame.aac.AacFrame) {
 						
 						}
@@ -127,6 +127,7 @@ com.ttProject.ms.Manager = function(target, type) {
 		// で、再生可能にすればよし。
 		// ループして、tagを読み込んでいけばよし。
 	};
+	console.log(this._ms);
 	this._ms.addEventListener("sourceopen", openLoop, false);
 	this._ms.addEventListener("webkitsourceopen", openLoop, false);
 };

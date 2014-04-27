@@ -17,7 +17,6 @@ com.ttProject.container.mkv.MkvUtf8Tag.prototype.load = function(channel, callba
 	channel.read(this.getMkvSize(), function(data) {
 		if(data instanceof Uint8Array) {
 			if(data.get) {
-				console.log(data.length);
 				var ary = [];
 				for(var i = 0;i < data.length;i ++) {
 					ary.push(data.get(i));

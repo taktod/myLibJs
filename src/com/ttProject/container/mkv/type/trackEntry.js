@@ -11,11 +11,16 @@ goog.require("com.ttProject.container.mkv.type.TrackType");
 //goog.require(ContentEncodings); // contentEncodingsも未実装(圧縮や暗号化のあるtrackの場合に必要)
 goog.require("com.ttProject.frame.mp3.Mp3FrameAnalyzer");
 goog.require("com.ttProject.frame.mjpeg.MjpegFrameAnalyzer");
+goog.require("com.ttProject.frame.h264.DataNalAnalyzer");
+goog.require("com.ttProject.frame.aac.AacDsiFrameAnalyzer");
+goog.require("com.ttProject.frame.h264.ConfigData");
 goog.require("com.ttProject.container.mkv.type.PixelWidth");
 goog.require("com.ttProject.container.mkv.type.PixelHeight");
 goog.require("com.ttProject.container.mkv.type.SamplingFrequency");
 goog.require("com.ttProject.container.mkv.type.Channels");
 goog.require("com.ttProject.container.mkv.type.BitDepth");
+goog.require("com.ttProject.util.HexUtil");
+goog.require("com.ttProject.channel.Uint8ReadChannel");
 
 /**
  * @constructor
@@ -69,9 +74,9 @@ com.ttProject.container.mkv.type.TrackEntry.prototype.setupEntry = function(defa
 		else if(tag instanceof com.ttProject.container.mkv.type.CodecID) {
 			_this._codecId = tag;
 		}
-//		else if(tag instanceof CodecPrivate) {
-//			
-//		}
+		else if(tag instanceof com.ttProject.container.mkv.type.CodecPrivate) {
+			codecPrivate = tag;
+		}
 		else if(tag instanceof com.ttProject.container.mkv.type.Video) {
 			// videoをsetupする
 			tag.getTags().forEach(function(tag) {
@@ -114,7 +119,15 @@ com.ttProject.container.mkv.type.TrackEntry.prototype.setupEntry = function(defa
 		if(codecName.indexOf("AVC") > 0) {
 			// avc(h264)
 			console.log("avc");
-			throw new Error("avcの処理はまだ作成していません。");
+			this._analyzer = new com.ttProject.frame.h264.DataNalAnalyzer();
+//			console.log(com.ttProject.util.HexUtil.toHex(codecPrivate.getMkvData(), true));
+			// codecPrivateのデータを読み込ませておく。
+//			throw new Error("avcの処理はまだ作成していません。")
+			var channel = new com.ttProject.channel.Uint8ReadChannel(codecPrivate.getMkvData());
+			var configData = new com.ttProject.frame.h264.ConfigData();
+			configData.setSelector(this._analyzer.getSelector());
+			configData.getNalsFrame(channel, function(){
+			}); // 読み込み実行
 		}
 	}
 	else if(codecName.indexOf("V_MJPEG") == 0) {
@@ -125,7 +138,13 @@ com.ttProject.container.mkv.type.TrackEntry.prototype.setupEntry = function(defa
 	else if(codecName.indexOf("A_AAC") == 0) {
 		// aac
 		console.log("aac");
-		throw new Error("aacの処理はまだ作成していません。");
+		this._analyzer = new com.ttProject.frame.aac.AacDsiFrameAnalyzer();
+		// このタイミングでdsiをつくって、登録しておきたい。
+		var channel = new com.ttProject.channel.Uint8ReadChannel(codecPrivate.getMkvData());
+		var dsi = new com.ttProject.frame.aac.DecoderSpecificInfo();
+		dsi.minimumLoad(channel, function() {
+			_this._analyzer.getSelector().setDecoderSpecificInfo(dsi);
+		});
 	}
 	else if(codecName.indexOf("A_MPEG/L3") == 0) {
 		// mp3

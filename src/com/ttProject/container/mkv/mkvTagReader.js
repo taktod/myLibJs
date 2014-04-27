@@ -30,6 +30,10 @@ goog.inherits(com.ttProject.container.mkv.MkvTagReader, com.ttProject.container.
 com.ttProject.container.mkv.MkvTagReader.prototype.read = function(channel, callback) {
 	var _this = this;
 	this.getSelector().select(channel, function(container) {
+		if(container == null) {
+			callback(null);
+			return;
+		}
 		container.setMkvTagReader(_this);
 		// clusterやsegmentでないなら、loadを実行すべき
 		if(container instanceof com.ttProject.container.mkv.type.Segment

@@ -17,7 +17,6 @@ com.ttProject.container.mkv.MkvStringTag.prototype.load = function(channel, call
 	channel.read(this.getMkvSize(), function(data) {
 		if(data instanceof Uint8Array) {
 			if(data.get) {
-				console.log(data.length);
 				var ary = [];
 				for(var i = 0;i < data.length;i ++) {
 					ary.push(data.get(i));

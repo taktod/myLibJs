@@ -4,6 +4,7 @@ goog.require("com.ttProject.channel.ReadChannel");
 goog.require("com.ttProject.container.flv.FlvTagReader");
 goog.require("com.ttProject.container.adts.AdtsUnitReader");
 goog.require("com.ttProject.container.mp3.Mp3UnitReader");
+goog.require("com.ttProject.container.mkv.MkvTagReader");
 
 /**
  * container系の動作のテスト
@@ -57,6 +58,21 @@ var testMp3Load = function() {
 				return;
 			}
 			console.log(unit.toString());
+			readLoop();
+		});
+	};
+	readLoop();
+};
+
+function testMkvLoad() {
+	var channel = new com.ttProject.channel.ReadChannel("resource/test.h264aac.mkv");
+	var reader = new com.ttProject.container.mkv.MkvTagReader();
+	var readLoop = function() {
+		reader.read(channel, function(unit) {
+			if(unit == null) {
+				console.log("nullがかえってきた。");
+				return;
+			}
 			readLoop();
 		});
 	};

@@ -50,6 +50,7 @@ goog.require("com.ttProject.container.mkv.type.CueTime");
 goog.require("com.ttProject.container.mkv.type.CueTrackPositions");
 goog.require("com.ttProject.container.mkv.type.CueTrack");
 goog.require("com.ttProject.container.mkv.type.CueClusterPosition");
+goog.require("com.ttProject.container.mkv.type.CodecPrivate");
 
 /**
  * @constructor
@@ -210,6 +211,9 @@ com.ttProject.container.mkv.MkvTagSelector.prototype.select = function(channel, 
 			break;
 		case com.ttProject.container.mkv.Type.CueClusterPosition:
 			mkvTag = new com.ttProject.container.mkv.type.CueClusterPosition(id, size);
+			break;
+		case com.ttProject.container.mkv.Type.CodecPrivate:
+			mkvTag = new com.ttProject.container.mkv.type.CodecPrivate(id, size);
 			break;
 		default:
 			throw new Error("解析されていないタグを発見しました。:" + id.getEbmlValue().toString(16));

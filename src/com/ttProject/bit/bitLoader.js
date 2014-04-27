@@ -181,17 +181,14 @@ com.ttProject.bit.BitLoader.prototype.load = function() {
 					var i = 0;
 					var loadBigBit = function() {
 						if(bit._bits.length > i) {
-//							load(bit._bits[i ++], loadBigBit);
 							load(bit._bits[i ++], function() {
 								com.ttProject.util.StackUtil.call(loadBigBit);
 							});
 						}
 						else {
-//							callback();
 							com.ttProject.util.StackUtil.call(callback);
 						}
 					};
-//					loadBigBit();
 					com.ttProject.util.StackUtil.call(loadBigBit);
 				}
 				else {
@@ -200,7 +197,6 @@ com.ttProject.bit.BitLoader.prototype.load = function() {
 						// ココかな・・・
 						bit.set(_this._floatData >>> (_this._left - bitCount));
 						_this._left -= bitCount;
-//						callback();
 						com.ttProject.util.StackUtil.call(callback);
 					};
 					// なんBit読み込む必要があるか計算しなければならない。
@@ -216,16 +212,10 @@ com.ttProject.bit.BitLoader.prototype.load = function() {
 								_this._left += 8;
 							}
 							setData(bit, callback);
-//							setData(bit, callback{
-//								com.ttProject.util.StackUtil.call(callback);
-//							});
 						});
 					}
 					else {
 						setData(bit, callback);
-//						setData(bit, function() {
-//							com.ttProject.util.StackUtil.call(callback);
-//						});
 					}
 				}
 			}
@@ -238,7 +228,6 @@ com.ttProject.bit.BitLoader.prototype.load = function() {
 		}
 		else if(typeof obj == "function") {
 			obj();
-//			next();
 		}
 		else {
 			load(obj, next);

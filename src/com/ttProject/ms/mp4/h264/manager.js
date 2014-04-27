@@ -110,7 +110,7 @@ com.ttProject.ms.mp4.h264.Manager.prototype.appendFrame = function(frame) {
 		var codecs = "avc1." + com.ttProject.util.HexUtil.toHex(cd.subarray(1,4));
 		
 		// msからsourceBufferをつくる必要あり。
-		window["ttHeader"] = header;
+//		window["ttHeader"] = header;
 		this._sourceBuffer = this._mediaSource["addSourceBuffer"]('video/mp4; codecs="' + codecs + '"');
 		this._sourceBuffer["appendBuffer"](header);
 		// sourceBufferの準備おわり。

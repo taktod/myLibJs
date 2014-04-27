@@ -150,7 +150,7 @@ com.ttProject.bit.EbmlValue.prototype.getDataBit = function() {
 	default:
 		throw new Error("ebmlとして不正なデータ");
 	}
-	return this.dataBit;
+	return dataBit;
 };
 com.ttProject.bit.EbmlValue.prototype.getEbmlDataBit = function() {
 	return this.dataBit;

@@ -29,3 +29,7 @@ com.ttProject.container.mp3.Mp3Unit.prototype.getFrame = function() {
 com.ttProject.container.mp3.Mp3Unit.prototype.getData = function() {
 	return this._frame.getData();
 };
+
+com.ttProject.container.mp3.Mp3Unit.prototype.toString = function() {
+	return "mp3Unit:ts:" + this.getPts();
+};

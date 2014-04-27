@@ -6,6 +6,7 @@ goog.require("com.ttProject.util.HexUtil");
 goog.require("com.ttProject.frame.h264.ConfigData");
 goog.require("com.ttProject.frame.aac.DecoderSpecificInfo");
 goog.require("com.ttProject.container.flv.FlvTagReader");
+goog.require("com.ttProject.container.adts.AdtsUnitReader");
 
 /**
  * frame系の動作のテスト
@@ -43,7 +44,7 @@ function testAacDsiRead() {
 /**
  * flvのデータ読み込み動作テスト
  */
-function testFlvLoad() {
+var testFlvLoad = function() {
 	var channel = new com.ttProject.channel.ReadChannel("resource/test.h264aac.flv");
 	var reader = new com.ttProject.container.flv.FlvTagReader();
 	var readLoop = function() {
@@ -53,6 +54,24 @@ function testFlvLoad() {
 			}
 			console.log(unit.toString());
 			readLoop(); // 次のオブジェクトを読み込みにいく。
+		});
+	};
+	readLoop();
+};
+
+/**
+ * aacのデータ読み込み動作テスト
+ */
+function testAacLoad() {
+	var channel = new com.ttProject.channel.ReadChannel("resource/test.aac");
+	var reader = new com.ttProject.container.adts.AdtsUnitReader();
+	var readLoop = function() {
+		reader.read(channel, function(unit) {
+			if(unit == null) {
+				return;
+			}
+			console.log(unit.toString());
+			readLoop();
 		});
 	};
 	readLoop();

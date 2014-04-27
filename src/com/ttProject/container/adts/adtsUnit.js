@@ -28,3 +28,7 @@ com.ttProject.container.adts.AdtsUnit.prototype.getFrame = function() {
 com.ttProject.container.adts.AdtsUnit.prototype.getData = function() {
 	return this._frame.getData();
 };
+
+com.ttProject.container.adts.AdtsUnit.prototype.toString = function() {
+	return "adtsUnit:ts:" + this.getPts();
+};

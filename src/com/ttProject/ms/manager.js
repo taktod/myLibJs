@@ -12,6 +12,7 @@ goog.require("com.ttProject.frame.aac.AacFrame");
 goog.require("com.ttProject.frame.mp3.Mp3Frame");
 
 goog.require("com.ttProject.ms.mp4.h264.Manager");
+goog.require("com.ttProject.ms.mp4.mp3.Manager");
 
 /**
  * MediaSourceの動作の全体を管理するマネージャー
@@ -101,19 +102,21 @@ com.ttProject.ms.Manager = function(target, type) {
 					}
 				}
 				else if(frame instanceof com.ttProject.frame.base.AudioFrame) {
-/*					if(frame instanceof com.ttProject.frame.mp3.Mp3Frame) {
-						
+					if(frame instanceof com.ttProject.frame.mp3.Mp3Frame) {
+						_this._msManagers[frame.getId()] = new com.ttProject.ms.mp4.mp3.Manager(_this._ms);
 					}
-					else if(frame instanceof com.ttProject.frame.aac.AacFrame) {
+					else {
+/*						else if(frame instanceof com.ttProject.frame.aac.AacFrame) {
 						
+						}
+/*						else if(frame instanceof com.ttProject.frame.vorbis.VorbisFrame) {
+						}*/
+/*						else {
+							throw new Error("想定外のフレームでした。");
+						}*/
+						openLoop();
+						return;
 					}
-/*					else if(frame instanceof com.ttProject.frame.vorbis.VorbisFrame) {
-					}*/
-/*					else {
-						throw new Error("想定外のフレームでした。");
-					}*/
-					openLoop();
-					return;
 				}
 			}
 			_this._msManagers[frame.getId()].appendFrame(frame);

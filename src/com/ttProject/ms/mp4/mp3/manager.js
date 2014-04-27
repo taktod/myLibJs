@@ -24,6 +24,7 @@ com.ttProject.ms.mp4.mp3.Manager.prototype.appendFrame = function(frame) {
 	}
 	// 初アクセスの場合はmp4のheader部を追記する(1フレーム目をみないと情報が決定しないので、こちらで対処する。)
 	if(!this._headerSended) {
+		console.log("startHeaderをつくってみる。 for 音声");
 		// mp3のframeから情報を引き出しつつheader部ftypやmoovとかの書き込みを実施する。
 		/*
 		 * きちんと動作したheader + moofのサンプル
@@ -107,9 +108,11 @@ com.ttProject.ms.mp4.mp3.Manager.prototype.appendFrame = function(frame) {
 		dataView.setUint16(0x1D6, sampleRate);
 		// このheaderの値がsourceBufferに投入すべき初データとなる。
 		var codecs = "mp3";
-		this._sourceBuffer = this._mediaSource["addSourceBuffer"]('audio/mp4; codecs="' + codecs + '"');
+		this._sourceBuffer = this._mediaSource["addSourceBuffer"]('audio/mp3; codecs="' + codecs + '"');
 		this._sourceBuffer["appendBuffer"](header);
 		this._headerSended = true;
+		window.ttHeader = header;
+		window.ms = this._mediaSource;
 		// headerの準備おわり。
 	}
 	// その後ある程度frameがそろったらmp4のbody部を追記しておきたい。

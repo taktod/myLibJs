@@ -95,10 +95,8 @@ com.ttProject.container.flv.type.AudioTag.prototype.minimumLoad = function(chann
 				loader.load(_this._sequenceHeaderFlag, callback);
 				return;
 			case com.ttProject.container.flv.AudioCodecType.MP3:
-				console.log("mp3");
 				break;
 			case com.ttProject.container.flv.AudioCodecType.MP3_8:
-				console.log("mp3_8");
 				break;
 			default:
 				throw new Error("エラー発生");
@@ -147,8 +145,12 @@ com.ttProject.container.flv.type.AudioTag.prototype.load = function(channel, cal
 	case com.ttProject.container.flv.AudioCodecType.MP3_8:
 		channel.read(this.getSize() - 12 - 4, function(data) {
 			_this._frameBuffer = data;
-			channel.read(4, function(data){
-				callback();
+			var byteChannel = new com.ttProject.channel.Uint8ReadChannel(data);
+			_this._frameAnalyzer.analyze(byteChannel, function(frame) {
+				_this._frame = frame;
+				channel.read(4, function(data){
+					callback();
+				});
 			});
 		});
 		break;

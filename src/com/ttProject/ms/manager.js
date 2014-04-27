@@ -102,7 +102,7 @@ com.ttProject.ms.Manager = function(target, type) {
 					}
 				}
 				else if(frame instanceof com.ttProject.frame.base.AudioFrame) {
-					if(frame instanceof com.ttProject.frame.mp3.Mp3Frame) {
+/*					if(frame instanceof com.ttProject.frame.mp3.Mp3Frame) {
 						_this._msManagers[frame.getId()] = new com.ttProject.ms.mp4.mp3.Manager(_this._ms);
 					}
 					else {
@@ -116,7 +116,7 @@ com.ttProject.ms.Manager = function(target, type) {
 						}*/
 						openLoop();
 						return;
-					}
+//					}
 				}
 			}
 			_this._msManagers[frame.getId()].appendFrame(frame);

@@ -15,12 +15,22 @@ goog.inherits(com.ttProject.container.mkv.MkvStringTag, com.ttProject.container.
 com.ttProject.container.mkv.MkvStringTag.prototype.load = function(channel, callback) {
 	var _this = this;
 	channel.read(this.getMkvSize(), function(data) {
-		var reader = new FileReader();
-		reader.onload = function() {
-			_this._str = reader.result;
+		if(data instanceof Uint8Array) {
+			if(data.get) {
+				console.log(data.length);
+				var ary = [];
+				for(var i = 0;i < data.length;i ++) {
+					ary.push(data.get(i));
+				}
+				_this._str = String.fromCharCode.apply(null, ary);
+			}
+			else {
+				_this._str = String.fromCharCode.apply(null, data);
+			}
 			callback();
-		};
-		reader.readAsText(new Blob([data]));
+			return;
+		}
+		throw new Error("設定データがおかしい");
 	});
 };
 

@@ -44,3 +44,9 @@ com.ttProject.container.flv.FlvHeaderTag.prototype.minimumLoad = function(channe
 com.ttProject.container.flv.FlvHeaderTag.prototype.load = function(channel, callback) {
 	callback();
 };
+
+com.ttProject.container.flv.FlvHeaderTag.prototype.toString = function() {
+	return "flvHeaderTag:" + 
+		(this._audioFlag.get() == 1 ? "audio " : "") + 
+		(this._videoFlag.get() == 1 ? "video" : "");
+};

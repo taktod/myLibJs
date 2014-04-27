@@ -1,9 +1,11 @@
 goog.provide("com.ttProject.test.Frame");
 
 goog.require("com.ttProject.channel.Uint8ReadChannel");
+goog.require("com.ttProject.channel.ReadChannel");
 goog.require("com.ttProject.util.HexUtil");
 goog.require("com.ttProject.frame.h264.ConfigData");
 goog.require("com.ttProject.frame.aac.DecoderSpecificInfo");
+goog.require("com.ttProject.container.flv.FlvTagReader");
 
 /**
  * frame系の動作のテスト
@@ -36,4 +38,22 @@ function testAacDsiRead() {
 		console.log(dsi.getFrequencyIndex());
 		console.log(dsi.getChannelConfiguration());
 	});
-}
+};
+
+/**
+ * flvのデータ読み込み動作テスト
+ */
+function testFlvLoad() {
+	var channel = new com.ttProject.channel.ReadChannel("resource/test.h264aac.flv");
+	var reader = new com.ttProject.container.flv.FlvTagReader();
+	var readLoop = function() {
+		reader.read(channel, function(unit) {
+			if(unit == null) {
+				return;
+			}
+			console.log(unit.toString());
+			readLoop(); // 次のオブジェクトを読み込みにいく。
+		});
+	};
+	readLoop();
+};

@@ -141,3 +141,8 @@ com.ttProject.container.flv.type.VideoTag.prototype.getCodec = function() {
 com.ttProject.container.flv.type.VideoTag.prototype.getFrame = function() {
 	return this._frame;
 };
+
+com.ttProject.container.flv.type.VideoTag.prototype.toString = function() {
+	return "videoTag:ts:" + this.getPts();
+};
+

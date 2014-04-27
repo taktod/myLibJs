@@ -29,7 +29,7 @@ com.ttProject.channel.ReadChannel.prototype.size = function() {
 };
 
 com.ttProject.channel.ReadChannel.prototype.position = function(position) {
-	return this._channel.position(potision);
+	return this._channel.position(position);
 };
 
 com.ttProject.channel.ReadChannel.prototype.read = function(length, callback) {

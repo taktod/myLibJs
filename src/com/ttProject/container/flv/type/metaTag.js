@@ -27,3 +27,7 @@ com.ttProject.container.flv.type.MetaTag.prototype.load = function(channel, call
 		});
 	});
 };
+
+com.ttProject.container.flv.type.MetaTag.prototype.toString = function() {
+	return "metaTag:" + "ts:" + this.getPts();
+};

@@ -160,3 +160,7 @@ com.ttProject.container.flv.type.AudioTag.prototype.load = function(channel, cal
 com.ttProject.container.flv.type.AudioTag.prototype.getFrame = function() {
 	return this._frame;
 };
+
+com.ttProject.container.flv.type.AudioTag.prototype.toString = function() {
+	return "audioTag:ts:" + this.getPts();
+};

@@ -11,3 +11,7 @@ com.ttProject.container.mkv.type.Void = function(id, size) {
 };
 
 goog.inherits(com.ttProject.container.mkv.type.Void, com.ttProject.container.mkv.MkvTag);
+
+com.ttProject.container.mkv.type.Void.prototype.toString = function() {
+	return "void";
+};

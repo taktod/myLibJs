@@ -40,3 +40,7 @@ com.ttProject.container.mkv.type.SimpleBlock.prototype.minimumLoad = function(ch
 com.ttProject.container.mkv.type.SimpleBlock.prototype.getLacingType = function() {
 	return this._lacing.get();
 };
+
+com.ttProject.container.mkv.type.SimpleBlock.prototype.toString = function() {
+	return "simpleBlock:ts:" + this._time + " trackId:" + this._trackId.get();
+};

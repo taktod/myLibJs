@@ -10,3 +10,7 @@ com.ttProject.container.mkv.type.Cluster = function(id, size) {
 };
 
 goog.inherits(com.ttProject.container.mkv.type.Cluster, com.ttProject.container.mkv.MkvMasterTag);
+
+com.ttProject.container.mkv.type.Cluster.prototype.toString = function() {
+	return "cluster";
+};

@@ -64,15 +64,18 @@ var testMp3Load = function() {
 	readLoop();
 };
 
+/**
+ * mkvのデータ読み込み動作テスト
+ */
 function testMkvLoad() {
 	var channel = new com.ttProject.channel.ReadChannel("resource/test.h264aac.mkv");
 	var reader = new com.ttProject.container.mkv.MkvTagReader();
 	var readLoop = function() {
 		reader.read(channel, function(unit) {
 			if(unit == null) {
-				console.log("nullがかえってきた。");
 				return;
 			}
+			console.log(unit.toString());
 			readLoop();
 		});
 	};

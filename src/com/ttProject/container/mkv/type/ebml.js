@@ -11,3 +11,7 @@ com.ttProject.container.mkv.type.EBML = function(id, size) {
 };
 
 goog.inherits(com.ttProject.container.mkv.type.EBML, com.ttProject.container.mkv.MkvTag);
+
+com.ttProject.container.mkv.type.EBML.prototype.toString = function() {
+	return "ebml";
+};

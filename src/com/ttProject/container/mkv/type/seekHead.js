@@ -10,3 +10,7 @@ com.ttProject.container.mkv.type.SeekHead = function(id, size) {
 };
 
 goog.inherits(com.ttProject.container.mkv.type.SeekHead, com.ttProject.container.mkv.MkvMasterTag);
+
+com.ttProject.container.mkv.type.SeekHead.prototype.toString = function() {
+	return "seekHead";
+};

@@ -10,3 +10,7 @@ com.ttProject.container.mkv.type.Info = function(id, size) {
 };
 
 goog.inherits(com.ttProject.container.mkv.type.Info, com.ttProject.container.mkv.MkvMasterTag);
+
+com.ttProject.container.mkv.type.Info.prototype.toString = function() {
+	return "info";
+};
